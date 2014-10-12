@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My Web Page</h1>
+
+<p>
+You can break a line within a text string with a \ backslash.
+</p>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = "Hello \
+    Dolly.";
+</script>
+
+<p id="demo2">You cannot break a code line with a \ backslash.</p>
+
+<script>
+document.getElementById("demo2").innerHTML = \
+    "Hello Dolly.";
+</script>
+
+</body>
+</html>
