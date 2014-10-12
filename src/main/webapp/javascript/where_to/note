@@ -1,0 +1,2 @@
+It is a good idea to place scripts at the bottom of the <body> element.
+This improves page load, because HTML loading is not blocked by scripts loading.
