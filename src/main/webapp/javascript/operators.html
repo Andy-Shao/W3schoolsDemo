@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>JavaScript Arithmetic Operators</h2>
+<table border="1">
+<thead><tr><td>Operator</td><td>Description</td><td>Example</td><td>Result</td><td>Result</td></tr></thead>
+<tbody>
+<tr><td>+</td><td>Addition</td><td>x=y+2</td><td>y=5</td><td>x=7</td></tr>
+<tr><td>-</td><td>Subtraction</td><td>x = y-2</td><td>y=5</td><td>x=3</td></tr>
+<tr><td>*</td><td>Multiplication</td><td>x=y*2</td><td>y=5</td><td>x=10</td></tr>
+<tr><td>/</td><td>Division</td><td>x=y/2</td><td>y=5</td><td>x=2.5</td></tr>
+<tr><td>%</td><td>Modulus (division remainder)</td><td>x=y%2</td><td>y=5</td><td>x=1</td></tr>
+<tr><td rowspan="2">++</td><td rowspan="2">Increment</td><td>x=++y</td><td>y=6</td><td>x=7</td></tr>
+<tr><td>x=y++</td><td>y=6</td><td>x=6</td></tr>
+<tr><td rowspan="2">--</td><td rowspan="2">Decrement</td><td>x=--y</td><td>y=4</td><td>x=3</td></tr>
+<tr><td>x=y--</td><td>y=4</td><td>x=4</td></tr>
+</tbody>
+</table>
+
+<hr>
+<h2>JavaScript Assignment Operators</h2>
+Given that x = 10 and y = 5, the table below explains the sasignment operators:
+<table border="1">
+<thead><tr><td>Operator</td><td>Example</td><td>Same As</td><td>Result</td></tr></thead>
+<tbody>
+<tr><td>=</td><td>x=y</td><td>x=y</td><td>x=5</td></tr>
+<tr><td>+=</td><td>x+=y</td><td>x=x+y</td><td>x=15</td></tr>
+<tr><td>-=</td><td>x-=y</td><td>x=x-y</td><td>x=5</td></tr>
+<tr><td>*=</td><td>x*=y</td><td>x = x*y</td><td>x=50</td></tr>
+<tr><td>/=</td><td>x/=y</td><td>x=x/y</td><td>x=2</td></tr>
+<tr><td>%=</td><td>x%=y</td><td>x=x%y</td><td>x=0</td></tr>
+</tbody>
+</table>
+
+<hr>
+<h2>JavaScript Bitwise Operators</h2>
+<table border="1">
+<thead><tr><td>Operator</td><td>Description</td><td>Example</td><td>Same as</td><td>Result</td><td>Decimal</td></tr></thead>
+<tbody>
+<tr><td>&</td><td>AND</td><td>x=5&1</td><td>0101 & 0001</td><td>0001</td><td>1</td></tr>
+<tr><td>|</td><td>OR</td><td>x=5|1</td><td>0101 | 0001</td><td>0101</td><td>5</td></tr>
+<tr><td>~</td><td>NOT</td><td>x=~5</td><td>~0101</td><td>1010</td><td>10</td></tr>
+<tr><td>^</td><td>XOR</td><td>x=5^1</td><td>0101 ^ 0001</td><td>0100</td><td>4</td></tr>
+<tr><td>&lt;&lt;</td><td>Left shift</td><td>x=5&lt;&lt;1</td><td>0101&lt;&lt;1</td><td>1010</td><td>10</td></tr>
+<tr><td>&gt;&gt;</td><td>Right shift</td><td>x=5&gt;&gt;1</td><td>0101&gt;&gt;1</td><td>0010</td><td>2</td></tr>
+</tbody>
+</table>
+
+<hr>
+<h2>The typeof operator</h2>
+var x = 5;<br>
+var y = "John";<br>
+typeof x                      // Returns number<br>
+typeof y                      // Returns string<br>
+typeof 3.14                   // Returns number<br>
+typeof false                  // Returns boolean<br>
+typeof [1,2,3,4]              // Returns object<br>
+typeof {name:'john', age:34}  // Returns object<br>
+</body>
+
+<hr>
+<h2>The delete Operator</h2>
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};<br>
+delete person.age;<br>
+
+<hr>
+<h2>The Unary + Operator</h2>
+var y = "5";      // y is a string<br>
+var x = + y;      // x is a number<br>
+<br>
+var y = "John";   // y is a string<br>
+var x = + y;      // x is a number (NaN)<br>
+</html>
