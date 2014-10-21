@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Modifiers can be used to perform case-insensitive more global searches:
+<table border="1">
+<thead><tr><th>Modifier</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>i</td><td>Perform case-insensitive matching</td></tr>
+<tr><td>g</td><td>Perform a global match (find all matches rather than stopping after the first match)</td></tr>
+<tr><td>m</td><td>Perform multiline matching</td></tr>
+</tbody>
+</table>
+
+<hr>
+Brackets are used to find a range of characters:
+<table border="1">
+<thead><tr><th>Expression</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>[abc]</td><td>Find any of the characters between the brackets</td></tr>
+<tr><td>[0-9]</td><td>Find any of the digits between the brackets</td></tr>
+<tr><td>(x|y)</td><td>Find andy of the alternatives separated with |</td></tr>
+</tbody>
+</table>
+
+<hr>
+Metacharacters are characters with a special meaning:
+<table border="1">
+<thead><tr><th>Matacharacter</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>\d</td><td>Find a digit</td></tr>
+<tr><td>\s</td><td>Find a whitespace character</td></tr>
+<tr><td>\b</td><td>Find a match at the beginning or at the end of a word</td></tr>
+<tr><td>\uxxxx</td><td>Find the Unicode character specified by the hexadecimal number xxxx</td></tr> 
+</tbody>
+</table>
+
+<hr>
+Quantifiers define quantities:
+<table border="1">
+<thead><tr><th>Quntifier</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>n+</td><td>Matches any string that contains at least one n</td></tr>
+<tr><td>n*</td><td>Matches any string that contains zero or more occurrences of n</td></tr>
+<tr><td>n?</td><td>Matches any string that contains zero or one occurrences of n</td></tr> 
+</tbody>
+</table>
+</body>
+</html>
