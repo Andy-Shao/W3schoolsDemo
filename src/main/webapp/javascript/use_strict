@@ -1,0 +1,115 @@
+#The "use strict" Directive
+
+The "use strict" directive is new in JavaScript 1.8.5 (ECMAScript version 5).
+
+It is not a statement, but a literal expression, ignored by earlier versions of JavaScript.
+
+The purpose of "use strict" is to indicate that the code should be executed in "strict mode".
+
+With strict mode, you cannot, for example, use undeclared variables.
+
+
+
+#Declaring Strict Mode
+
+Strict mode is declared by adding "use strict"; to the beginning of a JavaScript file, or a JavaScript function.
+
+Declared at the beginning of a JavaScript file, it has global scope (all code will execute in strict mode).
+
+Declared inside a function, it has local scope (only the code inside the function is in strict mode).
+
+Global declaration:
+
+"use strict";
+function testStrict(){
+    var x;
+    x = 3.14; // This does not cause an error. 
+}
+x = 3.14; // This causes an error.
+Local declaration:
+
+function testStrict(){
+   "use strict";
+    x = 3.14; // This causes an error. 
+}
+x = 3.14; // This does not cause an error.
+
+
+#The "use strict"; Syntax
+
+The syntax, for declaring strict mode, was designed to be compatible with older versions of JavaScript.
+
+Compiling a numeric literal (4 + 5;) or a string literal ("John Doe";) in a JavaScript program has no side effects. It simply compiles to a non existing variable and dies.
+
+So "use strict;" only matters to new compilers that "understand" the meaning of it.
+
+#Why Strict Mode?
+
+Strict mode makes it easier to write "secure" JavaScript.
+
+Strict mode changes previously accepted "bad syntax" into real errors.
+
+As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
+
+In normal JavaScript, a developer will not receive any error feedback assigning values to non-writable properties.
+
+In strict mode, any assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object, will throw an error.
+
+#Not Allowed in Strict Mode
+
+Using a variable (property or object) without declaring it, is not allowed:
+
+x = 3.14; // This causes an error (if x has not been declared).
+Deleting a variable, a function, or an argument, is not allowed.
+
+var testStrict = 3.14;
+delete testStrict; // This causes an error.
+Defining a property more than once, is not allowed:
+
+var testStrict = {p1:10, p2:15, p1:20}; // This causes an error.
+Duplicating a parameter name is not allowed:
+var testStrict = 010;  // This causes an error.
+var testStrict = \010; // This causes an error.
+Writing to a read-only property is not allowed:
+
+var testObj = {};
+Object.defineProperty(testObj, "x", {value:0, writable:false});
+testObj.x = 3.14;      // This causes an error.
+Writing to a get-only property is not allowed:
+
+var testObj = {get x() {return 0} };
+testObj.x = 3.14;      // This causes an error.
+Deleting an undeletable property is not allowed:
+
+delete Object.prototype; // This causes an error.
+
+The string "eval" cannot be used as a variable:
+
+var eval = 3.14; // This causes an error.
+The string "arguments" cannot be used as a variable:
+
+var arguments = 3.14; // This causes an error.
+The with statement is not allowed:
+
+with (Math){x = cos(2)}; // This causes an error.
+Future reserved keywords are not allowed. These are:
+
+implements
+interface
+package
+private
+protected
+public
+static
+yield
+
+#Other Differences
+In function calls like f(), the this value was the global object. In strict mode, it is now undefined.
+
+For security reasons, in strict mode code, eval does not create a new variable in the scope from which it was called.
+
+With strict mode, you cannot, for example, use undeclared variables.
+
+#Watch Out!
+The "use strict" directive is only recognized at the beginning of a script or a function.
+If you add two JavaScript files into one file, you will lose the effect of the directive in the second file.
