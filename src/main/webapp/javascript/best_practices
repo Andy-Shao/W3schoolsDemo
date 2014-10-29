@@ -1,0 +1,102 @@
+Avoid global variables, avoid new, avoid ==, avoid eval()
+
+#Avoid Global Variables
+Avoid using global variables.
+This includes all data types, objects, and functions.
+Global variables and functions can be overwritten by other scripts.
+Use local variables instead, and learn how to use closures.
+
+#Always Declare Local Variables
+All variables used in a function should be declared as local variables.
+Local variables must be declared with the var keyword, otherwise they will become global variables.
+NOTE: Strict mode does not allow undeclared variables.
+
+#Never Declare Numbers, Strings, or Booleans as Objects
+Always treat numbers, strings, or booleans as primitive values. Not as objects.
+Declaring numbers, strings, or booleans as objects, slows down execution speed, and produces nasty  side effects:
+Example:
+var x = "John"
+var y = new String("John");
+(x === y) // is false because x is a string and y is an object.
+
+#Don't Use new Object()
+* Use {} instead of new Object()
+* Use "" instead of new String()
+* Use 0 instead of new Number()
+* Use false instead of new Boolean()
+* Use [] instead of new Array()
+* Use /(:)/ instead of new RegExp()
+* Use function (){} instead of new function()
+Example:
+var x1 = {};           // new object
+var x2 = "";           // new primitive string
+var x3 = 0;            // new primitive number
+var x4 = false;        // new primitive boolean
+var x5 = [];           // new array object
+var x6 = /()/;         // new regexp object
+var x7 = function(){}; // new function object
+
+--
+
+#Beware of Automatic Type Conversions
+Beware that numbers can accidentally be converted to strings or NaN (Not a Number).
+JavaScript is loosely typed. A variable can contain different data types, and a variable can change its data type:
+Example
+var x = "Hello";     // typeof x is a string
+x = 5;               // changes typeof x to a number
+
+When doing mathematical operations, JavaScripts can converts numbers to strings:
+Example:
+var x = 5 + 7;       // x.valueOf() is 12,  typeof x is a number
+var x = 5 + "7";     // x.valueOf() is 57,  typeof x is a string
+var x = "5" + 7;     // x.valueOf() is 57,  typeof x is a string
+var x = 5 - 7;       // x.valueOf() is -2,  typeof x is a number
+var x = 5 - "7";     // x.valueOf() is -2,  typeof x is a number
+var x = "5" - 7;     // x.valueOf() is -2,  typeof x is a number
+var x = 5 - "x";     // x.valueOf() is NaN, typeof x is a number
+
+Subtracting a String from a string, does not generate an error but returns NaN (Not a Number):
+Example
+"Hello" - "Dolly" //returns NaN
+
+--
+
+#Use === Comparison
+The == comparison operator always converts (to matching types) before comparison.
+The === operator forces comparison of values and type:
+Example:
+0 == "";        // true
+1 == "1";       // true
+1 == true;      // true
+
+0 === "";       // false
+1 === "1";      // false
+1 === true;     // false
+
+
+#Never End a Definition with a Comma
+Bad Examples:
+points = [40, 100, 1, 5, 25, 10, ];
+person = {firstName:"John", lastName:"Doe", age:46, }
+Some JSON and JavaScript engines will fail, or behave unexpectedly.
+
+
+#Use Parameter Defaults
+If a function is called with a missing argument, the value of the missing argument is set to undefined.
+Undefined values can break your code. It is a good habit to assign default values to arguments.
+Example
+function myFunction(x, y) {
+    if (y === undefined) {
+        y = 0;
+    }
+}
+Or, even simpler:
+function myFunction(x, y) {
+    y = y || 0;
+}
+
+
+
+#Avoid Using eval()
+The eval() function is used to run text as code. In almost all cases, it should not be necessary to use it.
+Because it allows arbitrary code to be run, it also represents a security problem.
