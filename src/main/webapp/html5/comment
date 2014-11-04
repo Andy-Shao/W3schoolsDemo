@@ -1,0 +1,6 @@
+##Conditional Comments
+You might stumble upon conditional comments in HTML:
+<!--[if IE 8]>
+    .... some HTML here ....
+<![endif]-->
+Conditional comments defines HTML tags to be executed by IE only.
