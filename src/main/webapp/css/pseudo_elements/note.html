@@ -9,6 +9,103 @@
 <p>For example, it can be used to:</p>
 <ul>
 <li>Style the first letter, or line, of an element</li>
+<li>Insert content before, or after, the content of an element</li>
 </ul>
+
+<hr/>
+<h3>Syntax</h3>
+<p>The syntax of pseudo-elements</p>
+<code>
+<pre>
+selector::pseudo-element {
+    property:value;
+}
+</pre>
+</code>
+
+<hr/>
+<h3>The ::first-line Pseudo-element</h3>
+<p>The ::first-line pseudo-element is used to add a special style to the first line of a text.</p>
+<p>The ::first-line pseudo-element can only be applied to block elements.</p>
+<a href="first_line.html">Example</a>
+<p>The following properties apply to the ::first-line pseudo-element:</p>
+<ul>
+<li>font properties</li>
+<li>color properties</li>
+<li>background properties</li>
+<li>word-spacing</li>
+<li>letter-spacing</li>
+<li>text-decoration</li>
+<li>vertical-align</li>
+<li>text-transform</li>
+<li>line-height</li>
+<li>clear</li>
+</ul>
+
+<hr/>
+<h3>The ::first-letter Pseudo-element</h3>
+<p>The ::first-letter pseudo-element is used to add a special style to the first letter of a text.</p>
+<p>The ::first-letter pseudo-element can only be applied to block element.</p>
+<a href="first_letter.html">Example</a>
+<p>The following properties apply to the ::first-letter pseudo-element:</p>
+<ul>
+<li>font properties</li>
+<li>color properties</li>
+<li>background properties</li>
+<li>margin properties</li>
+<li>padding properties</li>
+<li>border properties</li>
+<li>text-decoration</li>
+<li>vertical-align(only if "float" is "none")</li>
+<li>text-transform</li>
+<li>line-height</li>
+<li>float</li>
+<li>clear</li>
+</ul>
+
+<hr/>
+<h3>Pseudo-elements and CSS Classes</h3>
+<p>Pseudo-elements can be combined with CSS classes:</p>
+<a href="css_classes.html">Example</a>
+<p>The example above will display the first letter of paragraphs with class="intro", in larger size, and red.</p>
+
+<hr/>
+<h3>Multiple Pseudo-elements</h3>
+<p>Several pseudo-elements can also be combined</p>
+<p>In the following example, the first letter of a paragraph will be red, in an xx-large font size. The rest of the 
+first line will be blue, and in small-caps. The rest of the paragraph will be the default font size and color:</p>
+<a href="multiple.html">Example</a>
+
+<hr/>
+<h3>CSS - The ::before Pseudo-element</h3>
+<p>The ::before pseudo-element can be used to insert some content before the content of an elemant.</p>
+<p>The following example inserts an image before each &lt;h1&gt; element:</p>
+<a href="css_before.html">Example</a>
+
+<hr/>
+<h3>CSS - The ::after Pseudo-element</h3>
+<p>The ::after pseudo-element can be used to insert home content after the content of an element.</p>
+<p>The following example inserts an image after each &lt;h1&gt; element:</p>
+<a href="css_after.html">Example</a>
+
+<hr/>
+<h3>All CSS Pseudo Classes/Elements</h3>
+<table border="1">
+<thead><tr><th>Selector</th><th>Example</th><td>Example description</td></tr></thead>
+<tbody>
+<tr><td>:link</td><td>a:link</td><td>Selects all unvisited links</td></tr>
+<tr><td>:visited</td><td>a:visited</td><td>Selects all visited links</td></tr>
+<tr><td>:active</td><td>a:active</td><td>Selects the active link</td></tr>
+<tr><td>:hover</td><td>a:hover</td><td>Selects links on mouse over</td></tr>
+<tr><td>:focus</td><td>input:focus</td><td>Selects the first letter of every &lt;p&gt; element</td></tr>
+<tr><td>::first-letter</td><td>p::first-letter</td><td>Selects the first letter of every &lt;p&gt; element</td></tr>
+<tr><td>::first-line</td><td>p::first-line</td><td>Selects the first line of every &lt;p&gt; element</td></tr>
+<tr><td>:first-child</td><td>p:first-child</td><td>Selects every &lt;p&gt; elements that is the fist child of its parent</td></tr>
+<tr><td>::before</td><td>p::before</td><td>Insert content before every &lt;p&gt; element</td></tr>
+<tr><td>::after</td><td>p::after</td><td>Insert content after every &lt;p&gt; element</td></tr>
+<tr><td>:lang(<i>language</i>)</td><td>p:lang(it)</td><td>Selects every &lt;p&gt; element with a lang attribute value
+starting with "it"</td></tr>
+</tbody>
+</table>
 </body>
 </html>
