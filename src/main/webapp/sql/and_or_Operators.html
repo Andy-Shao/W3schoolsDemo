@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p>The AND &amp; OR Operators</p>
+<h1>The SQL AND &amp; OR Operators</h1>
+<p>The AND operator displays a record if both the first condition AND the second condition are true.</p>
+<p>The OR operator displays a record if either the first condition OR the second condition is true.</p>
+<h1>AND Operator Example</h1>
+<p>The following SQL statment selects all customers from the country "Germany" AND the city "Berlin", in 
+the "Customers" table:</p>
+<p>SELECT * FROM Customers WHERE Country='Germany' AND City='Berlin';</p>
+<h1>OR Operator Example</h1>
+<p>The following SQL statement selects all customers from the city "Berlin" OR "munchen", in the "Customers"
+table:</p>
+<p>SELECT * FROM Customers WHERE City='Berlin' OR City='Munchen';</p>
+<h1>Combining AND &amp; OR</h1>
+<p>You can also combine AND and OR.</p>
+<p>The following SQL statement selects all customers from the country "Germany" AND the city must be equal to
+"Berlin" OR "Munchen", in the "Customers" table:</p>
+</body>
+</html>
