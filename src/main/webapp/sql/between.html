@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/note.css">
+</head>
+<body>
+<p>The BETWEEN operator is used to select values within a range.</p>
+<h1>The SQL BETWEEN Operator</h1>
+<p>The BETWEEN operator selects values within a range. The values can be numbers, text, or dates.</p>
+<h1>SQL BETWEEN Syntax</h1>
+<div class="form">
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+</div>
+<code>
+<pre>
+SELECT * FROM Orders 
+WHERE OrderDate BETWEEN #07/04/1996# AND #07/09/1996#;
+</pre>
+</code>
+<div class="notice">
+<b>NOtice that the BETWEEN operator can produce different result in different databases!</b><br/>
+In some databases,BETWEEN selects fields that are between and excluding the test values.<br/>
+In other databases, BETWEEN selects fields that are between and including the test value.<br/>
+And in other databases, BETWEEN selects fields between the test values, including the first test value and 
+excluding the last test value.<br/>
+<b>Therefore:Check how your database treats the BETWEEN operator!</b>
+</div>
+</body>
+</html>
