@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Orders`
+-- Table structure for table `Suppliers`
 --
 
-DROP TABLE IF EXISTS `Orders`;
+DROP TABLE IF EXISTS `Suppliers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Orders` (
-  `OrderID` int(11) DEFAULT NULL,
-  `CustomerID` int(11) DEFAULT NULL,
-  `EmployeeID` int(11) DEFAULT NULL,
-  `OrderDate` varchar(20) DEFAULT NULL,
-  `ShipperID` int(11) DEFAULT NULL
+CREATE TABLE `Suppliers` (
+  `SupplierID` int(11) DEFAULT NULL,
+  `SupplierName` varchar(50) DEFAULT NULL,
+  `ContactName` varchar(50) DEFAULT NULL,
+  `Address` varchar(50) DEFAULT NULL,
+  `City` varchar(50) DEFAULT NULL,
+  `PostalCode` varchar(50) DEFAULT NULL,
+  `Country` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Orders`
+-- Dumping data for table `Suppliers`
 --
 
-LOCK TABLES `Orders` WRITE;
-/*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
-INSERT INTO `Orders` VALUES (10248,90,5,'7/4/1996',3),(10249,81,6,'7/5/1996',1),(10250,34,4,'7/8/1996',2),(10251,84,3,'7/9/1996',1),(10252,76,4,'7/10/1996',2),(10308,2,NULL,'1996-09-18',NULL),(10309,37,NULL,'1996-09-19',NULL),(10310,77,NULL,'1996-09-20',NULL);
-/*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
+LOCK TABLES `Suppliers` WRITE;
+/*!40000 ALTER TABLE `Suppliers` DISABLE KEYS */;
+INSERT INTO `Suppliers` VALUES (1,'Exotic Liquid','Charlotte Cooper','49 Gilbert St','Londona','EC1 4SD','UK'),(2,'New Orleans Cajun Delights','Shelley Burke','P.O. Box 78934','New Orleans','70117','USA'),(3,'Grandma Kelly\'s Homestead','Regina Murphy','707 Oxford Rd.','Ann Arbor','48104','USA');
+/*!40000 ALTER TABLE `Suppliers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-22 14:12:52
+-- Dump completed on 2015-01-22 14:21:22
