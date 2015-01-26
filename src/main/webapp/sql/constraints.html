@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/note.css"/>
+</head>
+<body>
+<h1>SQL Constraints</h1>
+<p>SQL constraints are used to specify rules for the data in a table.</p>
+<p>If there is any violation between the constraint and the data action, the action is aborted by the
+constraint.</p>
+<p>Constarints can be specified when the table is created (inside the CREATE TABLE statement)or after
+the table is created (inside the ALTER TABLE statement).</p>
+<h2>SQL CRATE TABLE + CONSTRAINT Syntax</h2>
+<div class="form">
+<code>
+<pre>
+CRATE TABLE table_name
+(
+column_name1 data_type(size) constraint_name,
+column_name2 data_type(size) constraint_name,
+column_name3 data_type(size) constraint_name,
+...
+);
+</pre>
+</code>
+</div>
+<p>In SQL, we have the following constraints:</p>
+<ul>
+<li><b>NOT NULL</b> - Indicates that a column cannot stor NULL value</li>
+<li><b>UNIQUE</b> - Ensures that each row for a column must have a unique value</li>
+<li><b>PRIMARY KEY</b> - A combination of a NOT NULL and UNIQUE. Ensures that a column
+(or combination of two or more columns) have an unique identity which helps to find a 
+particular record in a table more easily and quickly</li>
+<li><b>FOREIGN KEY</b> - Ensure the referential integrity of the data in one table to 
+match values in another table</li>
+<li><b>CHECK</b> - Ensures that the value in a column meets a specific condition</li>
+<li><b>DEFAULT</b> - Specifies a default value when specified none for this column</li>
+</ul>
+<p>The next chapters will describe each constraint in detail.</p>
+</body>
+</html>

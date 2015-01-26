@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/note.css"/>
+</head>
+<body>
+<h1>SQL CHECK Constraint</h1>
+<p>The CHECK constraint is used to limit the value range that can be placed in a column.</p>
+<p>If you define a CHECK constraint on a single column it allows only certain values for this column.</p>
+<p>If you define a CHECK constraint on a table it can limit the values in certain columns based on values
+in other columns in the row.</p>
+<h2>MySQL:</h2>
+<div class="form">
+<code>
+<pre>
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CHECK (P_Id > 0)
+);
+</pre>
+</code>
+</div>
+<h2>SQL Server/Oracle/MS Access:</h2>
+<div class="form">
+<code>
+<pre>
+CREATE TABLE Persons
+(
+P_Id int NOT NULL CHECK (P_Id>0),
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+</pre>
+</code>
+</div>
+<p>To allow naming of a CHECK constraint, and for defining a CHECK constraint on multiple
+columns, use the following SQL syntax:</p>
+<h2>MySQL/SQL Server/Oracle/MS Access:</h2>
+<div class="form">
+<code>
+<pre>
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CONSTRAINT chk Person CHECK (P_Id>0 AND City='Sandnes')
+);
+</pre>
+</code>
+</div>
+<hr/>
+
+<h1>SQL CHECK Constraint on ALTER TABLE</h1>
+<h2>MySQL/SQL Server/Oracle/MS Access:</h2>
+<div class="form">
+<code>
+<pre>
+ALTER TABLE Persons
+ADD CHECK (P_Id>0)
+</pre>
+</code>
+</div>
+<h2>MySQL/SQL Server/Oracle/MS Access:</h2>
+<div class="form">
+<code>
+<pre>
+ALTER TABLE Persons
+ADD CONSTRAINT chk_Person CHECK (P_Id>0 AND City='Sandnes')
+</pre>
+</code>
+</div>
+<hr/>
+
+<h1>To DROP a CHECK Constraint</h1>
+<p>To drop a CHECK constraint, use the following SQL:</p>
+<h2>SQL Server/Oracle/MS Access:</h2>
+<div class="form">
+<code>
+<pre>
+ALTER TABLE Persons
+DROP CONSTRAINT chk_Person
+</pre>
+</code>
+</div>
+<h2>MySQL:</h2>
+<div class="form">
+<code>
+<pre>
+ALTER TABLE Persons
+DROP CHECK chk_Person
+</pre>
+</code>
+</div>
+</body>
+</html>
