@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/note.css"/>
+</head>
+<body>
+<p>The CREATE INDEX statement is used to create indexes in tables.</p>
+<p>Indexes allow the database application to find data fast; without reading the whole table.</p>
+<hr/>
+
+<h2>Indexes</h2>
+<p>An index can be created in a table to find data more quickly and efficiently.</p>
+<p>The users cannot see the indexes, they are just used to speed up searches/queries.</p>
+<p><b>Note:</b>Updating a table with indexes takes more time than updating a table without (
+because the indexes also need an update). So you should only create indexes on columns (and tables)
+that will be frequently searched against.</p>  
+<h2>SQL CREATE INDEX Syntax</h2>
+<p>Creates an index on a table. Duplicate values are allowed:</p>
+<div class="form">
+<code><pre>
+CRATE INDEX index_name
+ON table_name(column_name)
+</pre></code>
+</div>
+<h2>Creates a unique index on a table. Duplicate values are not allowed:</h2>
+<div class="form"><code><pre>
+CREATE UNIQUE INDEX index_name
+ON table_name (column_name)
+</pre></code></div>
+<p><b>Note:</b> The syntax for creating indexes varies amongst different databases. Therefore:
+Check the syntax for creating indexes in your database.</p>
+<hr/>
+
+<h1>CREATE INDEX Example</h1>
+<p>The SQL statement below creates an index named "PIndex" on the "LastName" column in the 
+"Persons" table:</p>
+<div class="form"><code><pre>
+CREATE INDEX PIndex
+</pre></code></div>
+<p>If you want to create an index on a combination of columns, you can list the column names within 
+the parentheses, separated by commas:</p>
+<div class="form"><code><pre>
+CREATE INDEX PIndex
+ON Persons (LastName, FirstName)
+</pre></code></div>
+<h1>CREATE INDEX Example</h1>
+<p>The SQL statement below creates an index named "PIndex" on the "LastName" column in the "Persons"
+table:</p>
+<div class="form"><code><pre>
+CREATE INDEX PIndex
+ON Persons (LastName)
+</pre></code></div>
+<p>If you want to create an index on a combination of columns, you can list the column names within
+the parentheses, separated by commas:</p>
+<div class="form"><code><pre>
+CREATE INDEX PIndex
+ON Persons (LastName, FirstName)
+</pre></code></div>
+</body>
+</html>

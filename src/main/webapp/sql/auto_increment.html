@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/note.css"/>
+</head>
+<body>
+<p>Auto_increment allows a unique number to be generated when a new record is inserted into 
+a table.</p>
+<hr/>
+
+<h1>AUTO INCREMENT a Field</h1>
+<p>Very often we would like the value of the primary key field to be created automatically every
+time a new record is inserted.</p>
+<p>We would like to create an auto-increment field in a table.</p>
+<hr/>
+
+<h1>Syntax for MySQL</h1>
+<p>The following SQL statement defines the "ID" colum to be an auto-increment primary key field in
+the "Persons" table:</p>
+<div class="form"><code><pre>
+CREATE TABLE Persons
+(
+ID int NOT NULL AUTO_INCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (ID)
+);
+</pre></code></div>
+<p>MySQL uses the AUTO_INCREMENT keyword to perform an auto-increment feature.</p>
+<p>By default, the starting value for AUTO_INCREMENT is 1, and it will increment by 1 for each
+new record.</p>
+<p>To let the AUTO_INCREMENT sequence start with another value, use the following SQL statement:</p>
+<div class="form"><code><pre>
+ALTER TABLE Persons AUTO_INCREMENT=100
+</pre></code></div>
+</body>
+</html>
