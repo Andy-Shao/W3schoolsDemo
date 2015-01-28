@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>SQL ISNULL(), NVL(), IFNULL(), and COALESCE() Functions</h1>
+<h2>MS Access</h2>
+<div class="form"><code><pre>
+SELECT ProductName, UnitPrice * (UnitsInStock+IIF(ISNULL(UnitsOnOrder), 0, UnitsOnOrder))
+FROM Products
+</pre></code></div>
+<h2>SQL Server</h2>
+<div class="form"><code><pre>
+SELECT ProductName, UnitPrice * (UnitsInStock + ISNULL(UnitsOnOrder,0))
+FROM Products
+</pre></code></div>
+<h2>Oracle</h2>
+<p>Oracle does not have an ISNULL() function. However, we can use the NVL() function to achieve the same
+result:</p>
+<div class="form"><code><pre>
+SELECT ProductName, UnitPrice * (UnitsInStock + NVL(UnitsOnOrder,0))
+FROM Products
+</pre></code></div>
+<h2>MySQL</h2>
+<p>
+MySQL does have an ISNULL() function. However, it works a little bit different from Microsoft's ISNULL() 
+function. In MySQL we can use the IFNULL() function, like this:
+</p>
+<div class="form"><code><pre>
+SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UNitsOnOrder,0))
+FROM Products
+</pre></code></div>
+<p>or we can use the COALESCE() function, like this:</p>
+<div class="form"><code><pre>
+SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder,0))
+FROM Products
+</pre></code></div>
+</body>
+</html>
