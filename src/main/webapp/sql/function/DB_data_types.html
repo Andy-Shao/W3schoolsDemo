@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p>Data types and ranges for Microsoft Access, MySQL and SQL Server.</p>
+<hr/>
+
+<h1>Microsoft Access Data Types</h1>
+<table border="1">
+<thead><tr><th>Data type</th><th>Description</th><th>Storage</th></tr></thead>
+<tbody>
+<tr><td>Text</td><td>Use for text or combinations of text and numbers. 255 charachers maximum</td><td></td></tr>
+<tr><td>Memo</td><td>Memo is used for larger amounts of text. Stores up to 65,536 characters.<br/>
+<b>Note:</b> You cannot sort a memo field. However, they are searchable</td><td></td></tr>
+<tr><td>Byte</td><td>Allows whole numbers from 0 to 255.</td><td>1 byte</td></tr>
+<tr><td>Integer</td><td>Allows whole numbers between -32,768 and 32,767</td><td>2 bytes</td></tr>
+<tr><td>Long</td><td>Allows whole numbers between -2,147,483,648 and 2,147,483,647</td><td>4 bytes</td></tr>
+<tr><td>Single</td><td>Single precision floating-point. Will handle most decimals</td><td>4 bytes</td></tr>
+<tr><td>Double</td><td>Double precision floating-point. Will handle most decimals</td><td>8 bytes</td></tr>
+<tr><td>Currency</td><td>Use for currency. Holds up to 15 digits of whole dollars, plus 4 decimal places.
+<b>Tip:</b> You can choose which country's currency to use</td><td>8 bytes</td></tr>
+<tr><td>AutoNumber</td><td>AutoNumber fields automatically give each record its own number, usually starting
+at 1</td><td>4 bytes</td></tr>
+<tr><td>Date/Time</td><td>Use for dates and times</td><td>8 bytes</td></tr>
+<tr><td>Yes/No</td><td>A logical field can be displayed as Yes/No, True/False, or On/Off. In code, use the 
+constants True and False (equivalent to -1 and 0). <b>Note:</b> Null values are not allowed in Yes/No fields</td>
+<td>1 bit</td></tr>
+<tr><td>Ole Object</td><td>Can store pictures, audio, video, or other BLOBs (Binary Large OBjects)</td>
+<td>up to 1GB</td></tr>
+<tr><td>Hyperlink</td><td>Contain links to other files, including web pages</td><td></td></tr>
+<tr><td>Lookup Wizard</td><td>Let you type a list of options, which can then be chosen from a drop-down 
+list</td><td>4 bytes</td></tr>
+</tbody>
+</table>
+<hr/>
+</body>
+</html>
