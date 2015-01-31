@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>The FIRST() Function</h1>
+<p>The FIRST() function returns the first value of the selected column.</p>
+<h2>SQL FIRST() Syntax</h2>
+<div class="form"><code><pre>
+SELECT FIRST(column_name) FROM table_name;
+</pre></code></div>
+<p><b>Note:</b> The FIRST() function is only supported in MS Access.</p>
+<hr/>
+
+<h1>SQL FIRST() Workaround in SQL Server, MySQL and Oracle</h1>
+<h2>SQL Server Syntax</h2>
+<div class="form"><code><pre>
+SELECT TOP 1 column_name FROM table_name
+ORDER BY column_name ASC;
+</pre></code></div>
+<h2>Example</h2>
+<div class="form"><code><pre>
+SELECT TOP 1 CustomerName FROM Customers
+ORDER BY CustomerID ASC;
+</pre></code></div>
+<h2>MySQL Syntax</h2>
+<div class="form"><code><pre>
+SELECT column_name FROM table_name
+ORDER BY column_name ASC
+LIMIT 1;
+</pre></code></div>
+<h2>Example</h2>
+<div class="form"><code><pre>
+SELECT CustomerName FROM Customers
+ORDER BY CustomerID ASC
+LIMIT 1;
+</pre></code></div>
+<h2>Oracle Syntax</h2>
+<div class="form"><code><pre>
+SELECT column_name FROM table_name
+WHERE ROWNUM &lt;=1
+ORDER BY column_name ASC;
+</pre></code></div>
+<h2>Example</h2>
+<div class="form"><code><pre>
+SELECT CustomerName FROM Customers
+WHERE ROWNUM &lt;=1
+ORDER BY CustomerID ASC;
+</pre></code></div>
+</body>
+</html>
