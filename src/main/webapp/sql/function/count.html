@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<p>The COUNT() function returns the number of rows that matches a specified criteria.</p>
+<h2>SQL COUNT(column_name) Syntax</h2>
+<p>The COUNT(column_name) function returns the number of values (NULL values will not be counted)
+of the specified colunn:</p>
+<div class="form"><code><pre>
+SELECT COUNT(column_name) FROM table_name;
+</pre></code></div>
+<h2>SQL COUNT(*) Syntax</h2>
+<p>The COUNT(*) function returns the number of records in a table:</p>
+<div class="form"><code><pre>
+SELECT COUNT(*) FROM table_name;
+</pre></code></div>
+<h2>SQL COUNT(DISTINCT column_name) Syntax</h2>
+<p>The COUNT(DISTINCT column_name) function returns the number of distinct values of the specified column:</p>
+<div class="form"><code><pre>
+SELECT COUNT(DISTINCT column_name) FROM table_name;
+</pre></code></div>
+<p><b>Note:</b> COUNT(DISTINCT) works with ORACLE, MYSQL and Microsoft SQL Server, but not with Microsoft Access.</p>
+</body>
+</html>
