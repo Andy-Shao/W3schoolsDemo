@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>The LEN() Function</h1>
+<p>The LEN() function returns the length of the value in a text field.</p>
+<h2>SQL LEN() Syntax</h2>
+<div class="form"><code><pre>
+SELECT LEN(column_name) FROM table_name;
+</pre></code></div>
+<h2>Example</h2>
+<div class="form"><code><pre>
+SELECT CustomerName, LEN(Address) as LengthOfAddress
+FROM Customers;
+</pre></code></div>
+</body>
+</html>
