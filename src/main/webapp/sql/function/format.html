@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>The FORMAT() Function</h1>
+<p>The FORMAT() function is used to format how a field is to be displayed.</p>
+<h2>SQL FORMAT() Syntax</h2>
+<div class="form"><code><pre>
+SELECT FORMAT(column_name, format) FROM table_name;
+</pre></code></div>
+<table border="1">
+<thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>column_name</td><td>Required. The filed to be formated.</td></tr>
+<tr><td>format</td><td>Required. Specifies the format.</td></tr>
+</tbody>
+</table>
+<h2>Example</h2>
+<div class="form"><code><pre>
+SELECT ProductName, Price, FORMAT(Now(), 'YYY-MM-DD') AS PerDate
+FROM Products;
+</pre></code></div>
+</body>
+</html>
