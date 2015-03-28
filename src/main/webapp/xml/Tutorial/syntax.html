@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML Syntax Rules</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML Syntax Rules</h1>
+<p>The syntax rules of XML are very simple and logical. The rules are easy to learn, and
+easy to use.</p>
+<hr/>
+<h2>All XML Elements Must Have a Closing Tag</h2>
+<p>In HTML, some elements do not have to have a closing tag:</p>
+<code><pre>
+&lt;p&gt;This is a paragraph.
+&lt;br&gt;
+</pre></code>
+<p>In XML, it is illegal to omit the closing tag. All elements <b>must</b> have a closing tag:</p>
+<code><pre>
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;br/&gt;
+</pre></code>
+<p><b>Note</b>: You might have noticed from the previous example that the XML declaration did not
+have a closing tag. This is not an error. The declarations is not a part of the XML document itself,
+and it has not closing tag.</p>
+<hr/>
+<h1>XML Tags are Case Sensitive</h1>
+<p>XML tags are case sensitive. The tag &lt;Letter&gt; is different from the tag &lt;letter&gt;.</p>
+<p>Opening and closing tags must be written with the same case:</p>
+<code><pre>
+&lt;Message&gt;This is incorrect&lt;/message&gt;
+&lt;message&gt;This is correct&lt;/message&gt;
+</pre></code>
+<p><b>Note:</b> "Opening and closing tags" are often referred to as "Start and end tags". Use 
+whatever you prefer. It is exactly the same thing.</p>
+<hr/>
+<h2>XML Elements Must be Properly Nested</h2>
+<p>In HTML, you might see imiproperily nested elements:</p>
+<code><pre>
+&lt;b&gt;&lt;i&gt;This text is bold and italic&lt;/b&gt;&lt;/i&gt;
+</pre></code>
+<p>In XML, all elements <b>must</b> be properly nested within each other:</p>
+<code><pre>
+&lt;b&gt;&lt;i&gt;This text is bold and italic&lt;/i&gt;&lt;/b&gt;
+</pre></code>
+<p>In the example above, "Properly nested" simply means that since the &lt;i&gt; element is opened
+inside the &lt;b&gt; element, it must be closed inside the &lt;b&gt; element.
+<hr/>
+<h2>XML Docuements Must Have a Root Element</h2>
+<p>XML documents must contain one element that is the <b>parent</b> of all other elements. This 
+element is called the <b>root</b> element.</p>
+<code><pre>
+&lt;root&gt;
+    &lt;child&gt;
+        &lt;subchild&gt;.....&lt;/subchild&gt;
+    &lt;/child&gt;
+&lt;/root&gt;
+</pre></code>
+<hr/>
+<h2>XML Attribute Values Must be Quoted</h2>
+<p>XML elements can have attributes in name/value pairs just like in HTML.</p>
+<p>In XML, the attribute vaules must always be quoted.</p>
+<p>INCORRECT:</p>
+<code><pre>
+&lt;note date="12/11/2007&gt;
+    &lt;to&gt;Tove&lt;to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+&lt;/note&gt;
+</pre></code>
+<p>CORRECT:</p>
+<code><pre>
+&lt;note date="12/11/2007"&gt;
+    &lt;to&gt;Tove&lt;/to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+&lt;/note&gt;
+</pre></code>
+<p>The error in the first document is that the date attribute in the note element is not quoted.</p>
+<hr/>
+<h2>Entity References</h2>
+<p>Some characters have a special meaning in XML.</p>
+<p>If you place a character like "&lt;" inside an XML element, it will generate an error because 
+the parser interprets it as the start of a new element.</p>
+<p>This will generate an XML error:</p>
+<code><pre>
+&lt;message&gt;if salary &lt; 1000 then&lt;/message&gt;
+</pre></code>
+<p>To avoid this error, replace the "&lt;" character with an <b>entity reference</b>:</p>
+<code><pre>
+&lt;message&gt;if salary &amp;lt; 1000 then&lt;/message&gt;
+</pre></code>
+<p>There are 5 pre-defined entity refernces in XML:</p>
+<table border="1">
+<tbody>
+<tr><td>&amp;lt;</td><td>&lt;</td><td>less than</td></tr>
+<tr><td>&amp;gt;</td><td>&gt;</td><td>greater than</td></tr>
+<tr><td>&amp;amp;</td><td>&amp;</td><td>ampersand</td></tr>
+<tr><td>&amp;apos;</td><td>&apos;</td><td>apostrophe</td></tr>
+<tr><td>&amp;quot;</td><td>&quot;</td><td>quotation mark</td></tr>
+</tbody>
+</table>
+<p><b>Note:</b> Only the characters "&lt;" and "&amp;" are strictly illegal in XML. 
+The greater thatn character is leagal, but is is a good habit to replace it.</p>
+<hr/>
+<h2>Comments in XML</h2>
+<p>The syntax for writing comments in XML is similar to that of HTML.</p>
+<p>&lt;!-- This is a comment --&gt;</p>
+<hr/>
+<h2>White-space is Preserved in XML</h2>
+<p>XML does not truncate multiple white-space in a document (while HTML truncates multiple
+white-spaces to one single white-space):</p>
+<hr/>
+<h2>XML Stores New line as LF</h2>
+<p>Windows applications store a new line as: carriage return and line feed (CR+LF).</p>
+<p>Unix and Mac OSX uses LF.</p>
+<p>Old Max systems uses CR.</p>
+<p>XML stores a new line as LF.</p>
+<hr/>
+<h2>Well Formed XML</h2>
+<p>XML docuemnts that conform to the syntax rules above are saide to be "Well Formed" XML
+documents.</p>
+</body>
+</html>

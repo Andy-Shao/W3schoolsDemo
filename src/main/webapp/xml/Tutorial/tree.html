@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tree</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML Tree</h1>
+<p>XML documents form a tree structure that starts at "the root" and branches 
+to "the leaves".</p>
+<hr/>
+<h2>An Example XML Document</h2>
+<p>XML documents use a self-describing and simple syntax:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;note&gt;
+    &lt;to&gt;Tove&lt;/to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+    &lt;heading&gt;Reminder&lt;/heading&gt;
+    &lt;body&gt;Don't forget me this weekend!&lt;/body&gt;
+&lt;/note&gt;
+</pre></code>
+<p>The first line is the XML declaration. It defines the XML version(1.0).</p>
+<p>The next line describe the <b>root element</b> of the document (like saying:
+"this document is a note"):</p>
+<code><pre>
+&lt;note&gt;
+</pre></code>
+<p>The next 4 lines describe 4 <b>child elements</b> of the root(to, from, heading,
+and body):</p>
+<code><pre>
+&lt;to&gt;Tove&lt;/to&gt;
+&lt;from&gt;Jani&lt;/from&gt;
+&lt;heading&gt;Reminder&lt;/heading&gt;
+&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;
+</pre></code>
+<p>And finally the last line defines the end of the root element:</p>
+<code><pre>
+&lt;/note&gt;
+</pre></code>
+You can assume, from this example, that the XML document contains a note to Tove from
+Jani.<br/>
+<p>Don't you agree that XML is pretty self-descriptive?</p>
+<hr/>
+<h2>XML Documents Form a Tree Structure</h2>
+<p>XML documents must contain a <b>root element</b>. This element is "the parent" of all 
+other elements.</p>
+<p>The elements in an XML document form a document tree. The tree starts a the root and 
+branches to the lowest level of the tree.</p>
+<p>All elements can have sub elements(child elements):</p>
+<code><pre>
+&lt;root&gt;
+    &lt;child&gt;
+        &lt;subchild&gt;.....&lt;/subchild&gt;
+    &lt;/child&gt;
+&lt;/root&gt;
+</pre></code>
+<p>The terms parent, child, and sibling are used to describe the relationships between 
+elements. Parent elements have children. Children on the same level are called sibliings
+(brothers or sisters)</p>
+<p>All elements can have text content and attributes(just like in HTML).</p>
+<h2>Example:</h2>
+<img src="../../resources/images/xml/nodetree.gif" alt="Node tree"/>
+<p>The image above represents one book in the XML below:</p>
+<code><pre>
+&lt;bookstore&gt;
+    &lt;book category="COOKING"&gt;
+        &lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+        &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+        &lt;year&gt;2005&lt;/year&gt;
+        &lt;price&gt;30.00&lt;/price&gt;
+    &lt;book&gt;
+    &lt;book category="CHILDREN"&gt;
+        &lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+        &lt;author&gt;J K. Rowling&lt;/author&gt;
+        &lt;year&gt;2005&lt;/year&gt;
+        &lt;price&gt;29.99&lt;/price&gt;
+    &lt;/book&gt;
+    &lt;book category="WEB"&gt;
+       &lt;title lang="en"&gt;Learning XML&lt;/title&gt; 
+       &lt;author&gt;Erik T. Ray&lt;/author&gt;
+       &lt;year&gt;2003&lt;/year&gt;
+       &lt;price&gt;39.95&lt;/price&gt;
+    &lt;/book&gt;
+&lt;/bookstore&gt;
+</pre></code>
+<p>The root element in the example is &lt;bookstore&gt;. All &lt;book&gt; elements in the 
+document are contained within &lt;bookstore&gt;.</p>
+<p>The &lt;book&gt; element has 4 children: &lt;title&gt;, &lt;author&gt;, &lt;year&gt;,
+&lt;price&gt;.</p>
+</body>
+</html>
