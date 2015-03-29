@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML Namespaces</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML Namespaces</h1>
+<p>XML Namespaces provide a method to avoid element name conflicts.</p>
+<hr/>
+<h2>Name Conflicts</h2>
+<p>In XML, element names are defined by the developer. This often results in a conflict when 
+trying to mix XML documents from different XML applications.</p>
+<p>This XML carries HTML table information:</p>
+<code><pre>
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Apples&lt;/td&gt;
+        &lt;td&gt;Bananas&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</pre></code>
+<p>This XML carries information about a table (a piece of furniture):</p>
+<code><pre>
+&lt;table&gt;
+    &lt;name&gt;African COffee Table&lt;/name&gt;
+    &lt;width&gt;80&lt;/width&gt;
+    &lt;length&gt;120&lt;/length&gt;
+&lt;/table&gt;
+</pre></code>
+<p>If these XML fragments were added together, there would be a name conflict. Both 
+contain a &lt;table&gt; element, but the elements have different content and meaning.</p>
+<p>A user or an XML application will not know how to handle these differences.</p>
+<hr/>
+<h2>Solving the Name Conflict Using a Prefix</h2>
+<p>Name conflicts in XML can easily be avoided using a name prefix.</p>
+<p>This XML carries information about an HTML table, and a piece of furniture:</p>
+<code><pre>
+&lt;h:table&gt;
+    &lt;h:tr&gt;
+        &lt;h:td&gt;Apples&lt;/h:td&gt;
+        &lt;h:td&gt;Bananas&lt;/h:td&gt;
+    &lt;/h:tr&gt;
+&lt;/h:table&gt;
+&lt;f:table&gt;
+    &lt;f:name&gt;African Coffee Table&lt;/f:name&gt;
+    &lt;f:width&gt;80&lt;/f:width&gt;
+    &lt;f:length&gt;120&lt;/f:length&gt;
+&lt;/f:table&gt;
+</pre></code>
+<p>In the example above, there will be no conflict because the two
+&lt;table&gt; elements have different names.</p>
+<hr/>
+<h2>XML Namespaces - The xmlns Attribute</h2>
+<p>When using prefixes in XML, a so-called <b>namespace</b> for the prefix must be defined.</p>
+<p>The namespace is defined by the <b>xmlns attribute</b> in the start tag of an element.</p>
+<p>The namespace declaration has the following syntax. xmlns:prefix="URI".</p>
+<code><pre>
+&lt;root&gt;
+    &lt;h:table xmlns:h="http://www.w3.org/TR/html4/"&gt;
+        &lt;h:tr&gt;
+            &lt;h:td&gt;Apples&lt;/h:td&gt;
+            &lt;h:td&gt;Bananas&lt;/h:td&gt;
+        &lt;/h:tr&gt;
+    &lt;/h:tr&gt;
+
+    &lt;f:table xmlns:f="http://www.w3schools.com/furniture"&gt;
+        &lt;f:name&gt;African Coffee Table&lt;/f:name&gt;
+        &lt;f:width&gt;80&lt;/f:width&gt;
+        &lt;f:length&gt;120&lt;/f:length&gt;
+    &lt;/f:table&gt;
+&lt;/root&gt;
+</pre></code>
+<p>In the example above, the xmlns attribute in the &lt;table&gt; tag give the h:
+and f: prefixes a qualified namespace.</p>
+<p>When a namespace is defined for an element, all child elements with the same 
+prefix are associated with the same namespace.</p>
+<p>Namespaces can be declared in the elements where they are used or in the XML
+root element:</p>
+<code><pre>
+&lt;root xmlns:h="http://www.w3.org/TR/html4/"
+xmlns:f="http://www.w3schools.com/furniture"&gt;
+    &lt;h:table&gt;
+        &lt;h:td&gt;Apples&lt;/h:td&gt;
+        &lt;h:td&gt;Bananas&lt;/h:td&gt;
+    &lt;/h:talbe&gt;
+    &lt;f:table&gt;
+        &lt;f:name&gt;African Coffee Table&lt;/f:name&gt;
+        &lt;f:width&gt;80&lt;/f:width&gt;
+        &lt;f:length&gt;120&lt;/f:length&gt;
+    &lt;/f:table&gt;
+&lt;/root&gt;
+</pre></code>
+<p><b>Note</b>: The namespace URI is not used by the parser to look up information.</p>
+<p>The purpose is to give the namespace a unique name. However, often companies use the
+namespace as a pointer to a web page comtaining namespace information.</p>
+<hr/>
+<h2>Uniform Resource Identifier(URI)</h2>
+<p>A <b>Uniform Resource Identifier</b>(URI) is a string of characters which identifies an 
+Internet Resource.</p>
+<p>The most common URI is the <b>Uniform Resource Locator</b>(URL) which identifies an Internet
+domain address. Another, not so common type of URI is the <b>Universal Resource Name</b>(URN).</p>
+<hr/>
+<h2>Default Namespaces</h2>
+<p>Defining a default namespace for an element saves us from using prefixes in all the child elements.
+It has the following syntax:</p>
+<code><pre>
+xmlns="namespaceURI"
+</pre></code>
+<p>This XML carries HTML table information:</p>
+<code><pre>
+&lt;table xmlns="http://www.w3.org/TR/html4/"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Apples&lt;/td&gt;
+        &lt;td&gt;Bananas&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</pre></code>
+<p>This XML carries information about a piece of furniture:</p>
+<code><pre>
+&lt;table xmlns="http://www.w3schools.com/furniture"&gt;
+    &lt;name&gt;African Coffee Table&lt;/name&gt;
+    &lt;width&gt;80&lt;/width&gt;
+    &lt;length&gt;120&lt;/length&gt;
+&lt;/table&gt;
+</pre></code>
+<hr/>
+<h2>Namespaces in Real Use</h2>
+<p>XSLT is an XML language that can be used to transform XML documents into other formats,
+like HTML.</p>
+<p>In the XSLT document below, you can see that most of the tags are HTML tags.</p>
+<p>The tags that are not HTML tags have the prefix xsl, identified by the namespace 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform":</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h2&gt;My CD Collection&lt;/h2&gt;
+    &lt;table border="1"&gt;
+        &lt;tr&gt;
+            &lt;th style="text-align:left"&gt;Title&lt;/th&gt;
+            &lt;th style="text-align:left"&gt;Artist&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;xsl:for-each select="catalog/cd"&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;xsl:value-of select="title"/&lt;&lt;/td&gt;
+            &lt;td&gt;&lt;xsl:value-of select="artist"/&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/xsl:for-each&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</pre></code>
+</body>
+</html>
