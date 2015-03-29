@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML Elements</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML Elements</h1>
+<p>An XML document contains XML Elments.</p>
+<hr/>
+<h2>What is an XML Element?</h2>
+<p>An XML element is everything from (including) the element's start tag to (including) the
+element's end tag.</p>
+<p>An element can contain:</p>
+<ul>
+<li>other elements</li>
+<li>text</li>
+<li>attributes</li>
+<li>or a mix of all of the above...</li>
+</ul>
+<code><pre>
+&lt;bookstore&gt;
+    &lt;book category="CHILDREN"&gt;
+        &lt;title&gt;Harry Potter&lt;/title&gt;
+        &lt;author&gt;J K. Rowling&lt;/author&gt;
+        &lt;year&gt;2005&lt;/year&gt;
+        &lt;price&gt;29.99&lt;/price&gt;
+    &lt;/book&gt;
+    &lt;book category="WEB"&gt;
+        &lt;title&gt;Learning XML&lt;/title&gt;
+        &lt;author&gt;Erik T. Ray&lt;/author&gt;
+        &lt;year&gt;2003&lt;/year&gt;
+        &lt;price&gt;39.95&lt;/price&gt;
+    &lt;/book&gt;
+&lt;/bookstore&gt;
+</pre></code>
+<p>In the example above, &lt;bookstore&gt; and &lt;book&gt; have <b>element contents</b>, because 
+they contain other elements. &lt;book&gt; also has an <b>attribute</b>(category="CHILDREN").
+&lt;title&gt;, &lt;author&gt;, &lt;year&gt;, and &lt;price&gt; have <b>text content</b> because they
+contain text.</p>
+<hr/>
+<h2>Empty XML Elements</h2>
+<p>An element with no content is said to be empty.</p>
+<p>In XML, you can indicate an empty element like this:</p>
+<code><pre>
+&lt;element&gt;&lt;/element&gt;
+</pre></code>
+<p>or you can use an empty tag, like this (this sort of element syntax is called self-closing):</p>
+<code><pre>
+&lt;element /&gt;
+</pre></code>
+<p>The two forms above produce identical results in an XML parser.</p>
+<p><b>Note:</b> Empty elements do not have any content, but they can have attributes!</p>
+<hr/>
+<h2>XML Naming Rules</h2>
+<p>XML elements must follow these naming rules:</p>
+<ul>
+<li>Element names are case-sensitive</li>
+<li>Element names must start with a letter or underscore</li>
+<li>Element names cannot start with the letters xml(or XML, or Xml, etc)</li>
+<li>Element names can contain letters, digits, hyphens, underscores, and periods</li>
+<li>Element names cannot contain spaces</li>
+</ul>
+<p>Any name can be used, no words are reserved (excpet xml).</p>
+<hr/>
+<h2>Best Naming Practices</h2>
+<p>Create descriptive names, like this: &lt;person&gt;, &lt;firstname&gt;, &lt;lastname&gt;.</p>
+<p>Create short and simple names, like this: &lt;book_title&gt; not like this: &lt;the_title_of_the_book
+&gt;.</p>
+<p>Avoid "-". If you name something "first-name", some software may think you want to subtract "name" from
+"first".</p>
+<p>Avoid ".". If you name something "first.name", some software may think that "name" is a property of the
+object "first".</p>
+<p>Avoid ":". Colons are reserved for namespace (more later).</p>
+<p>Non-English letters like chineses are prefectly legal in XML, but watch out for problems if your 
+software doesn't support them.</p>
+<hr/>
+<h2>Naming Styles</h2>
+<p>There are no naming styles defined for XML elements. But here are some commonly used:</p>
+<table border="1">
+<thead><tr><th>Style</th><th>Example</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>Lower case</td><td>&lt;firstname&gt;</td><td>All letters lower case</td></tr>
+<tr><td>Upper case</td><td>&lt;FIRSTNAME&gt;</td><td>All letters upper case</td></tr>
+<tr><td>Underscore</td><td>&lt;first_name&gt;</td><td>Underscore separates words</td></tr>
+<tr><td>Pascal case</td><td>&lt;FirstName&gt;</td><td>Uppercase first letter in each word</td></tr>
+<tr><td>Camel case</td><td>&lt;firstName&gt;</td><td>Uppercase first letter in each word except
+the first</td></tr>
+</tbody>
+</table>
+<p>If you choose a naming style, it is good to be consistent!</p>
+<p>XML documents often have a corresponding database. A good practice is to use the naming rules of 
+database for the elements in the XML documents.</p>
+<hr/>
+<h2>XML Elements are Extensible</h2>
+<p>XML elements can be extended to carry more information.</p>
+<p>Look at the following XML example:</p>
+<code><pre>
+&lt;note&gt;
+    &lt;to&gt;Tove&lt;/to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+    &lt;body&gt;Don't forget me this weekend!&lt;/body&gt;
+&lt;/note&gt;
+</pre></code>
+<p>Let's imagine that we created an spplication that extracted the &lt;to&gt;, &lt;from&gt;, and 
+&lt;body&gt; elements from the XML docuemnt to produce this output:</p>
+<p><b>MESSAGE</b><br/>
+<b>To</b>: Tove<br/>
+<b>From</b>: Jani<br/>
+Don't forget me this weekend!</p>
+<p>Imagine that the author of the XML document added some extra information to it:</p>
+<code><pre>
+&lt;note&gt;
+    &lt;date&gt;2008-01-10&lt;/date&gt;
+    &lt;to&gt;Tove&lt;/to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+    &lt;heading&gt;Reminder&lt;/heading&gt;
+    &lt;body&gt;Don't forget me this weekend!&lt;/body&gt;
+&lt;/note&gt;
+</pre></code>
+<p>Should the application break or crash?</p>
+<p>No. The application should still be able to find the &lt;to&gt;, &lt;from&gt;, and &lt;body&gt;
+elements in the XML docuemnt and produce the same output.</p>
+<p>One of the beauties of XML, is that it can be extended without breaking applications.</p>
+</body>
+</html>
