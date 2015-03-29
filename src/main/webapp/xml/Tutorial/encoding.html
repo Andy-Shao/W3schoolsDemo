@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML Encoding</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML Encoding</h1>
+<p>XML documents can contain international characters, like Norwegian æøå, or French êèé.</p>
+<p>To avoid errors, you should specify the encoding used, or save your XML files as UTF-8.</p>
+<hr/>
+<h2>Character Encoding</h2>
+<p>Character encoding defines a unique binary code for each different character used in a document.</p>
+<p>In computer terms, character encoding are also called character set, character map, code set, and 
+code page.</p>
+<h2>The Unicode Consortium</h2>
+<p>The Unicode Consortium develops the Unicode Standard. Their goal is to replace the existing 
+character sets with its standard Unicode Transformation Format (UTF).</p>
+<p>The Unicode Standard has become a success and is implemented in HTML, XML, Java, JavaScript, 
+E-mail, ASP, PHP, etc. The Unicode standard is also supported in many operating systems and all 
+modern browsers.</p>
+<p>The Unicode Consortium cooperates with the leading standards development organizations, like 
+ISO, W3C, and ECMA.</p>
+<hr/>
+<h2>The Unicode Character Sets</h2>
+<p>Unicode can be implemented by different character sets. The most commonly used encodings are
+UTF-8 and UTF-16.</p>
+<p>UTF-8 uses 1 byte (8-bits) to represent basic Latin characters, and two, three, or four bytes
+for the rest.</p>
+<p>UTF-16 uses 2 bytes (16 bits) for most characters, and four bytes for the rest.</p>
+<hr/>
+<h2>UTF-8 = THe Web Standard</h2>
+<p>UTF-8 is the standard character encoding on the web.</p>
+<p>UTF-8 is the default character encoding for HTML5, CSS, JavaScript, PHP, SQL, and XML.</p>
+<hr/>
+<h2>XML Encoding</h2>
+<p>The ﬁrst line in an XML document is called the <b>prolog</b>:</p>
+<code><pre>
+&lt;?xml version="1.0"?&gt;
+</pre></code>
+<p>The prolog is optional. Normally it contains the XML version number.</p>
+<p>It can also contain information about the encoding used in the document. This prolog 
+specifies UTF-8 encoding:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</pre></code>
+<p>The XML standard states that all XML software must understand both UTF-8 and UTF-16.</p>
+<p>UTF-8 is the default for documents without encoding information.</p>
+<p>In addition, most XML software systems understand encodings like ISO-8859-1, 
+Windows-1252, and ASCII.</p>
+<hr/>
+<h2>XML Errors</h2>
+<p>Most often, XML documents are created on one computer, uploaded to a server on a second 
+computer, and displayed by a browser on a third computer.</p>
+<p>If the encoding is not correctly interpreted by all the three computers, the browser 
+might display meaningless text, or you might get an error message.</p>
+<p>For high quality XML documents, UTF-8 encoding is the best to use. UTF-8 covers international 
+characters, and it is also the default, if no encoding is declared.</p>
+<hr/>
+<h2>Conclusion</h2>
+<p>When you write an XML document:</p>
+<ul>
+<li>Use an XML editor that supports encoding</li>
+<li>Make sure you know what encoding the editor uses</li>
+<li>Describe the encoding in the encoding attribute</li>
+<li>UTF-8 is the safest encoding to use</li>
+<li>UTF-8 is the web standard</li>
+</ul>
+</body>
+</html>
