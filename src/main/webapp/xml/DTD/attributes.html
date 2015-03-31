@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DTD - Attributes</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h2>DTD - Attributes</h2>
+<p>In a DTD, attributes are declared with an ATTLIST declaration.</p>
+<code class="example"><pre class="example_code">
+&lt;!ATTLIST element-name attribute-name attribute-type attribute-value&gt;
+DTD example:
+&lt;!ATTLIST payment type CDATA "check"&gt;
+XML example:
+&lt;payment type="check"/&gt;
+</pre></code>
+<p>The <b>attribute-type</b> can be one of the following:</p>
+<table class="table_reference">
+<thead><tr><th>Type</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>CDATA</td><td>The value is character data</td></tr>
+<tr><td>(en1|en2|..)</td><td>The value must be one from an enumerated list</td></tr>
+</tbody>
+</table>
+</body>
+</html>
