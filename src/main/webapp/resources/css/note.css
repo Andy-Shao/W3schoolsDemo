@@ -1,9 +1,7 @@
 html {overflow-y: scroll;}
 body {
-	font-size: 14px; 
-	color: #404040;
-	background-color: #f1f1f1;
-	/*margin: 0px;*/
+    font-size: 14px; 
+    color: #404040; background-color: #f1f1f1; /*margin: 0px;*/
 }
 body,p,h1,h2,h3,h4,table,td,th,ul,ol,textarea,input {
     font-family:verdana,helvetica,arial,sans-serif;
@@ -27,18 +25,56 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .notice {
-	border-width: 1px;
-	border-style: solid;
-	border-color: gray;
-	padding: 15px 50px;
-	margin: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    padding: 15px 50px;
+    margin: 5px;
 }
 
 .form{
-	border-width:1px;
-	border-style: solid;
-	border-color: gray;
-	padding: 5px 10px;
-	font-style: italic;
-	margin: 5px;
+    border-width:1px;
+    border-style: solid;
+    border-color: gray;
+    padding: 5px 10px;
+    font-style: italic;
+    margin: 5px;
+}
+
+.example{
+    width: auto;
+    color: #000000;
+    background-color: #f1f1f1;
+    border: 1px solid #ebebeb;
+    padding: 1.2%;
+    border-radius: 4px;
+    line-height: 1.15em;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+.example_code{
+    width: auto;
+    background-color: #ffffff;
+    padding: 1.1%;
+    border-left: 4px solid #8AC007;
+    border-radius: 4px;
+    word-wrap: break-word;
+}
+
+.table_reference{
+    width: 100%;
+    max-width: 100%;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+table.table_reference th{
+    background-color: #ffffff;
+}
+table.table_reference tr:nth-child(odd){
+    background-color: #f1f1f1;
+}
+table.table_reference tr:nth-child(even){
+    background-color: #ffffff;
 }
