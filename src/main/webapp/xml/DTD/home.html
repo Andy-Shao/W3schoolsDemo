@@ -18,22 +18,7 @@ world is valid.</p>
 <p>If the DTD is declared inside the XML file, it must be wrapped inside the &lt;!DOCTYPE&gt;
 definition:</p>
 <h3>XML document with an internal DTD</h3>
-<code><pre>
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE note [
-&lt;!ELEMENT note (to,from,heading,body)&gt;
-&lt;!ELEMENT to(#PCDATA)&gt;
-&lt;!ELEMENT from(#PCDATA)&gt;
-&lt;!ELEMENT heading(#PCDATA)&gt;
-&lt;!ELEMENT body(#PCDATA)&gt;
-]&gt;
-&lt;note&gt;
-&lt;to&gt;Tove&lt;/to&gt;
-&lt;from&gt;Jani&lt;/from&gt;
-&lt;heading&gt;Reminder&lt;/heading&gt;
-&lt;body&gt;Don't forget me this weekend&lt;/body&gt;
-&lt;/note&gt;
-</pre></code>
+<a href="note_in_dtd.xml">note in dtd</a>
 <p>The DTD above is interpreted like this:</p>
 <ul>
 <li><b>!DOCTYPE note</b> defines that the root element of this document is note</li>
