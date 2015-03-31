@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML HOME</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML HOME</h1>
+<h2>Why Use a DTD?</h2>
+<p>With a DTD, independent groups of people can agree to use a standard DTD for interchanging
+data.</p>
+<p>You application can use a standard DTD to verify that the data you receive from the outside
+world is valid.</p>
+<p>You can also use a DTD to verify your own data.</p>
+<hr/>
+<h2>Internal DTD Declaration</h2>
+<p>If the DTD is declared inside the XML file, it must be wrapped inside the &lt;!DOCTYPE&gt;
+definition:</p>
+<h3>XML document with an internal DTD</h3>
+<code><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE note [
+&lt;!ELEMENT note (to,from,heading,body)&gt;
+&lt;!ELEMENT to(#PCDATA)&gt;
+&lt;!ELEMENT from(#PCDATA)&gt;
+&lt;!ELEMENT heading(#PCDATA)&gt;
+&lt;!ELEMENT body(#PCDATA)&gt;
+]&gt;
+&lt;note&gt;
+&lt;to&gt;Tove&lt;/to&gt;
+&lt;from&gt;Jani&lt;/from&gt;
+&lt;heading&gt;Reminder&lt;/heading&gt;
+&lt;body&gt;Don't forget me this weekend&lt;/body&gt;
+&lt;/note&gt;
+</pre></code>
+<p>The DTD above is interpreted like this:</p>
+<ul>
+<li><b>!DOCTYPE note</b> defines that the root element of this document is note</li>
+<li><b>!ELEMENT note</b> defines that the note element must contain four elements:
+"to,from,heading,body"</li>
+<li><b>!ELEMENT to</b> defines the to element to be of type "#PCDATA"</li>
+<li><b>!ELEMENT from</b> defines the from element to be of type "#PCDATA"</li>
+<li><b>!ELEMENT heading</b> defines the heading element to be of type "#PCDATA"</li>
+<li><b>!ELEMENT body</b> defines the body element to be of type "#PCDATA"</li>
+</ul>
+<hr/>
+<h2>External DTD Declaration</h2>
+<p>If the DTD is declared in an external file, the &lt;!DOCTYPE&gt; definition must 
+contain a reference to the DTD file:</p>
+<h3>XML document with a reference to an external DTD</h3>
+<a href="note_ex_dtd.xml">note ex dtd</a>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DTD - XML Building Blocks</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>DTD - XML Building Blocks</h1>
+<p>The main building blocks of both XML and HTML documents are elements.</p>
+<hr/>
+<h2>The Building Blocks of xml Documents</h2>
+<p>Seen from a DTD point of view, all XML documents are made up by the following building blocks:</p>
+<ul>
+<li>Elements</li>
+<li>Attributes</li>
+<li>Entities</li>
+<li>PCDATA</li>
+<li>CDATA</li>
+</ul>
+<hr/>
+<h2>Elements</h2>
+<p>Elements are the <b>main building blocks</b> of both XML and HTML documents.</p>
+<p>Examples of HTML elements are "body" and "table". Examples of XML elements could be "note" and 
+"message". Elements can contain text, other elements, or be empty. Examples of empty HTML 
+elements are "hr", "br" and "img".</p>
+<code><pre>
+&lt;body&gt;some text&lt;/body&gt;
+&lt;message&gt;some text&lt;/message&gt;
+</pre></code>
+<hr/>
+<h2>Attributes</h2>
+<p>Attributes provide <b>extra information about elements</b>.</p>
+<p>Attributes are always placed inside the opening tag of an element. Attributes always come in 
+name/value pairs. The following "img" element has additional information about a source file:</p>
+<code><pre>
+&lt;img src="computer.gif"/&gt;
+</pre></code>
+<p>The name of the element is "img". The name of the attribute is "src". The value of the 
+attribute is "computer.gif". Since the element itself is empty it is closed by a " /".</p>
+<hr/>
+<h2>Entities</h2>
+<p>Some characters have a special meaning in XML, like the less than sign (&lt;) that defines the 
+start of an XML tag.</p>
+<hr/>
+<h2>PCDATA</h2>
+<p>PCDATA means parsed character data.</p>
+<p>Think of character data as the text found between the start tag and the end tag of an XML element.</p>
+<p><b>PCDATA is text that WILL be parsed by a parser. The text will be examined by the parser for 
+entities and markup.</b></p>
+<p>Tags inside the text will be treated as markup and entities will be expanded.</p>
+<p>However, parsed character data should not contain any &amp;, &lt;, or &gt; characters; these need to be 
+represented by the &amp;amp; &amp;lt; and &amp;gt; entities, respectively.</p>
+<hr/>
+<h2>CDATA</h2>
+<p>CDATA means character data.</p>
+<p><b>CDATA is text that will NOT be parsed by a parser</b>. Tags inside the text will NOT be treated 
+as markup and entities will not be expanded.</p>
+</body>
+</html>
