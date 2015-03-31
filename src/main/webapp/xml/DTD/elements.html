@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DTD - Elements</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>DTD - Elements</h1>
+<p>In a DTD, elements are declared with an ELEMENT declaration.</p>
+<hr/>
+<h2>Declaring Elements</h2>
+<p>In a DTD, XML elements are declared with the following syntax:</p>
+<code><pre>
+&lt;!ELEMENT element-name category&gt;
+or
+&lt;!ELEMENT element-name (element-content)&gt;
+</pre></code>
+<hr/>
+<h2>Empty Elements</h2>
+<p>Empty elements are declared with the category keyword EMPTY:</p>
+<code><pre>
+&lt;!ELEMENT element-name EMPTY&gt;
+Example:
+&lt;!ELEMENT br EMPTY&gt;
+XML example:
+&lt;br /&gt;
+</pre></code>
+<hr/>
+<h2>Elements with Prased Character Data</h2>
+<p>Elements with only parsed character data are declared with #PCDATA inside parenthess:</p>
+<code><pre>
+&lt;!ELEMENT element-name (#PCDATA)&gt;
+Example:
+&lt;!ELEMENT from (#PCDATA)&gt;
+</pre></code>
+<hr/>
+<h2>Elements with any Contents</h2>
+<p>Elements declared with the category keyword ANY, can contain any combination of parsable
+data:</p>
+<code><pre>
+&lt;!ELEMENT element-name ANY&gt;
+Example:
+&lt;!ELEMENT note ANY&gt;
+</pre></code>
+<hr/>
+<h2>Elements with Children(sequences)</h2>
+<p>Elements with one or more children are declared with the name of the children elements 
+inside parentheses:</p>
+<code><pre>
+&lt;!ELEMENT element-name (child1)&gt;
+or
+&lt;!ELEMENT element-name (child1,child2,...)&gt;
+Example:
+&lt;!ELEMENT note (to,from,heading,body)&gt;
+</pre></code>
+<p>When children are declared in a sequence separated by commas, the children must appear 
+in the same sequence in the document. In a full declaration, the children must also be 
+declared, and the children can also have children. The full declaration of the "note" 
+element is:</p>
+<code><pre>
+&lt;!ELEMENT note (to,from,heading,body)&gt;
+&lt;!ELEMENT to (#PCDATA)&gt;
+&lt;!ELEMENT from (#PCDATA)&gt;
+&lt;!ELEMENT heading(#PCDATA)&gt;
+&lt;!ELEMENT body(#PCDATA)&gt;
+</pre></code>
+<hr/>
+<h2>Declaring Only One Occurrence of an Element</h2>
+<code><pre>
+&lt;!ELEMENT element-name (child-name)&gt;
+Example:
+&lt;!ELEMENT note (message)&gt;
+</pre></code>
+<p>The example above declare that the child element "message" must occur once, and only
+once inside the "note" element.</p>
+<hr/>
+<h2>Declaring Minimum One Occurrence of an Element</h2>
+<code><pre>
+&lt;!ELEMENT element-name (child-name+)&gt;
+Example:
+&lt;!ELEMENT note (message+)&gt;
+</pre></code>
+<p>The + sign in the example abobe declares that the child element "message" must occur
+one or more times inside the "note" element.</p>
+<hr/>
+<h2>Declaring Zero or More Occurrences of an Element</h2>
+<code><pre>
+&lt;!ELEMENT element-name (child-name*)&gt;
+Example:
+&lt;!ELEMENT note (message*)&gt;
+</pre></code>
+<p>The * sign in the example above declares that the child element "message" can occur
+zero or more times inside the "note" element.</p>
+<hr/>
+<h2>Declaring Zero or One Occurrences of an Element</h2>
+<code><pre>
+&lt;!ELEMENT element-name (child-name?)&gt;
+Example:
+&lt;!ELEMENT note (message?)&gt;
+</pre></code>
+<p>The ? sign in the example above declares that the child element "message" can occure 
+zero or one time inside the "note" element.</p>
+<hr/>
+<h2>Declaring eithr/or Content</h2>
+<code><pre>
+&lt;!ELEMENT note (to,form,header,(message|body))&gt;
+</pre></code>
+<p>The example above declares that the "note" element must contain a "to" element, a "from"
+element, a "header" element, and either a "message" or a "body" element.</p>
+<hr/>
+<h2>Declaring Mixed Content</h2>
+<code><pre>
+&lt;!ELEMENT note (#PCDATA|to|from|header|message)*&gt;
+</pre></code>
+<p>The example above declares that the "note" element can contain zero or more occurrences of 
+parsed character data, "to", "from", "header", or "message" element.</p>
+</body>
+</html>
