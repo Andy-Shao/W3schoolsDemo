@@ -8,7 +8,7 @@
 <body>
 <h2>DTD - Attributes</h2>
 <p>In a DTD, attributes are declared with an ATTLIST declaration.</p>
-<code class="example"><pre class="example_code">
+<code><pre>
 &lt;!ATTLIST element-name attribute-name attribute-type attribute-value&gt;
 DTD example:
 &lt;!ATTLIST payment type CDATA "check"&gt;
@@ -16,12 +16,119 @@ XML example:
 &lt;payment type="check"/&gt;
 </pre></code>
 <p>The <b>attribute-type</b> can be one of the following:</p>
-<table class="table_reference">
+<table>
 <thead><tr><th>Type</th><th>Description</th></tr></thead>
 <tbody>
 <tr><td>CDATA</td><td>The value is character data</td></tr>
 <tr><td>(en1|en2|..)</td><td>The value must be one from an enumerated list</td></tr>
+<tr><td>ID</td><td>The value is a qunique id</td></tr>
+<tr><td>IDREF</td><td>The value is the id of another element</td></tr>
+<tr><td>NMTOKEN</td><td>The value is a valid XML name</td></tr>
+<tr><td>NMTOKNS</td><td>The value is a list of valid XML names</td></tr>
+<tr><td>ENTITY</td><td>The value is an entity</td></tr>
+<tr><td>ENTITIES</td><td>The value is a list of entities</td></tr>
+<tr><td>NOTATION</td><td>The value is a name of a notation</td></tr>
+<tr><td>xml:</td><td>The value is a predefined xml value</td></tr>
 </tbody>
 </table>
+<p>The <b>attribute-value</b> can be one of the following:</p>
+<table>
+<thead><tr><th>Value</th><th>Explanation</th></tr><thead>
+<tbody>
+<tr><td>value</td><td>The default value of the attribute</td></tr>
+<tr><td>#REQUIRED</td><td>The attribute is required</td></tr>
+<tr><td>#IMPLIED</td><td>The attribute is optional</td></tr>
+<tr><td>#FIXED value</td><td>The attribute value is fixed</td></tr>
+</tbody>
+</table>
+<hr/>
+
+<h2>A Default Attribute Value</h2>
+<code><pre>
+DTD:
+&lt;!ELEMENT square EMPTY&gt;
+&lt;!ATTLIST square width CDATA "0"&gt;
+
+Valid XML:
+&lt;square width="100"&gt;
+</pre></code>
+<p>In the example above, the "square" element is defined to be an empty element with 
+a "width" attribute of type CDATA. If no width is specified, it has a default value of 0.</p>
+<hr/>
+<h2>#REQUIRED</h2>
+<h3>Syntax</h3>
+<code><pre>
+&lt;!ATTLTST element-name attribute-name attribute-type #REQUIRED&gt;
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+DTD:
+&lt;!ATTLIST person number CDATA #REQUIRED&gt;
+
+Valid XML:
+&lt;person number="5677"/&gt;
+
+Invalid XML:
+&lt;person /&gt;
+</pre></code>
+<p>Use the #REQUIRED keyword if you don't have an opition for a default value, but still
+want to force the attribute to be present.</p>
+<hr/>
+<h2>#IMPLIED</h2>
+<h3>Syntax</h3>
+<code><pre>
+&lt;!ATTLIST element-name attribute-name attribute-type #IMPLIED&gt;
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+DTD:
+&lt;!ATTLIST contact fax CDATA #IMPLIED&gt;
+
+Valid XML:
+&lt;contact fax="555-667788"/&gt;
+
+Valid XML:
+&lt;contact /&gt;
+</pre></code>
+<p>Use the #IMPLIED keyword if you don't want to force the author to include an attribute,
+and you don't have an opition for a default value.</p>
+<hr/>
+<h2>#FIXED</h2>
+<h3>Syntax</h3>
+<code><pre>
+&lt;!ATTLIST element-name attribute-name attribute-type #FIXED "value"&gt;
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+DTD:
+&lt;!ATTLIST sender company CDATA #FIXED "Microsoft"&gt;
+
+Valid XML:
+&lt;sender company="Microsoft"/&gt;
+
+Invalid XML:
+&lt;sender company="W3Schools"/&gt;
+</pre></code>
+<p>Use the #FIXED keyword when you want an attribute to have a fixed value without allowing 
+the author to change it. If an author includes another value, the XML parser will return an 
+error.</p>
+<hr/>
+<h2>Enumerated Attribute Values</h2>
+<h3>Syntax</h3>
+<code><pre>
+&lt;!ATTLIST element-name attribute-name (en1|en2|...) default-value&gt;
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+DTD:
+&lt;!ATTLST payment type (check|cash) "cash"&gt;
+
+XML example:
+&lt;payment type="check"/&gt;
+or
+&lt;payment type="cash"/&gt;
+</pre></code>
+<p>Use enumerated attribute values when you want the attribute value to be one of a fixed
+set of legal values.</p>
 </body>
 </html>

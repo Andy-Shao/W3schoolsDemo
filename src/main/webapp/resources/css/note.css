@@ -41,7 +41,7 @@ h1,h2,h3,h4,h5,h6 {
     margin: 5px;
 }
 
-.example{
+code{
     width: auto;
     color: #000000;
     background-color: #f1f1f1;
@@ -53,7 +53,7 @@ h1,h2,h3,h4,h5,h6 {
     margin-bottom: 12px;
     margin-top: 12px;
 }
-.example_code{
+code pre{
     width: auto;
     background-color: #ffffff;
     padding: 1.1%;
@@ -62,19 +62,19 @@ h1,h2,h3,h4,h5,h6 {
     word-wrap: break-word;
 }
 
-.table_reference{
+table{
     width: 100%;
     max-width: 100%;
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
 }
-table.table_reference th{
+table th{
     background-color: #ffffff;
 }
-table.table_reference tr:nth-child(odd){
+table tr:nth-child(odd){
     background-color: #f1f1f1;
 }
-table.table_reference tr:nth-child(even){
+table tr:nth-child(even){
     background-color: #ffffff;
 }
