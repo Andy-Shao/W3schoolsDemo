@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DTD - Entities</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>DTD - Entities</h1>
+<p>Entities are used to define shortcuts to special characters.</p>
+<p>Entities can be declared internal or external</p>
+<hr/>
+<h2>An Internal Entity Declaration</h2>
+<h3>Syntax</h3>
+<code><pre>
+&lt;!ENTITY entity-name "entity-value"&gt;
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+DTD Example:
+&lt;!ENTITY writer "Donald Duck."&gt;
+&lt;!ENTITY copyright "Copyright W3Schools."&gt;
+
+XML example:
+&lt;author&gt;&amp;writer,&amp;copyright;&lt;/author&gt;
+</pre></code>
+<p><b>Note:</b> AN entity has three parts: an ampersand(&amp;), an entity name, and a semicolon(;).</p>
+<hr/>
+<h2>An External Entity Declaration</h2>
+<h3>Syntax</h3>
+<code><pre>
+&lt;!ENTITY entity-name SYSTEM "URI/URL"&gt;
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+DTD Example:
+&lt;!ENTITY writer SYSTEM "http://www.w3schools.com/entities.dtd"&gt;
+&lt;!ENTITY copyright SYSTEM "http://www.w3schools.com/entities.dtd"&gt;
+XML example:
+&lt;author&gt;&amp;writer;&amp;copyright;&lt;/author&gt;
+</pre></code>
+</body>
+</html>
