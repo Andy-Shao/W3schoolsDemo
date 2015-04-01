@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple Types</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSD Simple Elements</h1>
+<p>XML Schemas define the elements of your XML files.</p>
+<p>A simple element is an XML element that contains only text. It cannot contain any other 
+elements or attributes.</p>
+<h2>What is a Simple Elements?</h2>
+<p>A simple element is an XML element that can contain only text. It cannot contain any 
+other elements or attributes.</p>
+<p>However, the "only text" restriction is quite misleading. The text can be of many 
+different types. It can be one of the types included in the XML Schema definition 
+(boolean, string, date, etc.), or it can be a custom type that you can define yourself.</p>
+<p>You can also add restrictions (facets) to a data tye in order to limit it content, or you 
+can require the data to mach a specific pattern.</p>
+<h2>Defining a Simple Element</h2>
+<p>The syntax for defining a simple element is:</p>
+<code><pre>
+&lt;xs:element name="xxx" type="yyy"/&gt;
+</pre></code>
+<p>where xxx is the name of the element and yyy is the data type of the element.</p>
+<p>XML Schema has a lot of built-in data types. The most common types are:</p>
+<ul>
+<li>xs:string</li>
+<li>xs:decimal</li>
+<li>xs:integer</li>
+<li>xs:boolean</li>
+<li>xs:date</li>
+<li>xs:time</li>
+</ul>
+<h2>Example</h2>
+<p>Here ae some XML elements:</p>
+<code><pre>
+&lt;lastname&gt;Refsnes&lt;/lastname&gt;
+&lt;age&gt;36&lt;/age&gt;
+&lt;dateborn&gt;1970-03-27&lt;/dateborn&gt;
+</pre></code>
+<p>And here are the corresponding simple element definitions:</p>
+<code><pre>
+&lt;xs:element name="lastname" type="xs:string"/&gt;
+&lt;xs:element name="age" type="xs:integer"/&gt;
+&lt;xs:element name="databorn" type="xs:date"/&gt;
+</pre></code>
+<h2>Default and Fixed Values for Simple Elements</h2>
+<p>Simple element may have a default value OR a fixed value specified.</p>
+<p>A default value is automatically assigned to the element when no other value is specified.</p>
+<p>In the following example the default value is "red":</p>
+<code><pre>
+&lt;xs:element name="color" type="xs:string" default="red"/&gt;
+</pre></code>
+<p>A fixed value is also automatically assigned to the element, and you cannot specify another
+vaue.</p>
+<p>In the following example the fixed value is "red":</p>
+<code><pre>
+&lt;xs:element name="color" type="xs:string" fixed="red"/&gt;
+</pre></code>
+<hr/>
+</body>
+</html>
