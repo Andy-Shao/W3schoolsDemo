@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Schema Tutorial</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML Schema Tutorial</h1>
+<p>An XML Schema describes the structure of an XML document.</p>
+<h2>What is an XML Schema?</h2>
+<p> The purpose of an XML Schema is to define the legal building blocks of an XML
+document, just like a DTD.</p>
+<p>An XML Schema:</p>
+<ul>
+<li>defines elements that can appear in a document</li>
+<li>defines attributes that can appear in a document</li>
+<li>defines which elements are child elements</li>
+<li>defines the order of child elements</li>
+<li>defines the number of child elements</li>
+<li>defines whether an element is empty or can include text</li>
+<li>defines data types for elements and attributes</li>
+<li>defines default and fixed values for elements and attributes</li>
+</ul>
+<hr/>
+<h1>Why Use XML Schemas?</h1>
+<p>XML Schema is a XML-based alternative to DTD.</p>
+<p>XML Schema are much more powerful thatn DTDs.</p>
+<p>The XML Schema language is also referred to as XML Schema Definition(XSD).</p>
+<h2>XML Schemas Support Data Types</h2>
+<p>One of the greater strength of XML Schemas is the support for data types.</p>
+<p>With support for data types:</p>
+<ul>
+<li>It is easier to describe allowable document content</li>
+<li>It is easier to validate the correctness of data</li>
+<li>It is easier to work with data from a database</li>
+<li>It is easier to define data facets(restrictions on data)</li>
+<li>It is easier to define data patterns(data formats)</li>
+<li>It is easier to convert data between different data types</li>
+</ul>
+<h2>XML Schemas use XML Syntax</h2>
+<p>Another great strength about XML Schemas is that they are written in XML.</p>
+<p>Some benefits of that XML Schemas are written in XML:</p>
+<ul>
+<li>You don't have to learn a new language</li>
+<li>You can use your XML editor to edit your Schema files</li>
+<li>You can use your XML parser to parse your Schema files</li>
+<li>You can manipulate your Schema with the XML DOM</li>
+<li>You can transform your schema with XSLT</li>
+</ul>
+<h2>XML Schemas Secure Data Communication</h2>
+<p>When sending data from a sender to a receiver, it is essential that both parts have 
+the same "expectations" about the content.</p>
+<p>With XML Schemas, the sender can describe the data in a way that the receiver will 
+understand.</p>
+<p>A date like:"03-11-2004" will, in some countries, be interpreted as 3.November and in 
+other countries as 11.March.</p>
+<p>However, an XML element with a data type like this:</p>
+<p>&lt;date type="date"&gt;2004-03-11&lt;/date&gt;</p>
+<p>ensures a mutual understanding of the content, because the XML data type "date" requires
+the format "YYYY-MM-DD".</p>
+<h2>XML Schemas are Extensible</h2>
+<p>XML Schemas are extensible, because they are written in XML.</p>
+<p>With an entensible Schema definition you can:</p>
+<ul>
+<li>Reuse your Schema in other Schemas</li>
+<li>Create your own data types derived from the standard types</li>
+<li>Reference multiple schemas in the same document</li>
+</ul>
+<h2>Well-Formed is not Enough</h2>
+<p>A well-formed XML document is a document that conforms to the XML syntax ruels, like:</p>
+<ul>
+<li>it must begin with the XML declaration</li>
+<li>it must have one unique root element</li>
+<li>start-tags must have matching end-tags</li>
+<li>elemetns are case sensitive</li>
+<li>all attributes values must be quoted</li>
+<li>entities must be used for special characters</li>
+</ul>
+<p>Even if documents are well-formed they can still contain errors, and those errors can 
+have serious consequences.</p>
+<p>Think of the following situation: you order 5 gross of laser printers, instead of 5 laser
+printers. With XML Schemas, most of these errors can be caught by your validating software.</p>
+<hr/>
+
+<h1>XSD - The &lt;schema&gt; Element</h1>
+<p>The &lt;schema&gt; element is the root element of every XML Schema.</p>
+<h2>The &lt;schema&gt; Element</h2>
+<p>The &lt;schema&gt; element is the root element of every XML Schema:</p>
+<code><pre>
+&lt;?xml version=1.0"&gt;
+
+&lt;xs:schema&gt;
+...
+...
+&lt;/xs:schema&gt;
+</pre></code>
+<p>The &lt;schema&gt; element may contain some attributes. A schema declaration often 
+looks something like this:</p>
+<code></pre>
+&lt;?xml version="1.0"?&gt;
+
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.w3schools.com"
+xmlns="http://www.w3schools.com"
+elementFormDefault="qualified"&gt;
+...
+...
+&lt;/xs:schema&gt;
+</pre></code>
+<p>The following fragment:</p>
+<code><pre>
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+</pre><code>
+<p>indicates that the elements and data types used in the schema come from the 
+"http://www.w3.org/2001/XMLSchema" namespace. It also specifies that the elements and data 
+types that come from the "http://www.w3.org/2001/XMLSchema" namespace should be prefixed 
+with <b>xs:</b></p>
+<code><pre>
+targetNamespace="http://www.w3schools.com"
+</pre></code>
+<p>indicates that the elements defined by this schema (note, to, from, heading, body.) 
+come from the "http://www.w3schools.com" namespace.</p>
+<p>This fragment:</p>
+<code><pre>
+xmlns="http://www.w3schools.com"
+</pre></code>
+<p>indicate that the default namespace is "http://www.w3schools.com".</p>
+<p>This fragment:</p>
+<code><pre>
+elementFormDefault="qualified"
+</pre></code>
+<p>indicates that any elements used by the XML instance document which were declared in this
+schema must be namespace qualified.</p>
+<h2>Referencing a Schema in an XML Dcoument</h2>
+<p>This XML document has a reference to an XML Schema:</p>
+<code></pre>
+&lt;?xml version="1.0"?&gt;
+
+&lt;note xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.w3schools.com note.xsd"&gt;
+
+&lt;to&gt;Tove&lt;/to&gt;
+&lt;from&gt;Jani&lt;/from&gt;
+&lt;heading&gt;Reminder&lt;/heading&gt;
+&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;
+&lt;/note&gt;
+</pre></code>
+<p>The following fragment:</p>
+<code><pre>
+xmlns="http://www.w3schools.com"
+</pre></code>
+<p>specifies the default namespace declaration. This declaration tells the schema-validator 
+that all the elements used in this XML document are declared in the "http://www.w3schools.com" 
+namespace.</p>
+<p>Once you have the XML Schema Instance namespace available:</p>
+<code><pre>
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+</pre></code>
+<p>you can use the schemaLocation attribute. This attribute has two values, separated by 
+a space. The first value is the namespace to use. The second value is the location of the 
+XML schema to use for that namespace:</p>
+<code><pre>
+xsi:schemaLocation="http://www.w3schools.com note.xsd"
+</pre></code>
+</body>
+</html>
