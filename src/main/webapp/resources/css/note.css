@@ -46,7 +46,6 @@ code{
     color: #000000;
     background-color: #f1f1f1;
     border: 1px solid #ebebeb;
-    padding: 1.2%;
     border-radius: 4px;
     line-height: 1.15em;
     word-wrap: break-word;
@@ -70,11 +69,11 @@ table{
     border-bottom: 1px solid #dddddd;
 }
 table th{
-    background-color: #ffffff;
+    background-color: grey;
 }
 table tr:nth-child(odd){
     background-color: #f1f1f1;
 }
 table tr:nth-child(even){
-    background-color: #ffffff;
+    background-color: grey;
 }

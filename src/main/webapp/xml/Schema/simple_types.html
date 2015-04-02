@@ -60,5 +60,311 @@ vaue.</p>
 &lt;xs:element name="color" type="xs:string" fixed="red"/&gt;
 </pre></code>
 <hr/>
+
+<h1>XSD Attributes</h1>
+<p>All attributes are declared as simple types.</p>
+<hr/>
+<h2>What is an Attribute?</h2>
+<p>Simple elements cannot have attributes. If an element has attributes, it is considered to
+be of a complex type. But the attribute itself is always declared as a simple type.</p>
+<h2>Hwo to Define an Attributes?</h2>
+<p>The syntax for defining an attribute is:</p>
+<code><pre>
+&lt;xs:attribute name="xxx" type="yyy"/&gt;
+</pre></code>
+<p>where xxx is the name of the attribute and yyy specifies the data type of the attribute.</p>
+<p>XML Schema has a lot of built-in data types. The most common types are:</p>
+<ul>
+<li>xs:string</li>
+<li>xs:decimal</li>
+<li>xs:integer</li>
+<li>xs:boolean</li>
+<li>xs:date</li>
+<li>xs:time</li>
+</ul>
+<h2>Example</h2>
+<p>Here is an XML element with an attribute:</p>
+<code><pre>
+&lt;lastname lang="EN"&gt;Smith&lt;/lastname&gt;
+</pre></code>
+<p>And here is the corresponding attribute definition:</p>
+<code><pre>
+&lt;xs:attribute name="lang" type="xs:string"/&gt;
+</pre></code>
+<h2>Default and Fixed Values for Attributes</h2>
+<p>Attribute may have a default value OR a fixed value specified.</p>
+<p>A default value is automatically assigned to the attribute when no other
+value is specified.</p>
+<p>In the following example the default value is "EN":</p>
+<code><pre>
+&lt;xs:attribute name="lang" type="xs:string" default="EN"/&gt;
+</pre></code>
+<p>A fixed value is also automatically assigned to the attribute, and you cannot
+specify another value.</p>
+<p>In the following example the fixed value is "EN":</p>
+<code><pre>
+&lt;xs:attribute name="lang" type="xs:string" default="EN"/&gt;
+</pre></code>
+<h2>Optional and Required Attributes</h2>
+<p>Attributes are optional by default. To specify that the attribute is required,
+use the "use" attribute:</p>
+<code><pre>
+&lt;xs:attribute name="lang" type="xs:string" fixed="EN"/&gt;
+</pre></code>
+<h2>Restrictions on Content</h2>
+<p>When an XML element or attribute has a data type defined, it puts restricitions
+on the element's content.</p>
+<p>If an XML element is of type "xs:date" and contains a string like "Hello World",
+the element will not validate.</p>
+<p>With Xml Schemas, you can also add your own restrictions to your XML elements and
+attributes. These restrictions are called facets. You can read more about facets in
+the next chapter.</p>
+<hr/>
+<h1>XSD Restrictions/Facts</h1>
+<p>Restrictions are used to define acceptable values for XML elements or attributes.
+Restrictions on XML elements are called factes.</p>
+<h2>Restrictions on Values</h2>
+<p>The following example defines an element called "age" with a restriction. The value
+of age cannot be lower than 0 or greater than 120:</p>
+<code><pre>
+&lt;xs:element name="age"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:integer"&gt;
+            &lt;xs:minInclusive value="0"/&gt;
+            &lt;xs:maxInclusive value="120"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Restrictions on a Set of Values</h2>
+<p>To limit the content of an XML element to a set of acceptable values, we would use the
+enumeration constraint.</p>
+<p>The example below defines an element called "car" with a restriction. The only 
+acceptable values are: Audi, Golf, BMW:</p>
+<code><pre>
+&lt;xs:element name="car"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:enumeration value="Audi"/&gt;
+            &lt;xs:enumeration vaue="Golf"/&gt;
+            &lt;xs:enumeration value="BMW"/&gt;
+        &lt;xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The example above could also have een written like this:</p>
+<code><pre>
+&lt;xs:element name="car" type="carType"/&gt;
+
+&lt;xs:simpleType name="carType"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+        &lt;xs:enumeration value="Audi"/&gt;
+        &lt;xs:enumeration value="Golf"/&gt;
+        &lt;xs:enumeration value="BMW"/&gt;
+    &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+</pre></code>
+<p><b>Note:</b> In this case the type "carType" can be used by other elements because it 
+is not a part of the "car" element.</p>
+<h2>Restrictions on a Series of Values</h2>
+<p>To limit the content of an XML element to define a series of numbers or letters can be
+used, we would use the partten constraint.</p>
+<p>The example below defines an element called "letter" with a restriction. The only
+acceptable value is ONE of the LOWERCASE letters from a to z:</p>
+<code><pre>
+&lt;xs:element name="letter"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+        &lt;xs:pattern value="[a-z]"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example defines an element called "initials" with a restriction. The only
+acceptable value is THREE of the UPPERCASE letters from a to z:</p>
+<code><pre>
+&lt;xs:element name="initials"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="[A-Z][A-Z][A-Z]"&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example also defines an element called "initials" with a restriction. The
+only acceptable vaue is THREE of the LOWERCASE OR UPPERCASE letter from a to z:</p>
+<code><pre>
+&lt;xs:element name="initials"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="[a-zA-Z][a-zA-Z][a-zA-Z]"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example defines an element called "choice" with a restriction. The only
+acceptable value is ONE of the following letters: x,y, OR z:</p>
+<code><pre>
+&lt;xs:element name="choice"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="[xyz]"&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example defines an element called "prodid" with a restriction. The only acceptable
+value is FIVE digits in a sequences, and each digit must be in a range from 0 to 9:</p>
+<code><pre>
+&lt;xs:element name="prodid"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:integer"&gt;
+            &lt;pattern value="[0-9][0-9][0-9][0-9][0-9]"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Other Restrictions on a Series of Values</h2>
+<p>The example below defines an element called "letter" with a restriction. The acceptable
+value is zero or more occurrences of lowercase letters from a to z:</p>
+<code><pre>
+&lt;xs:element name="letter"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="([a-z])*"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example also defines an element called "letter" with a restriction. The acceptable 
+value is one or more pairs of letters, each pair consisting of a lower case letter followed by
+an upper case letter. For example, "sToP" will be validated by this pattern, but not "Stop" or
+"STOP" or "stop":</b>
+<code><pre>
+&lt;xs:element name="letter"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="([a-z][A-Z])+"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example defines an element called "gender" with a restriction. The only acceptable
+vaule is male OR female:</p>
+<code><pre>
+&lt;xs:element name="gender"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="male|female"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The next example defines an element called "password" with a restriction. There must be 
+exactly eight characters in a row and those characters must be lowercase or uppercase letters 
+from a to z, or a number from 0 to 9:</p>
+<code><pre>
+&lt;xs:element name="password"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:pattern value="[a-zA-Z0-9]{8}"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Restrictions on Whitespace Characters</h2>
+<p>To specify how whitespace characters should be handled, we would use the whiteSpace 
+constraint.</p>
+<p>This example defines an element called "address" with a restriction. The whiteSpace 
+constraint is set to "preserve", which means that the XML processor WILL NOT remove any white 
+space characters:</p>
+<code><pre>
+&lt;xs:element name="address"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:whiteSpace value="preserve"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>This example also defines an element called "address" with a restriction. The whiteSpace 
+constraint is set to "replace", which means that the XML processor WILL REPLACE all white space 
+characters (line feeds, tabs, spaces, and carriage returns) with spaces:</p>
+<code><pre>
+&lt;xs:element name="address"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:whiteSpace value="replace"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>This example also defines an element called "address" with a restriction. The whiteSpace 
+constraint is set to "collapse", which means that the XML processor WILL REMOVE all white 
+space characters (line feeds, tabs, spaces, carriage returns are replaced with spaces, 
+leading and trailing spaces are removed, and multiple spaces are reduced to a single space):</p>
+<code><pre>
+&lt;xs:element name="address"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:whiteSpace value="collapse"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Restrictions on Length</h2>
+<p>To limit the length of a value in an element, we would use the length, maxLength, and 
+minLength constraints.</p>
+<p>This example defines an element called "password" with a restriction. The value must
+be exactly eight characters:</p>
+<code><pre>
+&lt;xs:element name="password"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:length value="8"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>This example defines another element called "password" with a restriction. The value 
+must be minimum five characters and maximum eight characters:</p>
+<code><pre>
+&lt;xs:element name="password"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:minLength value="5"/&gt;
+            &lt;xs:maxLength value="8"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Restrictions for Datatypes</h2>
+<table>
+<thead><tr><th>Constraint</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>enumeration</td><td>Defines a list of acceptable values</td></tr>
+<tr><td>fractionDigits</td><td>Specifies the maximum number of decimal places allowed. Must
+be equal to ro greater than zero</td></tr>
+<tr><td>length</td><td>Specifies the exact number of characters or list items allowed. Must
+be equal to or greater than zero</td></tr>
+<tr><td>maxExclusive</td><td>Specifies the upper bounds for numeric values (the value must 
+be less than this value)</td></tr>
+<tr><td>maxInclusive</td><td>Specifies the upper bounds for numeric values (the value must be 
+less than or equal to this value)</td></tr>
+<tr><td>maxLength</td><td>Specifies the maximum number of characters or list items allowed.
+Must be equal to or greater than zero</td></tr>
+<tr><td>minExclusive</td><td>Specifies the lower bounds for numeric values (the value must be 
+greater than this value)</td></tr>
+<tr><td>minInclusive</td><td>Specifies the lower bounds for numeric values (the value must be 
+greater than or equal to this value)</td></tr>
+<tr><td>minLength</td><td>Specifies the minimum number of characters or list items allowed. 
+Must be equal to or greater than zero</td></tr>
+<tr><td>pattern</td><td>Defines the exact sequence of characters that are acceptable</td></tr>
+<tr><td>totalDigits</td><td>Specifies the exact number of digits allowed. Must be greater 
+than zero</td></tr>
+<tr><td>whiteSpace</td><td>Specifies how white space (line feeds, tabs, spaces, and 
+carriage returns) is handled</td></tr>
+</tbody>
+</table>
 </body>
 </html>
