@@ -108,5 +108,191 @@ like this:</p>
     &lt;/xs:complexContent&gt;
 &lt;/xs:complexType&gt;
 </pre></code>
+<hr/>
+
+
+<h1>XSD Empty Elements</h1>
+<p>An empty complex element cannot have contents, only attributes.</p>
+<h2>Complex Empty Elemetns</h2>
+<p>An empty XML element:</p>
+<code><pre>
+&lt;product prodid="12345"/&gt;
+</pre></code>
+<p>The "product" element above has no content at all. To define a type with no content, 
+we must define a type that allows elements in its content, but we do not actually declare 
+any elements, like this:</p>
+<code><pre>
+&lt;xs:element name="produce"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:complexContent&gt;
+            &lt;xs:restriction base="xs:integer"&gt;
+                &lt;xs:attribute name="prodid" type="xs:positiveInteger"/&gt;
+            &lt;/xs:restriction&gt;
+        &lt;/xs:complexContent&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>In the example above, we define a complex type with a complex content. The complexContent 
+element signals that we intend to restrict or extend the content model of a complex type, 
+and the restriction of integer declares one attribute but does not introduce any element content.</p>
+<p>However, it is possible to declare the "product" element more compactly, like this:</p>
+<code><pre>
+&lt;xs:element name="product"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:attribute name="prodid" type="xs:positiveInteger"/&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>Or you can give the complexType element a name, and let the "product" element have a type 
+attribute that refers to the name of the complexType (if you use this method, several elements 
+can refer to the same complex type):</p>
+<code><pre>
+&lt;xs:element name="product" type="prodtype"/&gt;
+
+&lt;xs:complexType name="prodtype"&gt;
+    &lt;xs:attribute name="prodid" type="xs:positiveInteger"/&gt;
+&lt;/xs:complexType&gt;
+</pre></code>
+<hr/>
+
+<h1>XSD Elements Only</h1>
+<p>An "elements-only" complex type contains an element that contains only other elements.</p>
+<h2>Complex Types Containing Elements Only</h2>
+<p>An XML element, "person", that contains only other elements:</p>
+<code><pre>
+&lt;person&gt;
+    &lt;firstname&gt;John&lt;/fristname&gt;
+    &lt;lastname&gt;Smith&lt;/lastname&gt;
+&lt;/person&gt;
+</pre></code>
+<p>You can define the "person" element in a schema, like this:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:element name="firstname" type="xs:string:"/&gt;
+        &lt;xs:element name="lastname" type="xs:string:"/&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>Notice the &lt;xs:sequence&gt; tag. It means that the elements defined ("firstname" and 
+"lastname") must appear in that order inside a "person" element.</p>
+<p>Or you can give the complexType element a name, and let the "person" element have a type 
+attribute that refers to the name of the complexType (if you use this method, several 
+elements can refer to the same complex type):</p>
+</pre></code>
+<p>You can define the "person" element in a schema, like this:</p>
+<code><pre>
+&lt;element name="person" type="persontype"/&gt;
+
+&lt;xs:complexType name="persontype"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element name="firstname" type="xs:string"/&gt;
+        &lt;xs:element name="firstname" type="xs:string"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+</pre></code>
+<hr/>
+
+<h1>XSD Text-Only Elements</h1>
+<p>A complex text-only element can contain text and attributes.</p>
+<h2>Complex Text-Only Elements</h2>
+<p>This type contains only simple content (text and attributes), therefore we add a 
+simpleContent element around the content. When using simple content, you must define 
+an extension OR a restriction within the simpleContent element, like this:</p>
+<code><pre>
+&lt;xs:element name="somename"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:simpleContent&gt;
+            &lt;xs:extension base="basetype"&gt;
+                ....
+                ....
+            &lt;/xs:extension&gt;
+        &lt;/xssimpleContent&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+
+OR
+
+&lt;xs:element name="somename"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:simpleContent&gt;
+            &lt;xs:restriction base="basetype"&gt;
+                ....
+                ....
+            &lt;/xs:restriction&gt;
+        &lt;/xssimpleContent&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p><b>Tip</b>: Uset the extension/restriction element to expand or limit the base simple 
+type for the element.</p>
+<p>Here is an example of an XML element, "shoesize", that contains text-only:</p>
+<code><pre>
+&lt;xs:element name="shoesize&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:simpleContent&gt;
+            &lt;xs:restriction base="xs:integer"&gt;
+                &lt;xs:attribute name="country" type="xs:string" /&gt;
+            &lt;/xs:restriction&gt;
+        &lt;/xssimpleContent&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>We could also give the complexType element a name, and let the "shoesize" element 
+have a type attribute that refers to the name of the complexType (if you use this 
+method, several elements can refer to the same complex type):</p>
+<code><pre>
+&lt;xs:element name="shoesize" type="shoetype"/&gt;
+
+&lt;xs:complexType name="shoetype"&gt;
+    &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:integer"&gt;
+            &lt;xs:attribute name="country" type="xs:string" /&gt;
+        &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+&lt;/xs:complexType&gt;
+</pre></code>
+<hr/>
+
+<h1>XSD Mixed Content</h1>
+<p>A mixed complex type element can contain attributes, elements, and text.</p>
+<h2>Complex Types with Mixed Content</h2>
+<p>An XML element, "letter", that contains both text and other elements:</p>
+<code><pre>
+&lt;letter&gt;
+    Dear Mr.&lt;name&gt;JohnSmith&lt;/&gt;.
+    Your order &lt;orderid&gt;1032&lt;/&gt;
+    will be shipped on &lt;shipdate&gt;2001-07-13&lt;/shipdate&gt;.
+&lt;/letter&gt;
+</pre></code>
+<p>The following schema declares the "letter" element:</p>
+<code><pre>
+&lt;xs:element name="letter"&gt;
+    &lt;xs:complexType mixed="true"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="name" type="xs:string"/&gt;
+            &lt;xs:element name="orderid" type="xs:positiveInteger"/&gt;
+            &lt;xs:element name="shipdate" type="xs:date"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p><b>Note</b>: To enable character data to appear between the child-elements of "letter", 
+the mixed attribute must be set to "true". The &lt;xs:sequence&gt; tag means that the 
+elements defined (name, orderid and shipdate) must appear in that order inside a "letter" element.</p>
+<p>We could also give the complexType element a name, and let the "letter" element have a 
+type attribute that refers to the name of the complexType (if you use this method, several 
+elements can refer to the same complex type):</p>
+<code><pre>
+&lt;xs:element name="letter" type="lettertype"/&gt;
+
+&lt;xs:complexType name="lettertype" mixed="true"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element name="name" type="xs:string"/&gt;
+        &lt;xs:element name="orderid" type="xs:positiveInteger"/&gt;
+        &lt;xs:element name="shipdate" type="xs:date"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+</pre></code>
 </body>
 </html>
