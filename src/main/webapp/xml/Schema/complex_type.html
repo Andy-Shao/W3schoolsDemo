@@ -294,5 +294,71 @@ elements can refer to the same complex type):</p>
     &lt;/xs:sequence&gt;
 &lt;/xs:complexType&gt;
 </pre></code>
+<hr/>
+
+<h1>XSD Indicators</h1>
+<p>We can control How elements are to be used in documents with indicators.</p>
+<h2>Indicators</h2>
+<p>There are seven indicators:</p>
+<p>Order indicators:</p>
+<ul>
+<li>All</li>
+<li>Choice</li>
+<li>Sequence</li>
+</ul>
+<p>Occurrence indicators:</p>
+<ul>
+<li>maxOccurs</li>
+<li>minOccurs</li>
+</ul>
+<p>Group indicators:</p>
+<ul>
+<li>Group name</li>
+<li>attributeGroup name</li>
+</ul>
+<h2>Order Indicators</h2>
+<p>Order indicators are used to define the order of the elements.</p>
+<h3>ALl Indicator</h3>
+<p>The &lt;all&gt; indicator specifies that the child elements can appear in any order, and 
+that each child element must occur only once:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:all&gt;
+            &lt;xs:element name="firstname" type="xs:string"/&gt;
+            &lt;xs:element name="lastname" type="xs:string"/&gt;
+        &lt;/xs:all&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p><b>Note</b>: When using the&lt;all&gt; indicator you can set the &lt;minOccurs&gt; indicator 
+to 0 or 1 and the &lt;maxOccurs&gt; indicator can only be set to 1 (the &lt;minOccurs&gt; and 
+&lt;maxOccurs&gt; are described later).</p>
+<h2>Choice Indicator</h2>
+<p>The &lt;choice&gt; indicator specifies that either one child element or another can occur:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:choice&gt;
+            &lt;element name="employee" type="employee"/&gt;
+            &lt;element name="member" type="member"/&gt;
+        &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Sequence Indicator</h2>
+<p>The &lt;sequence&gt; indicator specifies that the child elements must appear in a 
+specific order:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:choice&gt;
+            &lt;element name="employee" type="employee"/&gt;
+            &lt;element name="member" type="member"/&gt;
+        &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<h2>Occurrence Indicators</h2>
 </body>
 </html>
