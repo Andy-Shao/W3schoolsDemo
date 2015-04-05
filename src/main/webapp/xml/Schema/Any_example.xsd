@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persons xmlns="http://www.microsoft.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.microsoft.com family.xsd
+http://www.w3schools.com children.xsd">
+
+<person>
+  <firstname>Hege</firstname>
+  <lastname>Refsnes</lastname>
+  <children>
+    <childname>Cecilie</childname>
+  </children>
+</person>
+
+<person>
+  <firstname>Stale</firstname>
+  <lastname>Refsnes</lastname>
+</person>
+
+</persons>
