@@ -360,5 +360,174 @@ specific order:</p>
 &lt;/xs:element&gt;
 </pre></code>
 <h2>Occurrence Indicators</h2>
+<p>Occurrence indicators are used to define how often an element can occur.</p>
+<p><b>Note</b>: For all "Order" and "Group" indicators (any, all, choice, sequence, group name, 
+and group reference) the default value for maxOccurs and minOccurs is 1.</p>
+<h3>maxOccurs Indicator</h3>
+<p>The &lt;maxOccurs&gt; indicator specifies the maximum number of times an element can occur:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:choice&gt;
+            &lt;element name="full_name" type="xs:string"/&gt;
+            &lt;element name="child_name" type="xs:string" maxOccurs="10"/&gt;
+        &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The example above indicates that the "child_name" element can occur a minimum of one 
+time (the default value for minOccurs is 1) and a maximum of ten times in the "person" element.</p>
+<h3>minOccurs Indicator</h3>
+<p>The &lt;minOccurs&gt; indicator specifies the minimum number of times an element can occur:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="full_name" type="xs:string"/&gt;
+            &lt;xs:element name="child_name" type="xs:string" maxOccurs="10" minOccurs="0"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>The example above indicates that the "child_name" element can occur a minimum of zero 
+times and a maximum of ten times in the "person" element.</p>
+<p><b>Tip</b>: To allow an element to appear an unlimited number of times, use the 
+maxOccurs="unbounded" statement:</p>
+<p><b>A working example:</b></p>
+<p>An XML file called "Myfamily.xml":</p>
+<a href="Myfamily.xml">Example</a>
+<p>The XML file above contains a root element named "persons". Inside this root element we have 
+defined three "person" elements. Each "person" element must contain a "full_name" element and 
+it can contain up to five "child_name" elements.</p>
+<hr/>
+
+<h2>Group Indicators</h2>
+<p>Group indicators are used to define related sets of elements.</p>
+<h3>Element Groups</h3>
+<p>Element groups are defined with the group declaration, like this:</p>
+<code><pre>
+&lt;xs:group name="groupname"&gt;
+...
+&lt;/xs:group&gt;
+</pre></code>
+<p>You must define an all, choice, or sequence element inside the group declaration.  The 
+following example defines a group named "persongroup", that defines a group of elements 
+that must occur in an exact sequence:</p>
+<code><pre>
+&lt;xs:group name="persongroup"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element name="firstname" type="xs:string"/&gt;
+        &lt;xs:element name="lastname" type="xs:string"/&gt;
+        &lt;xs:element name="birthday" type="xs:date"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:group&gt;
+</pre></code>
+<p>After you have defined a group, you can reference it in another definition, like this:</p>
+<code><pre>
+&lt;xs:group name="persongroup"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element name="firstname" type="xs:string"/&gt;
+        &lt;xs:element name="lastname" type="xs:string"/&gt;
+        &lt;xs:element name="birthday" type="xs:date"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:group&gt;
+
+&lt;xs:element name="person" type="personinfo"/&gt;
+
+&lt;xs:complexType name="personinfo"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:group ref="persongroup"/&gt;
+        &lt;xs:element name="country" type="xs:string"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+</pre></code>
+<h3>Attribute Groups</h3>
+<p>Attribute groups are defined with the attributeGroup declaration, like this:</p>
+<code><pre>
+&lt;xs:attributeGroup name="groupname"&gt;
+...
+&lt;/xs:attributeGroup&gt;
+</pre></code>
+<p>The following example defines an attribute group named "personattrgroup":</p>
+<code><pre>
+&lt;xs:attributeGroup name="personattrgroup"&gt;
+    &lt;xs:attribute name="firstname" type="xs:string"/&gt;
+    &lt;xs:attribute name="lastname" type="xs:string"/&gt;
+    &lt;xs:attribute name="birthday" type="xs:date"/&gt;
+&lt;/xs:attributeGroup&gt;
+</pre></code>
+<p>After you have defined an attribute group, you can reference it in another 
+definition, like this:</p>
+<code><pre>
+&lt;xs:attributeGroup name="personattrgroup"&gt;
+    &lt;xs:attribute name="firstname" type="xs:string"/&gt;
+    &lt;xs:attribute name="lastname" type="xs:string"/&gt;
+    &lt;xs:attribute name="birthday" type="xs:date"/&gt;
+&lt;/xs:attributeGroup&gt;
+
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;attributeGroup ref="personattrgroup"/&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<hr/>
+
+<h1>XSD The &lt;any&gt; Element</h1>
+<p>The &lt;any&gt; element enables us to extend the XML document with elements not specified 
+by the schema!</p>
+<h2>The &lt;andy&gt; Element</h2>
+<p>The &lt;any&gt; element enables us to extend the XML document with elements not specified 
+by the schema.</p>
+<p>The following example is a fragment from an XML schema called "family.xsd". It shows a 
+declaration for the "person" element. By using the &lt;any&gt; element we can extend 
+(after &lt;lastname&gt;) the content of "person" with any element:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="firstname" type="xs:string"/&gt;
+            &lt;xs:element name="lastname" type="xs:string"/&gt;
+            &lt;xs:any minOccurs="0"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>Now we want to extend the "person" element with a "children" element. In this case we can 
+do so, even if the author of the schema above never declared any "children" element.</p>
+<a href="Any_example.xsd">Example</a>
+<p>The XML file above is valid because the schema "family.xsd" allows us to extend the "person" 
+element with an optional element after the "lastname" element.</p>
+<p>The &lt;any&gt; and &lt;anyAttribute&gt; elements are used to make EXTENSIBLE documents! They 
+allow documents to contain additional elements that are not declared in the main XML schema.</p>
+<hr/>
+
+<h1>XSD The &lt;anyAttribute&gt; Element</h1>
+<p>The &lt;anyAttribute&gt; element enables us to extend the XML document with attributes not 
+specified by the schema!</p>
+<h2>The &lt;andyAttribute&gt; Element</h2>
+<p>The &lt;anyAttribute&gt; element enables us to extend the XML document with attributes not 
+specified by the schema.</p>
+<p>The following example is a fragment from an XML schema called "family.xsd". It shows a 
+declaration for the "person" element. By using the &lt;anyAttribute&gt; element we can add any 
+number of attributes to the "person" element:</p>
+<code><pre>
+&lt;xs:element name="person"&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name="firstname" type="xs:string"/&gt;
+            &lt;xs:element name="lastname" type="xs:string"/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:anyAttribute/&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></code>
+<p>Now we want to extend the "person" element with a "gender" attribute. In this case we can 
+do so, even if the author of the schema above never declared any "gender" attribute</p>
+<a href="any_attribute.xml">Example</a>
+<p>The XML file above is valid because the schema "family.xsd" allows us to add an attribute 
+to the "person" element.</p>
+<p>The &lt;any&gt; and &lt;anyAttribute&gt; elements are used to make EXTENSIBLE documents! 
+They allow documents to contain additional elements that are not declared in the main XML schema.</p>
 </body>
 </html>
