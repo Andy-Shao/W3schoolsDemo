@@ -529,5 +529,83 @@ do so, even if the author of the schema above never declared any "gender" attrib
 to the "person" element.</p>
 <p>The &lt;any&gt; and &lt;anyAttribute&gt; elements are used to make EXTENSIBLE documents! 
 They allow documents to contain additional elements that are not declared in the main XML schema.</p>
+<hr/>
+
+<h1>XSD Element Substitution</h1>
+<p>With XML Schemas, one element can substitue another element.</p>
+<h2>Element Substitution</h2>
+<p>Let's say that we have users from two different countries: England and Norway. We would like the 
+ability to let the user choose whether he or she would like to use the Norwegian element names or the
+English element names in the XML document.</p>
+<p>To solve this problem, we could define a <b>substitutionGroup</b> in the XML schema. First, 
+we declare a head element and then we declare the other elements which state that they are 
+substitutable for the head element</p>
+<code><pre>
+&lt;xs:element name="name" type="xs:string"/&gt;
+&lt;xs:element name="navn" substitutionGroup="name"/&gt;
+</pre></code>
+<p>In the example above, the "name" element is the head element and the "navn" element is 
+substitutable for "name".</p>
+<p>Look at this fragment of an XML schema:</p>
+<code><pre>
+&lt;xs:element name="name" type="xs:string"/&gt;
+&lt;xs:element name="navn" substitutionGroup="name"/&gt;
+
+&lt;xs:complexType name="custinfo"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="name"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:element name="customer" type="custinfo"/&gt;
+&lt;xs:element name="kunde" substitutionGroup="customer"/&gt;
+</pre></code>
+<p>A valid XML document (according to the schema above) could look like this:</p>
+<code><pre>
+&lt;customer&gt;
+    &lt;name&gt;John Smith&lt;/name&gt;
+&lt;/custorm&gt;
+</pre></code>
+<p>or like this:</p>
+<code><pre>
+&lt;kunde&gt;
+    &lt;navn&gt;John Smith&lt;/navn&gt;
+&lt;/kunde&gt;
+</pre></code>
+<h2>Blocking Element Substitution</h2>
+<p>To prevent other elements from substituting with a specified element, use the block attribute:</p>
+<code><pre>
+&lt;xs:element name="name" type="xs:string" block="substitution"/&gt;
+</pre></code>
+<p>Look at this fragment of an XML schema:</p>
+<code><pre>
+&lt;xs:element name="name" type="xs:string" block="substitution"/&gt;
+&lt;xs:element name="navn" substitutionGroup="name"/&gt;
+
+&lt;xs:complexType name="custinfo"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:element ref="name"/&gt;
+    &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+</pre></code>
+<p>A valid XML document (according to the schema above) looks like this:</p>
+<code><pre>
+&lt;customer&gt;
+    &lt;name&gt;John Smith&lt;/name&gt;
+&lt;/customer&gt;
+</pre></code>
+<p>BUT THIS IS NO LONGER VALID:</p>
+<code><pre>
+&lt;kunde&gt;
+    &lt;navn&gt;John Smith&lt;/navn&gt;
+&lt;/kunde&gt;
+</pre></code>
+<h2>Using substitutionGroup</h2>
+<p>The type of the substitutable elements must be the same as, or derived from, the type of the 
+head element. If the type of the substitutable element is the same as the type of the head 
+element you will not have to specify the type of the substitutable element.</p>
+<h2>What are Global Elements?</h2>
+<p>Global elements are elements that are immediate children of the "schema" element! Local elements 
+are elements nested within other elements.</p>
 </body>
 </html>
