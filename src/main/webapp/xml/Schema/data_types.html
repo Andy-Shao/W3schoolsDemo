@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Data Types</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSD String Data Types</h1>
+<p>String data types are used for values that contains character strings.</p>
+<h2>String Data Type</h2>
+<p>The string data type can contain characters, line feeds, carriage returns, and tab characters.</p>
+<p>The following is an example of a string declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="customer" type="xs:string"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;customer&gt;John Smith&lt;/customer&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;customer&gt;   John  Smith     &lt;/customer&gt;
+</pre></code>
+<p><b>Note</b>: The XML processor will not modify the value if you use the string data type.</p>
+<h2>NormalizedString Data Type</h2>
+<p>The normalizedString data type is derived from the String data type.</p>
+<p>The normalizedString data type also contains characters, but the XML processor will remove 
+line feeds, carriage returns, and tab characters.</p>
+<p>The following is an example of a normalizedString declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="customer" type="xs:normalizedString"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;customer&gt;John Smith&lt;/customer&gt;
+</pre></code>
+<p><b>Note</b>: In the example above the XML processor will replace the tabs with spaces.</p>
+<h2>Token Data Type</h2>
+<p>The token data type is also derived from the String data type.</p>
+<p>The token data type also contains characters, but the XML processor will remove line feeds, 
+carriage returns, tabs, leading and trailing spaces, and multiple spaces.</p>
+<p>The following is an example of a token declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="customer" type="xs:token"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;customer&gt;John Smith&lt;/customer&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;customer&gt;     John Smith     &lt;/customer&gt;
+</pre></code>
+<p><b>Note</b>: In the example above the XML processor will remove the tabs.</p>
+<h2>String Data Types</h2>
+<p>Note that all of the data types below derive from the String data type (except for string itself)!</p>
+<table>
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>ENTITIES</td><td></td></tr>
+<tr><td>ENTITY</td><td></td></tr>
+<tr><td>ID</td><td>A string that represents the ID attribute in XML (only used with schema 
+attributes)</td></tr>
+<tr><td>IDREF</td><td>A string that represents the IDREF attribute in XML (only used with schema 
+attributes)</td></tr>
+<tr><td>IDREFS</td><td></td></tr>
+<tr><td>language</td><td>A string that contains a valid language id</td></tr>
+<tr><td>Name</td><td>A string that contains a valid XML name</td></tr>
+<tr><td>NCName</td><td></td></tr>
+<tr><td>NMTOKEN</td><td>A string that represents the NMTOKEN attribute in XML (only used with 
+schema attributes)</td></tr>
+<tr><td>NMTOKENS</td><td></td></tr>
+<tr><td>normalizedString</td><td>A String that does not contain line feeds, carriage returns, 
+or tabs</td></tr>
+<tr><td>QName</td><td></td></tr>
+<tr><td>string</td><td>A string</td></tr>
+<tr><td>token</td><td>A string that does not contain line feeds, carriage returns, tabs, leading 
+or trailing spaces, or multiple spaces</td></tr>
+</tbody>
+</table>
+<h2>Restrictions on String Data Types</h2>
+<p>Restrictions that can be used with String data types:</p>
+<ul>
+<li>enumeration</li>
+<li>length</li>
+<li>maxLength</li>
+<li>minLength</li>
+<li>pattern (NMTOKENS, IDREFS, and ENTITIES cannot use this constraint)</li>
+<li>whiteSpace</li>
+</ul>
+<hr/>
+</body>
+</html>
