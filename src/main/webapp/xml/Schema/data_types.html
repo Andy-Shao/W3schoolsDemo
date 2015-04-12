@@ -90,5 +90,321 @@ or trailing spaces, or multiple spaces</td></tr>
 <li>whiteSpace</li>
 </ul>
 <hr/>
+
+<h1>XSD Date and Time Data Types</h1>
+<p>Date and time data types are used for values that contain date and time.</p>
+<h2>Date Data Type</h2>
+<p>The date data type is used to specify a date</p>
+<p>The date is specified in the following form "YYYY-MM-DD" where:</p>
+<ul>
+<li>YYYY indicate the year</li>
+<li>MM indicates the month</li>
+<li>DD indicates the day</li>
+</ul>
+<p><b>Note</b>: All components are required!</p>
+<p>The following is an example of a date declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="start" type="xs:date"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;start&gt;2002-09-24&lt;/start&gt;
+</pre></code>
+<h2>Time Zones</h2>
+<p>To specify a time zone, you can either enter a date in UTC time by adding a "Z" behind the date
+ - like this:</p>
+<code><pre>
+&lt;start&gt;2002-09-24Z&lt;/start&gt;
+</pre></code>
+<p>or you can specify an offset from the UTC time by adding a positive or negative time behind the
+date - like this:</p>
+<code><pre>
+&lt;start&gt;2002-09-24-06:00&lt;/start&gt;
+or
+&lt;start&gt;2002-09-24+06:00&lt;/start&gt;
+</pre></code>
+<h2>Time Data Type</h2>
+<p>The time data type is used to specify a time.</p>
+<p>The time is specified in the following form "hh:mm:ss" where:</p>
+<ul>
+<li>hh indicates the hour</li>
+<li>mm indicates the minute</li>
+<li>ss indicates the second</li>
+</ul>
+<p><b>Note:</b> ALl components are required!</p>
+<p>The following is an example of a time declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="start" type="xs:time:"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;start&gt;09:00:00&lt;/&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;start&gt;09:03:10.5&lt;/&gt;
+</pre></code>
+<h2>Time Zones</h2>
+<p>To specify a time zone, you can either enter a time in UTC time by adding a "Z" behind the 
+time - like this:</p>
+<code><pre>
+&lt;start&gt;09:03L10Z&lt;/start&gt;
+</pre></code>
+<p>or you can specify an offset form the UTC time by adding a positive or negative time behind
+the time - like this:</p>
+<code><pre>
+&lt;start&gt;09:03:10-06:00&lt;/start&gt;
+or
+&lt;start&gt;09:03:10+06:00&lt;/start&gt;
+</pre></code>
+<h2>DateTime Data Type</h2>
+<p>The dateTime data type is used to specify a date and a time.</p>
+<p>The dateTime is specified in the following form "YYYY-MM-DDThh:mm:ss" where:</p>
+<ul>
+<li>YYYY indicate the year</li>
+<li>MM indicate the month</li>
+<li>DD indicate the day</li>
+<li>T indicates the start of the required time section</li>
+<li>hh indicates the hour</li>
+<li>mm indicates the mintue</li>
+<li>ss indicates the second</li>
+</ul>
+<p><b>Note:</b> All components are required!</p>
+<p>The following is an example of a dateTime declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="startdate" type="xs:dateTime"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;startdate&gt;2002-05-30T09:00:00&lt;/startdate&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;startdate&gt;2000-05-30T09:30:10.5&lt;/startdate&gt;
+</pre></code>
+<h2>Time Zones</h2>
+<p>To specify a time zone, you can either enter a dateTime in UTC time by adding a "Z" behind 
+the time - like this:</p>
+<code><pre>
+&lt;startdate&gt;2002-05-30T09:30:10Z&lt;/startdate&gt;
+</pre></code>
+<p>or you can specify an offset from the UTC time by adding a positive or negative time behind 
+the time - like this:</p>
+<code><pre>
+&lt;startdate&gt;200-05-30T09:30:10-06:00&lt;/startdate&gt;
+or
+&lt;startdate&gt;2002-05-30T09:30:10+06:00&lt;/startdate&gt;
+</pre></code>
+<h2>Duration Data Type</h2>
+<p>The duration data type is used to specify a time interval.</p>
+<p>The time interval is specified in the following form "PnYnMnDTnHnMnS" where:</p>
+<ul>
+<li>P indicates the period (required)</li>
+<li>nY indicates the number of years</li>
+<li>nM indicates the number of months</li>
+<li>nD indicates the number of days</li>
+<li>T indicates the start of a time section (required if you are going to specify hours,
+minutes, or seconds)</li>
+<li>nH indicates the number of hours</li>
+<li>nM indicates the number of minutes</li>
+<li>nS indicates the number of seconds</li>
+</ul>
+<p>The following is an example of a duration declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="period" type="xs:duration"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;period&gt;P5Y&lt;/period&gt;
+</pre></code>
+<p>The example above indicates a period of five years.</p>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;period&gt;P5Y2M10DT15H&lt;/period&gt;
+</pre></code>
+<p>The example above indicates a period of five years, two months, 10 days, and 
+15 hours.</p>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;period&gt;PT15H&lt;/period&gt;
+</pre></code>
+<p>The example above indicates a period of minus 10 days.</p>
+<h2>Date and Time Data Types</h2>
+<table>
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>date</td><td>Defines a date value</td></tr>
+<tr><td>dateTime</td><td>Defines a date and time value</td></tr>
+<tr><td>duration</td><td>Defines a time interval</td></tr>
+<tr><td>gDay</td><td>Defines a part of a date - the day(DD)</td></tr>
+<tr><td>gMonth</td><td>Defines a part of a date - the month(MM)</td></tr>
+<tr><td>gMonthDay</td><td>Defines a part of a date - the month and day (MM-DD)</td></tr>
+<tr><td>gYear</td><td>Defines a part of a date - the year (YYYY)</td></tr>
+<tr><td>gYearMonth</td><td>Defines a part of a date - the year and month(YYYY-MM)</td></tr>
+<tr><td>time</td><td>Defines a time value</td></tr>
+</tbody>
+</table>
+<h2>Restrictions on Date Data Types</h2>
+<p>Restrictions that can be used with Date data types:</p>
+<ul>
+<li>enumeration</li>
+<li>maxExclusive</li>
+<li>maxInclusive</li>
+<li>minExclusive</li>
+<li>minInclusive</li>
+<li>pattern</li>
+<li>whiteSpace</li>
+</ul>
+<hr/>
+<h1>XSD Numeric Data Types</h1>
+<p>Decimal data types are used for numeric values.</p>
+<h2>Decimal Data Type</h2>
+<p>The decimal data type is used to specify a numeric value.</p>
+<p>The following is an example of a decimal declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="prize" type="xs:decimal"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;prize&gt;999.50&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;+999.5230&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;-999.5230&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;0&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;14&lt;/prize&gt;
+</pre></code>
+<p><b>Note:</b> The maximum number of decimal digits you can specify is 18.</p>
+<h2>Integer Data Type</h2>
+<p>The integer data type is used to specify a numeric value without a fractional component.</p>
+<p>The following is an example of an integer declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="prize" type="xs:integer"/&gt;
+</pre></code>
+<p>An element in your document might look like this:<p>
+<code><pre>
+&lt;prize&gt;999&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;+999&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;-999&lt;/prize&gt;
+</pre></code>
+<p>Or it might look like this:</p>
+<code><pre>
+&lt;prize&gt;0&lt;/prize&gt;
+</pre></code>
+<h2>Numeric Data Types</h2>
+<p>Note that all of the data types below derive from the Decimal data type (except for 
+decimal itself)!</p>
+<table>
+<thead><tr><th>Name</th><th>Descriptoin</th></tr></thead>
+<tbody>
+<tr><td>byte</td><td>A signed 8-bit integer</td></tr>
+<tr><td>decimal</td><td>A decimal value</td></tr>
+<tr><td>int</td><td>A signed 32-bit integer</td></tr>
+<tr><td>integer</td><td>An integer value</td></tr>
+<tr><td>long</td><td>A signed 64-bit integer</td></tr>
+<tr><td>negativeInteger</td><td>An integer containing only negative values(..,-2,-1)
+</td></tr>
+<tr><td>nonNegativeInteger</td><td>An integer containing only non-negative values(0,
+1,2,..)</td></tr>
+<tr><td>nonPositiveInteger</td><td>An integer containing only non-positive values(..
+,-2,-1,0)</td></tr>
+<tr><td>positiveInteger</td><td>An integer containing only postive values(1,2,..)</td></tr>
+<tr><td>short</td><td>A signed 16-bit integer</td></tr>
+<tr><td>unsignedLong</td><td>An unsigened 64-bit integer</td></tr>
+<tr><td>unsignedInt</td><td>An unsigned 32-bit integer</td></tr>
+<tr><td>unsignedShort</td><td>An unsigned 16-bit integer</td></tr>
+<tr><td>unsignedByte</td><td>An unsigned 8-bit integer</td></tr>
+</tbody>
+</table>
+<p>Restrictions on Numeric Data Types</p>
+<p>Restrictions that can be used with Numeric data types:</p>
+<ul>
+<li>enumeration</li>
+<li>fractionDigits</li>
+<li>maxExclusive</li>
+<li>maxInclusive</li>
+<li>minExclusive</li>
+<li>minInclusive</li>
+<li>pattern</li>
+<li>totalDigits</li>
+<li>whiteSpace</li>
+</ul>
+<h1>XSD Miscellaneous Data Types</h1>
+<p>Other miscellaneous data types are boolean, base64Binary, hexBinary, float, double, 
+anyURI, QName, and NOTATION.</p>
+<h2>Boolean Data Type</h2>
+<p>The boolean data type is used to specify a true or false value.</p>
+<p>The following is an example of a boolean declaration in a schema:</p>
+<code><pre>
+&lt;xs:attribute name="disabled" type="xs:boolean"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;prize disabled="true"&gt;999&lt;/prize&gt;
+</pre></code>
+<p><b>Note:</b> Legal values for boolean are true, false, 1 (which indicates true), and 
+0(which indicates false).</p>
+<h2>Binary Data Types</h2>
+<p>Binary data types are used to express binary-formatted data.</p>
+<p>We have two binary data types:</p>
+<ul>
+<li>base64Binary (Base64-encoded binary data)</li>
+<li>hexBinary (hexadecimal-encoded binary data)</li>
+</ul>
+<p>The following is an example of a hexBinary declaration in a schema:</p>
+<code><pre>
+&lt;xs:element name="blosrc" type="xs:hexBinary"/&gt;
+</pre></code>
+<h2>AnyURI Data Type</h2>
+<p>The anyURI data type is used to specify a URI.</p>
+<p>The following is an example of an anyURI declaration in a schema:</p>
+<code><pre>
+&lt;xs:attribute name="src" type="xs:anyURI"/&gt;
+</pre></code>
+<p>An element in your document might look like this:</p>
+<code><pre>
+&lt;pic src="http://www.w3schools.com/images/smiley.gif"/&gt;
+</pre></code>
+<p><b>Note:</b> If a URI has spaces, replace them with %20.</p>
+<h2>Miscellaneous Data Types</h2>
+<table>
+<thead><tr><th>Name</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>anyURI</td><td></td></tr>
+<tr><td>base64Binary</td><td></td></tr>
+<tr><td>boolean</td><td></td></tr>
+<tr><td>double</td><td></td></tr>
+<tr><td>float</td><td></td></tr>
+<tr><td>hexBinary</td><td></td></tr>
+<tr><td>NOTATION</td><td></td></tr>
+<tr><td>QName</td><td></td></tr>
+</tbody>
+</table>
+<h2>Restrictions on Miscellaneous Data Types</h2>
+<p>Restrictions that can be used with the other data types:</p>
+<ul>
+<li>enumeration(a Boolean data type cannot use this constraint)</li>
+<li>length(a Boolean data type cannot use this constraint)</li>
+<li>maxLength(a Boolean data type cannot use this constraint)</li>
+<li>minLength(a Boolean data type cannot use this constarint)</li>
+<li>pattern</li>
+<li>whiteSpace</li>
+</ul>
 </body>
 </html>
