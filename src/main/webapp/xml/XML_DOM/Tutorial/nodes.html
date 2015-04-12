@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Nodes</h1>
+<p>In the DOM, everything in an XML document is a node.</p>
+<hr/>
+<h2>DOM Nodes</h2>
+<p>According to the DOM, everything in an XML document is a <b>node</b>.</p>
+<p>The DOM says:</p>
+<ul>
+<li>The entire document is a document node</li>
+<li>Every XML element is an element node</li>
+<li>The text in the XML elements are text nodes</li>
+<li>Every attribute is an attribute node</li>
+<li>Comments are comment nodes</li>
+</ul>
+<hr/>
+
+<h2>DOM Example</h2>
+<p>Look at the following XML file:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;bookstore&gt;
+  &lt;book category="cooking"&gt;
+    &lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+    &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+    &lt;year&gt;2005&lt;/year&gt;
+    &lt;price&gt;30.00&lt;/price&gt;
+  &lt;/book&gt;
+  &lt;book category="children"&gt;
+    &lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+    &lt;author&gt;J K. Rowling&lt;/author&gt;
+    &lt;year&gt;2005&lt;/year&gt;
+    &lt;price&gt;29.99&lt;/price&gt;
+  &lt;/book&gt;
+  &lt;book category="web"&gt;
+    &lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+    &lt;author&gt;James McGovern&lt;/author&gt;
+    &lt;author&gt;Per Bothner&lt;/author&gt;
+    &lt;author&gt;Kurt Cagle&lt;/author&gt;
+    &lt;author&gt;James Linn&lt;/author&gt;
+    &lt;author&gt;Vaidyanathan Nagarajan&lt;/author&gt;
+    &lt;year&gt;2003&lt;/year&gt;
+    &lt;price&gt;49.99&lt;/price&gt;
+  &lt;/book&gt;
+  &lt;book category="web" cover="paperback"&gt;
+    &lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+    &lt;author&gt;Erik T. Ray&lt;/author&gt;
+    &lt;year&gt;2003&lt;/year&gt;
+    &lt;price&gt;39.95&lt;/price&gt;
+  &lt;/book&gt;
+&lt;/bookstore&gt;
+</pre></code>
+<p>The root node in the XML above is named <bookstore>. All other nodes in the document are 
+contained within &lt;bookstore&gt;.</p>
+<p>The root node &lt;bookstore&gt; holds four &lt;book&gt; nodes.</p>
+<p>The first &lt;book&gt; node holds four nodes: &lt;title&gt;, &lt;author&gt;, &lt;year&gt;, 
+and &lt;price&gt;, which contains one text node each, "Everyday Italian", "Giada De Laurentiis", 
+"2005", and "30.00".</p>
+<h2>Text is Always Stored in Text Nodes</h2>
+<p>A common error in DOM processing is to expect an element node to contain text.</p>
+<p>However, the text of an element node is stored in a text node.</p>
+<p>In this example: &lt;year&gt;2005&lt;/year&gt;, the element node &lt;year&gt;, holds a text 
+node with the value "2005".</p>
+<p>"2005" is <b>not</b> the value of the &lt;year&gt; element!</p>
+</body>
+</html>
