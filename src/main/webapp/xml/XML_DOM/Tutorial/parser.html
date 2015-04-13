@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Parser</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<p>All major browsers have a built-in XML parser to read and manipulate XML.</p>
+<p>The XML parser converts XML into an XML DOM object that can be accessed with JavaScript.</p>
+<hr/>
+
+<h2>XML Parser</h2>
+<p>The XML DOM contains methods to traverse XML trees, access, insert, and delete nodes.</p>
+<p>However, before an XML document can be accessed and manipulated, it must be loaded into an 
+XML DOM object.</p>
+<p>An XML parser reads XML, and converts it into an XML DOM object that can be accessed with 
+JavaScript.</p>
+<p>Most browsers have a built-in XML parser.</p>
+<hr/>
+
+<h2>Load an XML Document</h2>
+<a href="try_dom_loadxml.html">Example</a>
+<h3>Code explained</h3>
+<ul>
+<li>Create an XMLHttpRequest object</li>
+<li>Use the open() and send() methods of the XMLHttpRequest object to send a request to a server</li>
+<li>Get the response data as XML data</li>
+</ul>
+<hr/>
+
+<h2>Load an XML String</h2>
+<a href="try_dom_loadxmltext.html">Example</a>
+<p><b>Note:</b> Internet Explorer uses the loadXML() method to parse an XML string, while other 
+browsers use the DOMParser object.</p>
+<hr/>
+
+<h2>Access Across Domains</h2>
+<p>For security reasons, modern browsers do not allow access across domains.</p>
+<p>This means, that both the web page and the XML file it tries to load, must be located on the 
+same server.</p>
+<p>The examples on W3Schools all open XML files located on the W3Schools domain.</p>
+<p>If you want to use the example above on one of your web pages, the XML files you load must be 
+located on your own server.</p>
+<hr/>
+
+<h2>An External JavaScript for loadXMLDoc()</h2>
+<p>To make the code above even easier to maintain, and to make sure the same code is used in all 
+pages, we store the function in an external file.</p>
+<p>The file is called "loadxmldoc.js", and will be loaded in the head section of an HTML page. 
+Then, the loadXMLDoc() function can be called from a script in the page.</p>
+<a href="try_dom_parsertest.html">Example</a>
+</body>
+</html>

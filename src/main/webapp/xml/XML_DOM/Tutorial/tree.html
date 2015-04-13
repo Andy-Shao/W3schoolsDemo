@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Node Tree</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Node Tree</h1>
+<p>The XML DOM views an XML document as a node-tree.</p>
+<p>All the nodes in the tree have a relationship to each other.</p>
+<hr/>
+<h2>The XML DOM Node Tree</h2>
+<p>The XML DOM views an XML document as a tree-structure. The tree structure is called a 
+<b>node-tree.</b></p>
+<p>All nodes can be accessed through the tree. Their contents can be modified or deleted, 
+and new elements can be created.</p>
+<p>The node tree shows the set of nodes, and the connections between them. The tree starts 
+at the root node and branches out to the text nodes at the lowest level of the tree:</p>
+<img src="../../../resources/images/xml/nodetree.gif"/>
+<hr/>
+
+<h2>Node Parents, Children, and Siblings</h2>
+<p>The nodes in the node tree have a hierarchical relationship to each other.</p>
+<p>The terms parent, child, and sibling are used to describe the relationships. Parent nodes 
+have children. Children on the same level are called siblings (brothers or sisters).</p>
+<ul>
+<li>In a node tree, the top node is called the root</li>
+<li>Every node, except the root, has exactly one parent node</li>
+<li>A node can have any number of children</li>
+<li>A leaf is a node with no children</li>
+<li>Siblings are nodes with the same parent</li>
+</ul>
+<p>The following image illustrates a part of the node tree and the relationship between the nodes:</p>
+<img src="../../../resources/images/xml/navigate.gif"/>
+<p>Because the XML data is structured in a tree form, it can be traversed without knowing 
+the exact structure of the tree and without knowing the type of data contained within.</p>
+<hr/>
+
+<h2>First Child - Last Child</h2>
+<p>Look at the following XML fragment:</p>
+<code><pre>
+&lt;bookstore&gt;
+  &lt;book category="cooking"&gt;
+    &lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+    &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+    &lt;year&gt;2005&lt;/year&gt;
+    &lt;price&gt;30.00&lt;/price&gt;
+  &lt;/book&gt;
+&lt;/bookstore&gt;
+</pre></code>
+<p>In the XML above, the &lt;title&gt; element is the first child of the &lt;book&gt; 
+element, and the &lt;price&gt; element is the last child of the &lt;book&gt; element.</p>
+<p>Furthermore, the &lt;book&gt; element is the parent node of the &lt;title&gt;, &lt;author&gt;, 
+&lt;year&gt;, and &lt;price&gt; elements.</p>
+</body>
+</html>

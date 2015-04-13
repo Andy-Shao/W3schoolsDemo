@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+document.write("Testing!!");
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // for IE 5/6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xhttp.open("GET","books.xml",false);
+xhttp.send();
+xmlDoc=xhttp.responseXML;
+document.write("XML document loaded into an XML DOM Object.");
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Load Functions</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Load Functions</h1>
+<p>The code for loading XML documents can be stored in a function.<p>
+<hr/>
+
+<h2>The loadXMLDoc() Function</h2>
+<p>To make the code from the previous page simpler to maintain (and check for older browsers), 
+it should be written as a function:</p>
+<code><pre>
+function loadXMLDoc(filename)
+{
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // code for IE5 and IE6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xhttp.open("GET",filename,false);
+xhttp.send();
+return xhttp.responseXML;
+}
+</pre></code>
+<p>The function above can be stored in the &lt;head&gt; section of an HTML page, and called 
+from a script in the page.</p>
+</body>
+</html>
