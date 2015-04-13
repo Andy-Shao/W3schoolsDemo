@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Node List</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Node List</h1>
+<p>A list of nodes is returned by the getElementsByTagName() method and the childNodes property.</p>
+<hr/>
+
+<h2>DOM Node List</h2>
+<p>When using properties or methods like childNodes or getElementsByTagName(), a node list 
+object is returned.</p>
+<p>A node list object represents a list of nodes, in the same order as in the XML.</p>
+<p>Nodes in the node list are accessed with index numbers starting from 0.</p>
+<p>The following image represents a node list of the &lt;title&gt; elements in "books.xml":</p>
+<img src="../../../resources/images/xml/nodelist.gif"/>
+<p>The following code fragment loads "books.xml" into xmlDoc using loadXMLDoc() and returns a 
+node list of title elements in "books.xml":</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title");
+</pre></code>
+<p>After the execution of the statement above, x is a node list object.</p>
+<p>The following code fragment returns the text from the first &lt;title&gt; element in the 
+node list (x):</p>
+<code><pre>
+var txt=x[0].childNodes[0].nodeValue;
+</pre></code>
+<a href="try_dom_nodelist.html">Try it yourself</a>
+<p>After the execution of the statement above, txt = "Everyday Italian".</p>
+<hr/>
+
+<h2>Node List Length</h2>
+<p>A node list object keeps itself up-to-date. If an element is deleted or added, the list 
+is automatically updated.</p>
+<p>The length property of a node list is the number of nodes in the list.</p>
+<p>The following code fragment loads "books.xml" into xmlDoc using loadXMLDoc() and returns 
+the number of &lt;title&gt; elements in "books.xml":</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName('title').length;
+</pre></code>
+<p>After the execution of the statement above, x = 4.</p>
+<p>The length of the node list can be used to loop through all the elements in the list.</p>
+<p>The following code fragment uses the length property to loop through the list of 
+&lt;title&gt; elements:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+
+//the x variable will hold a node list
+var x=xmlDoc.getElementsByTagName('title');
+
+for (i=0;i&lt;x.length;i++)
+  {
+  document.write(x[i].childNodes[0].nodeValue);
+  document.write("&lt;br&gt;");
+  }
+</pre></code>
+<p>Output:</p>
+<code><pre>
+Everyday Italian
+Harry Potter
+XQuery Kick Start
+Learning XML
+</pre></code>
+<a href="try_dom_nodelist_length.html">Try it yourself</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Set the x variable to hold a node list of all title elements</li>
+<li>Output the value from the text node of all &lt;title&gt; elements</li>
+</ol>
+<hr/>
+
+<h2>DOM Attribute List (Named Node Map)</h2>
+<p>The attributes property of an element node returns a list of attribute nodes.</p>
+<p>This is called a named node map, and is similar to a node list, except for some differences 
+in methods and properties.</p>
+<p>A attribute list keeps itself up-to-date. If an attribute is deleted or added, the list is 
+automatically updated.</p>
+<p>The following code fragment loads "books.xml" into xmlDoc using loadXMLDoc() and returns a 
+list of attribute nodes from the first &lt;book&gt; element in "books.xml":</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+
+var x=xmlDoc.getElementsByTagName('book')[0].attributes;
+</pre></code>
+<p>After the execution of the code above, x.length = is the number of attributes and 
+x.getNamedItem() can be used to return an attribute node.</p>
+<p>The following code fragment displays the value of the "category" attribute, and the number 
+of attributes, of a book:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+var x=xmlDoc.getElementsByTagName("book")[0].attributes;
+
+document.write(x.getNamedItem("category").nodeValue);
+document.write("&lt;br&gt;" + x.length);
+</pre></code>
+<p>Output:</p>
+<code><pre>
+cooking
+1
+</pre></code>
+<a href="try_dom_attributes.html">Try if yourself</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Set the x variable to hold a list of all attributes of the first &lt;book&gt; element</p>
+<li>Output the value from the "category" attribute</li>
+<li>Output the length of the attribute list</li>
+</ol>
+</body>
+</html>

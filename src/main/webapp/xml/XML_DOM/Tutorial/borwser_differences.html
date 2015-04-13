@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Browser Differences</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Browser Differences</h1>
+<h2>Browser Differences in DOM Parsing</h2>
+<p>All modern browsers support the W3C DOM specification.</p>
+<p>However, there are some differences between browsers. One important difference is:</p>
+<ul>
+<li>The way they handle white-spaces and new lines</li>
+</ul>
+<hr/>
+
+<h2>DOM - White Spaces and New Lines</h2>
+<p>XML often contains new line, or white space characters, between nodes. This is often the case 
+when the document is edited by a simple editor like Notepad.</p>
+<p>The following example (edited by Notepad) contains CR/LF (new line) between each line and two 
+spaces in front of each child node:</p>
+<code><pre>
+&lt;book&gt;
+  &lt;title&gt;Everyday Italian&lt;/title&gt;
+  &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;30.00&lt;/price&gt;
+&lt;/book&gt;
+</pre></code>
+<p>Internet Explorer 9 and earlier do NOT treat empty white-spaces, or new lines as text nodes, 
+while other browsers do.</p>
+<p>The following example will output the number of child nodes the root element (of books.xml) 
+has. IE9 and earlier will output 4 child nodes, while IE10 and later versions, and other browsers 
+will output 9 child nodes:</p>
+<a href="try_dom_nodetype_ievsmozilla.html">Try it yourself</a>
+</body>
+</html>

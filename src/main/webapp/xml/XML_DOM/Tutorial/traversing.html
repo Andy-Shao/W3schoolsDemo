@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Traverse Node Tree</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Traverse Node Tree</h1>
+<p>Traversing means looping through or traveling across the node tree.</p>
+<hr/>
+
+<h2>Traversing the Node Tree</h2>
+<p>Often you want to loop an XML document, for example: when you want to extract the value 
+of each element.</p>
+<p>This is called "Traversing the node tree"</p>
+<p>The example below loops through all child nodes of &lt;book&gt;, and displays their names
+and values:</p>
+<code><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script src="loadxmlstring.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+var text="&lt;book&gt;";
+text=text+"&lt;title&gt;Everyday Italian&lt;/title&gt;";
+text=text+"&lt;author&gt;Giada De Laurentiis&lt;/author&gt;";
+text=text+"&lt;year&gt;2005&lt;/year&gt;";
+text=text+"&lt;/book&gt;";
+
+var xmlDoc=loadXMLString(text);
+
+// documentElement always represents the root node
+var x=xmlDoc.documentElement.childNodes;
+
+for (i=0;i&lt;x.length;i++)
+  {
+  document.write(x[i].nodeName);
+  document.write(": ");
+  document.write(x[i].childNodes[0].nodeValue);
+  document.write("&lt;br&gt;");
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<p>Output:</p>
+<code><pre>
+title: Everyday Italian
+author: Giada De Laurentiis
+year: 2005
+</pre></code>
+<a href="try_dom_parsertest3.html">Try it yourself</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>loadXMLString() loads the XML string into xmlDoc</li>
+<li>Get the child nodes of the root element</li>
+<li>For each child node, output the node name and the node value of the text node</li>
+</ol>
+</body>
+</html>

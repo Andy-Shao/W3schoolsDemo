@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Node Information</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Node Information</h1>
+<p>The nodeName, nodeValue, and nodeType properties contain information about nodes.</p>
+<hr/>
+
+<h2>Node Properties</h2>
+<p>In the XML DOM, each node is an <b>object.</b></p>
+<p>Objects have methods and properties, that can be accessed and manipulated by JavaScript.</p>
+<p>Three important node properties are:</p>
+<ul>
+<li>nodeName</li>
+<li>nodeValue</li>
+<li>nodeType</li>
+</ul>
+<hr/>
+
+<h2>The nodeName Property</h2>
+<p>The nodeName property specifies the name of a node.</p>
+<ul>
+<li>nodeName is read-only</li>
+<li>nodeName of an element node is the same as the tag name</li>
+<li>nodeName of an attribute node is the attribute name</li>
+<li>nodeName of a text node is always #text</li>
+<li>nodeName of the document node is always #document</li>
+</ul>
+<a href="try_dom_nodename3.html">Try it by yourself</a>
+<hr/>
+
+<h2>The nodeValue Property</h2>
+<p>The nodeValue property specifies the value of a node.</p>
+<ul>
+<li>nodeValue for element nodes is undefined</li>
+<li>nodeValue for text nodes is the text itself</li>
+<li>nodeValue for attribute nodes is the attribute value</li>
+</ul>
+<hr/>
+
+<h2>Get the Value of an Element</h2>
+<p>The following code retrieves the text node value of the first &lt;title&gt; element:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+var x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+var txt=x.nodeValue;
+</pre></code>
+<a href="try_dom_getelement.html">Try it yourself</a>
+<p>Result:  txt = "Everyday Italian"</p>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Get text node of the first &lt;title&gt; element node</li>
+<li>Set the txt variable to be the value of the text node</li>
+</ol>
+<hr/>
+
+<h2>Change the Value of an Element</h2>
+<p>The following code changes the text node value of the first &lt;title&gt; element:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+var x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue="Easy Cooking";
+</pre></code>
+<a href="try_dom_changeelement.html">Try it yourself</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Get text node of the first &lt;title&gt; element node</li>
+<li>Change the value of the text node to "Easy Cooking"</li>
+</ol>
+<hr/>
+
+<h2>The nodeType Property</h2>
+<p>The nodeType property specifies the type of node.</p>
+<p>nodeType is read only.</p>
+<p>The most important node types are:</p>
+<table>
+<thead><tr><th>Node type</th><th>NodeType</th></tr></thead>
+<tbody>
+<tr><td>Element</td><td>1</td></tr>
+<tr><td>Attribute</td><td>2</td></tr>
+<tr><td>Text</td><td>3</td></tr>
+<tr><td>Comment</td><td>8</td></tr>
+<tr><td>Document</td><td>9</td></tr>
+</tbody>
+</table>
+<a href="try_dom_root.html">Try it yourself</a>
+</body>
+</html>

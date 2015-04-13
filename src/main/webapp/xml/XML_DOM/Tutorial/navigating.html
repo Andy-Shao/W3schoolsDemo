@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM - Navigating Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM - Navigating Nodes</h1>
+<p>Nodes can be navigated using node relationships.</p>
+<hr/>
+
+<h2>Navigating DOM Nodes</h2>
+<p>Accessing nodes in the node tree via the relationship between nodes, is often called 
+"navigating nodes".</p>
+<p>In the XML DOM, node relationships are defined as properties to the nodes:</p>
+<ul>
+<li>parentNode</li>
+<li>childNode</li>
+<li>firstChild</li>
+<li>lastChild</li>
+<li>nextSibling</li>
+<li>previousSibling</li>
+</ul>
+<p>The following image illustrates a part of the node tree and the relationship between nodes 
+in books.xml:</p>
+<img src="../../../resources/images/xml/navigate.gif"/>
+<hr/>
+
+<h2>DOM - Parent Node</h2>
+<p>All nodes have exactly one parent node. The following code navigates to the parent node 
+of &lt;book&gt;:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+var x=xmlDoc.getElementsByTagName("book")[0];
+document.write(x.parentNode.nodeName);
+</pre></code>
+<a href="try_dom_nav_parentnode.html">Try it yourself</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Get the first &lt;book&gt; element</li>
+<li> Output the node name of the parent node of "x"</li>
+</ol>
+<hr/>
+
+<h2>Avoid Empty Text Nodes</h2>
+<p>Firefox, and some other browsers, will treat empty white-spaces or new lines as text nodes,
+Internet Explorer will not.</p>
+<p>This causes a problem when using the properties: firstChild, lastChild, nextSibling, 
+previousSibling.</p>
+<p>To avoid navigating to empty text nodes (spaces and new-line characters between element 
+nodes), we use a function that checks the node type:</p>
+<code><pre>
+function get_nextSibling(n)
+{
+y=n.nextSibling;
+while (y.nodeType!=1)
+  {
+  y=y.nextSibling;
+  }
+return y;
+}
+</pre></code>
+<p>The function above allows you to use get_nextSibling(node) instead of the property 
+node.nextSibling.</p>
+<p>Code explained:</p>
+<p>Element nodes are type 1. If the sibling node is not an element node, it moves to the next 
+nodes until an element node is found. This way, the result will be the same in both Internet 
+Explorer and Firefox.</p>
+<hr/>
+
+<h2>Get the First Child Element</h2>
+<p>The following code displays the first element node of the first &lt;book&gt;:</p>
+<code><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script src="loadxmldoc.js"&gt;
+&lt;/script&gt;
+&lt;script&gt;
+//check if the first node is an element node
+function get_firstChild(n)
+{
+y=n.firstChild;
+while (y.nodeType!=1)
+  {
+  y=y.nextSibling;
+  }
+return y;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;script&gt;
+var xmlDoc=loadXMLDoc("books.xml");
+var x=get_firstChild(xmlDoc.getElementsByTagName("book")[0]);
+document.write(x.nodeName);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<p>Output:</p>
+<code><pre>
+title
+</pre></code>
+<a href="try_dom_nav_firstchild.html">Try it yourself</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Use the get_firstChild function on the first &lt;book&gt; element node to get the first child 
+node that is an element node</li>
+<li>Output the node name of first child node that is an element node</li>
+</ol>
+</body>
+</html>
