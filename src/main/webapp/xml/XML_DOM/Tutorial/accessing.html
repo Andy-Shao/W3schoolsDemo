@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM - Accessing Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM - Accessing Nodes</h1>
+<p>With the DOM, you can access every node in an XML document.</p>
+<hr/>
+
+<h2>Accessing Nodes</h2>
+<p>You can access a node in three ways:</p>
+<ol style="1">
+<li>By using the getElementsByTagName() method</li>
+<li>By looping through (traversing) the nodes tree.</li>
+<li>By navigating the node tree, using the node relationships.</li>
+</ol>
+<hr/>
+
+<h2>The getElementsByTagName() Method</h2>
+<p>getElementsByTagName() returns all elements with a specified tag name.</p>
+<h3>SyntaxM</h3>
+<code><pre>
+node.getElementsByTagName("tagname");
+</pre></code>
+<h3>Example</h3>
+<p>The following example returns all &lt;title&gt; elements under the x element:</p>
+<code><pre>
+x.getElementsByTagName("title");
+</pre></code>
+<p>Note that the example above only returns &lt;title&gt; elements under the x node. 
+To return all &lt;title&gt; elements in the XML document use:</p>
+<code><pre>
+xmlDoc.getElementsByTagName("title");
+</pre></code>
+<p>where xmlDoc is the document itself (document node).</p>
+<hr/>
+
+<h2>DOM Node List</h2>
+<p>The getElementsByTagName() method returns a node list. A node list is an array of nodes.</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title");
+</pre></code>
+<p>The &lt;title&gt; elements in x can be accessed by index number. To access the third 
+&lt;title&gt; you can write::</p>
+<code><pre>
+y=x[2];
+</pre></code>
+<p><b>Note</b>: The index starts at 0.</p>
+<p>You will learn more about node lists in a later chapter of this tutorial.</p>
+<hr/>
+
+<h2>DOM Node List Length</h2>
+<p>The length property defines the length of a node list (the number of nodes).</p>
+<p>You can loop through a node list by using the length property:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+var x=xmlDoc.getElementsByTagName("title");
+
+for (i=0;i&lt;x.length;i++)
+  {
+  document.write(x[i].childNodes[0].nodeValue);
+  document.write("&lt;br&gt;");
+  }
+</pre></code>
+<a href="try_dom_list_loop.html">Example</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Get all &lt;title&gt; element nodes</li>
+<li>For each title element, output the value of its text node</li>
+</ol>
+<hr/>
+
+<h2>Node Types</h2>
+<p>The <b>documentElement</b> property of the XML document is the root node.</p>
+<p>The <b>nodeName</b> property of a node is the name of the node.</p>
+<p>The <b>nodeType</b> property of a node is the type of the node.</p>
+<p>You will learn more about the node properties in the next chapter of this tutorial.</p>
+<hr/>
+
+<h2>Traversing Nodes</h2>
+<p>The following code loops through the child nodes, that are also element nodes, of 
+the root node:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+var x=xmlDoc.documentElement.childNodes;
+
+for (i=0;i&lt;x.length;i++)
+  {
+  // Process only element nodes (type 1)
+  if (x[i].nodeType==1)
+    {
+    document.write(x[i].nodeName);
+    document.write("&lt;br&gt;");
+    }
+  }
+</pre></code>
+<a href="">Example</a>
+<p>Example explained:</p>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Get the child nodes of the root element</li>
+<li>For each child node, check the node type of the node. If the node type is "1" it is 
+an element node</li>
+<li>Output the name of the node if it is an element node</li>
+</ol>
+<hr/>
+
+<h2>Navigating Node Relationships</h2>
+<p>The following code navigates the node tree using the node relationships:</p>
+<code><pre>
+var xmlDoc=loadXMLDoc("books.xml");
+
+var x=xmlDoc.getElementsByTagName("book")[0].childNodes;
+var y=xmlDoc.getElementsByTagName("book")[0].firstChild;
+
+for (i=0;i&lt;x.length;i++)
+  {
+  // Process only element nodes (type 1)
+  if (y.nodeType==1)
+    {
+    document.write(y.nodeName + "&lt;br&gt;");
+    }
+  y=y.nextSibling;
+  }
+</pre></code>
+<ol style="1">
+<li>Load "books.xml" into xmlDoc using loadXMLDoc()</li>
+<li>Get the child nodes of the first book element</li>
+<li>Set the "y" variable to be the first child node of the first book element</li>
+<li>For each child node (starting with the first child node "y"):</li>
+<li>Check the node type. If the node type is "1" it is an element node</li>
+<li>Output the name of the node if it is an element node</li>
+<li>Set the "y" variable to be the next sibling node, and run through the loop again</li>
+</ol>
+</body>
+</html>

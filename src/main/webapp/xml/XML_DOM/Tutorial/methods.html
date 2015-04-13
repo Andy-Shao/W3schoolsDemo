@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM - Properties and Methods</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM - Properties and Methods</h1>
+<p>Properties and methods define the programming interface to the XML DOM.M</p>
+<hr/>
+
+<h2>Programming InterfaceM</h2>
+<p>The DOM models XML as a set of node objects. The nodes can be accessed with JavaScript or 
+other programming languages. In this tutorial we use JavaScript.</p>
+<p>The programming interface to the DOM is defined by a set standard properties and methods.</p>
+<p><b>Properties</b> are often referred to as something that is (i.e. nodename is "book").</p>
+<p><b>Methods</b> are often referred to as something that is done (i.e. delete "book").</p>
+<hr/>
+
+<h2>XML DOM Properties</h2>
+<p>These are some typical DOM properties:</p>
+<ul>
+<li>x.nodeName - the name of x</li>
+<li>x.nodeValue - the value of x</li>
+<li>x.partentNode - the parent node of x</li>
+<li>x.childNode - the child nodes of x</li>
+<li>x.attributes - the attributes nodes of x</li>
+</ul>
+<p>Note: In the list above, x is a node object.</p>
+<hr/>
+
+<h2>XML DOM Methods</h2>
+<ul>
+<li>x.getElementsByTagName(name) - get all elements with a specified tag name</li>
+<li>x.appendChild(node) - insert a child node to x</li>
+<li>x.removeChild(node) - remove a child node from x</li>
+</ul>
+<p>Note: In the list above, x is a node object.</p>
+<hr/>
+
+<h2>Example</h2>
+<p>The JavaScript code to get the text from the first &lt;title&gt; element in books.xml:</p>
+<p>txt=xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue</p>
+<p>After the execution of the statement, txt will hold the value "Everyday Italian"</p>
+<p>Explained:</p>
+<ul>
+<li><b>xmlDoc</b> - the XML DOM object created by the parser.</li>
+<li><b>GetElementsByTagName("title")[0] - the first &lt;title&gt; element.</li>
+<li><b>childNodes[0]</b> - the first child of the &lt;title&gt; element (the text node).</li>
+<li><b>nodeValue</b> - the value of the node (thte text itself).</li>
+</ul>
+</body>
+</html>
