@@ -7,7 +7,7 @@ public class BuildXml {
     public static void main(String[] args) throws IOException {
         System.out.println("Please Input:");
         String input = BuildXml.readInfo(new BufferedReader(new InputStreamReader(System.in)) , "\\u0x04");
-        System.out.println(input.replaceAll("<" , "&lt;").replaceAll(">" , "&gt;"));
+        System.out.println(input.replaceAll("&", "&amp;").replaceAll("<" , "&lt;").replaceAll(">" , "&gt;"));
         System.out.println("END!!");
     }
 
