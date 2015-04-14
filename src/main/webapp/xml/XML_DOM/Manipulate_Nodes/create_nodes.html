@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Create Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Create Nodes</h1>
+<h2>Create a New Element Node</h2>
+<p>The createElement() method creates a new element node:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newel=xmlDoc.createElement("edition");
+
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);
+</pre></code>
+<hr/>
+
+<h2>Create a New Attribute Node</h2>
+<p>The createAttribute() is used to create a new attribute node:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newatt=xmlDoc.createAttribute("edition");
+newatt.nodeValue="first";
+
+x=xmlDoc.getElementsByTagName("title");
+x[0].setAttributeNode(newatt);
+</pre></code>
+<p><b>Note:</b> If the attribute already exists, it is replaced by the new one.</p>
+<hr/>
+
+<h2>Create an Attribute Using setAttribute()</h2>
+<p>Since the setAttribute() method creates a new attribute if the attribute does not exist, 
+it can be used to create a new attribute.</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName('book');
+x[0].setAttribute("edition","first");
+</pre></code>
+<hr/>
+
+<h2>Create a Text Node</h2>
+<p>The createTextNode() method creates a new text node:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newel=xmlDoc.createElement("edition");
+newtext=xmlDoc.createTextNode("first");
+newel.appendChild(newtext);
+
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);
+</pre></code>
+<hr/>
+
+<h2>Create a CDATA Section Node</h2>
+<p>The createCDATASection() method creates a new CDATA section node.</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newCDATA=xmlDoc.createCDATASection("Special Offer &amp; Book Sale");
+
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newCDATA);
+</pre></code>
+<a href="../Tutorial/try_dom_createcdatasection1.html">Try it yourself</a>
+<hr/>
+
+<h2>Create a Comment Node</h2>
+</body>
+</html>
