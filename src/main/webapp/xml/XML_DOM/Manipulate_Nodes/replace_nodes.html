@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Replace Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Replace Nodes</h1>
+<p>The replaceChild() method replaces a specified node.</p>
+<p>The nodeValue property replaces text in a text node.</p>
+<hr/>
+
+<h2>Replace an Element Node</h2>
+<p>The replaceChild() method is used to replace a node.</p>
+<p>The following code fragment replaces the first &lt;book&gt; element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.documentElement;
+
+//create a book element, title element and a text node
+newNode=xmlDoc.createElement("book");
+newTitle=xmlDoc.createElement("title");
+newText=xmlDoc.createTextNode("A Notebook");
+
+//add the text node to the title node,
+newTitle.appendChild(newText);
+//add the title node to the book node
+newNode.appendChild(newTitle);
+
+y=xmlDoc.getElementsByTagName("book")[0]
+//replace the first book node with the new node
+x.replaceChild(newNode,y);
+</pre></code>
+<hr/>
+
+<h2>Replace Data In a Text Node</h2>
+<p>The replaceData() method is used to replace data in a text node.</p>
+<p>The replaceData() method has three parameters:</p>
+<ul>
+<li>offset - Where to begin replacing characters. Offset value starts at zero</li>
+<li>length - How many characters to replace</li>
+<li>string - The string to insert</li>
+</ul>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+
+x.replaceData(0,8,"Easy");
+</pre></code>
+<hr/>
+
+<h2>Use the nodeValue Property Instead</h2>
+<p>It is easier to replace the data in a text node using the nodeValue property.</p>
+<p>The following code fragment will replace the text node value in the first &lt;title&gt; element
+with "Easy Italian":</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+
+x.nodeValue="Easy Italian";
+</pre></code>
+</body>
+</html>

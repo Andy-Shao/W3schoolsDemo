@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Get Node Values</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Get Node Values</h1>
+<p>The nodeValue property is used to get the text value of a node.</p>
+<p>The getAttribute() method returns the value of an attribute.</p>
+<hr/>
+
+<h2>Get the Value of an Element</h2>
+<p>In the DOM, everything is a node. Element nodes do not have a text value.</p>
+<p>The text of an element node is stored in a child node. This node is called a text node.</p>
+<p>The way to get the text of an element is to get the value of the child node (text node).</p>
+<hr/>
+
+<h2>Get an Element Value</h2>
+<p>The getElementsByTagName() method returns a node list containing all elements with the 
+specified tag name in the same order as they appear in the source document.</p>
+<p>The following code loads "books.xml" into xmlDoc using loadXMLDoc() and retrieves the 
+first &lt;title&gt; element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0];
+</pre></code>
+<p>The childNodes property returns a list of child nodes. The &lt;title&gt; element has only 
+one child node. It is a text node.</p>
+<p>The following code retrieves the text node of the &lt;title&gt; element:</p>
+<code><pre>
+x=xmlDoc.getElementsByTagName("title")[0];
+y=x.childNodes[0];
+</pre></code>
+<p>The nodeValue property returns the text value of the text node:</p>
+<code><pre>
+x=xmlDoc.getElementsByTagName("title")[0];
+y=x.childNodes[0];
+txt=y.nodeValue; </pre></code>
+<p>Result:  txt = "Everyday Italian"</p>
+<hr/>
+
+<h2>Get the Value of an Attribute</h2>
+<p>In the DOM, attributes are nodes. Unlike element nodes, attribute nodes have text values.</p>
+<p>The way to get the value of an attribute, is to get its text value.</p>
+<p>This can be done using the getAttribute() method or using the nodeValue property of the 
+attribute node.</p>
+<hr/>
+
+<h2>Get an Attribute Value - getAttribute()</h2>
+<p>The getAttribute() method returns an attribute <b>value.</b></p>
+<p>The following code retrieves the text value of the "lang" attribute of the first &lt;title&gt;
+element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+txt=xmlDoc.getElementsByTagName("title")[0].getAttribute("lang");
+</pre></code>
+<p>Result:  txt = "en"</p>
+<hr/>
+
+<h2>Get an Attribute Value - getAttributeNode()</h2>
+<p>The getAttributeNode() method returns an attribute <b>node.</b></p>
+<p>The following code retrieves the text value of the "lang" attribute of the first &lt;title&gt;
+element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0].getAttributeNode("lang");
+txt=x.nodeValue;
+</pre></code>
+</body>
+</html>

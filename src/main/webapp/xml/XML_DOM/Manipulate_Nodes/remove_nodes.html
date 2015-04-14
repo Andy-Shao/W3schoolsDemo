@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Remove Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Remove Nodes</h1>
+<p>The removeChild() method removes a specified node.</p>
+<p>The removeAttribute() method removes a specified attribute.</p>
+<hr/>
+
+<h2>Remove an Element Node</h2>
+<p>The removeChild() method removes a specified node.</p>
+<p>When a node is removed, all its child nodes are also removed.</p.
+<p>The following code fragment will remove the first &lt;book&gt; element from the loaded xml:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+y=xmlDoc.getElementsByTagName("book")[0];
+
+xmlDoc.documentElement.removeChild(y);
+</pre></code>
+<hr/>
+
+<h2>Remove Myself - Remove the Current Node</h2>
+<p>The removeChild() method is the only way to remove a specified node</p>
+<p>When you have navigated to the node you want to remove, it is possible to remove that node 
+using the parentNode property and the removeChild() method:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("book")[0];
+
+x.parentNode.removeChild(x);
+</pre></code>
+<hr/>
+
+<h2>Remove a Text Node</h2>
+<p>The removeChild() method can also be used to remove a text node:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0];
+
+y=x.childNodes[0];
+x.removeChild(y);
+</pre></code>
+<p>It is not very common to use removeChild() just to remove the text from a node. The nodeValue 
+property can be used instead. See next paragraph.</p>
+<hr/>
+
+<h2>Clear a Text Node</h2>
+<p>The nodeValue property can be used to change or clear the value of a text node:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue="";
+</pre></code>
+<hr/>
+
+<h2>Remove an Attribute Node by Name</h2>
+<p>The removeAttribute(name) method is used to remove an attribute node by its name.</p>
+<p>Example: removeAttribute('category')</p>
+<p>The following code fragment removes the "category" attribute in the first &lt;book&gt; element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("book");
+x[0].removeAttribute("category");
+</pre></code>
+<hr/>
+
+<h2>Remove Attribute Nodes by Object</h2>
+<p>The removeAttributeNode(node) method is used to remove an attribute node, using the node 
+object as parameter.</p>
+<p>Example: removeAttributeNode(x)</p>
+<p>The following code fragment removes all the attributes of all &lt;book&gt; elements:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("book");
+
+for (i=0;i&lt;x.length;i++)
+{
+while (x[i].attributes.length&gt;0)
+  {
+  attnode=x[i].attributes[0];
+  old_att=x[i].removeAttributeNode(attnode);
+  }
+}
+</pre></code>
+</body>
+</html>

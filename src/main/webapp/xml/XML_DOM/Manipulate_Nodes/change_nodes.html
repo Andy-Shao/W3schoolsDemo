@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Change Node Values</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Change Node Values</h1>
+<p>The nodeValue property is used to change a node value.</p>
+<p>The setAttribute() method is used to change an attribute value.</p>
+<hr/>
+
+<h2>Change the Value of an Element</h2>
+<p>In the DOM, everything is a node. Element nodes do not have a text value.</p>
+<p>The text of an element node is stored in a child node. This node is called a text node.</p>
+<p>The way to change the text of an element, is to change the value of the child node (text node).</p>
+<hr/>
+
+<h2>Change the Value of a Text Node</h2>
+<p>The nodeValue property can be used to change the value of a text node.</p>
+<p>The following code changes the text node value of the first &lt;title&gt; element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+x.nodeValue="Easy Cooking";
+</code></pre>
+<hr/>
+
+<h2>Change the Value of an Attribute</h2>
+<p>In the DOM, attributes are nodes. Unlike element nodes, attribute nodes have text values</p>
+<p>The way to change the value of an attribute, is to change its text value.</p>
+<p>This can be done using the setAttribute() method or using the nodeValue property of the 
+attribute node.</p>
+<hr/>
+
+<h2>Change an Attribute Using setAttribute()</h2>
+<p>The setAttribute() method changes the value of an existing attribute, or creates a new attribute.</p>
+<p>The following code changes the category attribute of the &lt;book&gt; element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName('book');
+x[0].setAttribute("category","food");
+</pre></code>
+<p><b>Note:</b> If the attribute does not exist, a new attribute is created (with the name and 
+value specified).</p>
+<hr/>
+
+<h2>Change an Attribute Using nodeValue</h2>
+<p>The nodeValue property can be used to change the value of a attribute node:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("book")[0]
+y=x.getAttributeNode("category");
+y.nodeValue="food";
+</pre></code>
+</body>
+</html>
