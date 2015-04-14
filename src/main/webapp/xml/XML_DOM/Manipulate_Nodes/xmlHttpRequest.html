@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>The XMLHttpRequest Object</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>The XMLHttpRequest Object</h1>
+<p>With the XMLHttpRequest object you can update parts of a web page, without reloading the 
+whole page.</p>
+<hr/>
+
+<h2>The XMLHttpRequest Object</h2>
+<p>The XMLHttpRequest object is used to exchange data with a server behind the scenes.</p>
+<p>The XMLHttpRequest object is <b>the developers dream</b>, because you can:</p>
+<ul>
+<li>Update a web page without reloading the page</li>
+<li>Request data from a server after the page has loaded</li>
+<li>Receive data from a server after the page has loaded</li>
+<li>Send data to a server in the background</li>
+</ul>
+<hr/>
+
+<h2>Create an XMLHttpRequest Object</h2>
+<p>All modern browsers (IE7+, Firefox, Chrome, Safari, and Opera) have a built-in 
+XMLHttpRequest object.</p>
+<p>Syntax for creating an XMLHttpRequest object:</p>
+<code><pre>
+xmlhttp=new XMLHttpRequest();
+</pre></code>
+<p>Old versions of Internet Explorer (IE5 and IE6) uses an ActiveX Object:</p>
+<code><pre>
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+</pre></code>
+<p>To handle all modern browsers, including IE5 and IE6, check if the browser supports the 
+XMLHttpRequest object. If it does, create an XMLHttpRequest object, if not, create an 
+ActiveXObject:</p>
+<code><pre>
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+</pre></code>
+<hr/>
+
+<h2>Send a Request To a Server</h2>
+<p>To send a request to a server, we use the open() and send() methods of the XMLHttpRequest
+object:</p>
+<code><pre>
+xmlhttp.open("GET","xmlhttp_info.txt",true);
+xmlhttp.send();
+</pre></code>
+<table>
+<thead><tr><th>Method</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>open(<i>method,url,async</i>)</td><td>Specifies the type of request, the URL, and if the 
+request should be handled asynchronously or not.<br/>
+<br/>
+<i>method</i>: the type of request: GET or POST<br/>
+<i>url</i>: the location of the file on the server<br/>
+<i>async</i>: true (asynchronous) or false (synchronous)</td></tr>
+<tr><td>send(<i>string</i>)</td><td>Sends the request off to the server.<br/>
+<br/>
+<i>string</i>: Only used for POST requests</td></tr>
+</tbody>
+</table>
+<hr/>
+
+<h2>GET or POST?</h2>
+<p>GET is simpler and faster than POST, and can be used in most cases.</p>
+<p>However, always use POST requests when:</p>
+<ul>
+<li>A cached file is not an option (update a file or database on the server)</li>
+<li>Sending a large amount of data to the server (POST has no size limitations)</li>
+<li>Sending user input (which can contain unknown characters), POST is more robust and secure 
+than GET</li>
+</ul>
+<hr/>
+
+<h2>The url - A File On a Server</h2>
+<p>The url parameter of the open() method, is an address to a file on a server:</p>
+<code><pre>
+xmlhttp.open("GET","xmlhttp_info.txt",true);
+</pre></code>
+<p>The file can be any kind of file, like .txt and .xml, or server scripting files like .asp 
+and .php (which can perform actions on the server before sending the response back).</p>
+<hr/>
+
+<h2>Asynchronous - True or False?</h2>
+<p>To send the request asynchronously, the async parameter of the open() method has to be set 
+to true:</p>
+<code><pre>
+xmlhttp.open("GET","xmlhttp_info.txt",true);
+</pre></code>
+<p>Sending asynchronously requests is a huge improvement for web developers. Many of the tasks
+performed on the server are very time consuming.</p>
+<p>By sending asynchronously, the JavaScript does not have to wait for the server response, 
+but can instead:</p>
+<ul>
+<li>execute other scripts while waiting for server response</li>
+<li>deal with the response when the response is ready</li>
+</ul>
+<hr/>
+
+<h2>Async=true</h2>
+<p>When using async=true, specify a function to execute when the response is ready in the 
+onreadystatechange event:</p>
+<code><pre>
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","xmlhttp_info.txt",true);
+xmlhttp.send();
+</pre></code>
+<a href="try_dom_xmlhttprequest_first.html">Try it yourself</a>
+<hr/>
+
+<h2>Async=false</h2>
+<p>To use async=false, change the third parameter in the open() method to false:</p>
+<code><pre>
+xmlhttp.open("GET","xmlhttp_info.txt",false);
+</pre></code>
+<p>Using async=false is not recommended, but for a few small requests this can be ok.</p>
+<p>Remember that the JavaScript will NOT continue to execute, until the server response is 
+ready. If the server is busy or slow, the application will hang or stop.</p>
+<p><b>Note:</b> When you use async=false, do NOT write an onreadystatechange function - just put the code after the send() statement:</p>
+<code><pre>
+xmlhttp.open("GET","xmlhttp_info.txt",false);
+xmlhttp.send();
+document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+</pre></code>
+<a href="try_dom_xmlhttprequest_asyncfalse.html">Try it yourself</a>
+<hr/>
+
+<h2>Server Response</h2>
+<p>To get the response from a server, use the responseText or responseXML property of the 
+XMLHttpRequest object.</p>
+<table>
+<thead><tr><th>Property</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>responseText</td><td>get the response data as a string</td></tr>
+<tr><td>responseXML</td><td>get the response data as XML data</td></tr>
+</tbody>
+</table>
+<hr/>
+
+<h2>The responseText Property</h2>
+<p>If the response from the server is not XML, use the responseText property.</p>
+<p>The responseText property returns the response as a string, and you can use it accordingly:</p>
+<code><pre>
+document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+</pre></code>
+<a href="try_dom_xmlhttprequest_first.html">Try it yourself</a>
+<hr/>
+
+<h2>The responseXML Property</h2>
+<p>If the response from the server is XML, and you want to parse it as an XML object, 
+use the responseXML property:</p>
+<code><pre>
+xmlDoc=xmlhttp.responseXML;
+var txt="";
+x=xmlDoc.getElementsByTagName("ARTIST");
+for (i=0;i&lt;x.length;i++)
+  {
+  txt=txt + x[i].childNodes[0].nodeValue + "&lt;br&gt;";
+  }
+document.getElementById("myDiv").innerHTML=txt;
+</pre></code>
+<a href="try_dom_xmlhttprequest_responsexml.html">Try it yourself</a>
+<hr/>
+
+<h2>The onreadystatechange event</h2>
+<p>When a request to a server is sent, we want to perform some actions based on the 
+response.</p>
+<p>The onreadystatechange event is triggered every time the readyState changes.</p>
+<p>The readyState property holds the status of the XMLHttpRequest.</p>
+<p>Three important properties of the XMLHttpRequest object:</p>
+<table>
+<thead><tr><th>Property</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>onreadystatechange</td><td>Stores a function (or the name of a function) to be called 
+automatically each time the readyState property changes</td></tr>
+<tr><td>readyState</td>
+<td>
+Holds the status of the XMLHttpRequest. Changes from 0 to 4: 
+<ol style="1">
+<li>request not initialized</li>
+<li>server connection established</li>
+<li>request received</li>
+<li>processing request</li>
+<li>request finished and response is ready</li>
+</ol>
+</td></tr>
+<tr><td>status</td><td>200: "OK"<br/>404: Page not found</td></tr>
+</tbody>
+</table>
+<p>In the onreadystatechange event, we specify what will happen when the server response is 
+ready to be processed.</p>
+<p>When readyState is 4 and status is 200, the response is ready:</p>
+<code><pre>
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+</pre></code>
+<a href="try_dom_xmlhttprequest_first.html">Try it yourself</a>
+<p><b>Note:</b> The onreadystatechange event is triggered four times, one time for each change 
+in readyState.</p>
+</body>
+</html>

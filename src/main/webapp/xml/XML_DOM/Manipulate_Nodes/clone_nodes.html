@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Clone Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Clone Nodes</h1>
+<h2>Copy a Node</h2>
+<p>The cloneNode() method creates a copy of a specified node.</p>
+<p>The cloneNode() method has a parameter (true or false). This parameter indicates if the 
+cloned node should include all attributes and child nodes of the original node.</p>
+<p>The following code fragment copies the first &lt;book&gt; node and appends it to the root 
+node of the document:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+oldNode=xmlDoc.getElementsByTagName('book')[0];
+newNode=oldNode.cloneNode(true);
+xmlDoc.documentElement.appendChild(newNode);
+
+//Output all titles
+y=xmlDoc.getElementsByTagName("title");
+for (i=0;i&lt;y.length;i++)
+{
+document.write(y[i].childNodes[0].nodeValue);
+document.write("&lt;br&gt;");
+}
+</pre></code>
+<p>Output:</p>
+<code><pre>
+Everyday Italian
+Harry Potter
+XQuery Kick Start
+Learning XML
+Everyday Italian
+</pre></code>
+<a href="../Tutorial/try_dom_clonenode.html">Try it yourself</a>
+</body>
+</html>

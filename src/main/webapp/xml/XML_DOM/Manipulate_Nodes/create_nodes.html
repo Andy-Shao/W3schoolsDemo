@@ -72,5 +72,15 @@ x.appendChild(newCDATA);
 <hr/>
 
 <h2>Create a Comment Node</h2>
+<p>The createComment() method creates a new comment node.</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newComment=xmlDoc.createComment("Revised March 2008");
+
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newComment);
+</pre></code>
+<a href="../Tutorial/try_dom_createcomment1.html">Try it yourself</a>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML DOM Add Nodes</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XML DOM Add Nodes</h1>
+<h2>Add a Node - appendChild()</h2>
+<p>The appendChild() method adds a child node to an existing node.</p>
+<p>The new node is added (appended) after any existing child nodes.</p>
+<p><b>Note:</b> Use insertBefore() if the position of the node is important.</p>
+<p>The following code fragment creates an element (&lt;edition&gt;), and adds it after the last 
+child of the first &lt;book&gt; element:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newel=xmlDoc.createElement("edition");
+
+x=xmlDoc.getElementsByTagName("book")[0];
+x.appendChild(newel);
+</pre></code>
+<hr/>
+
+<h2>Insert a Node - insertBefore()</h2>
+<p>The insertBefore() method is used to insert a node before a specified child node.</p>
+<p>This method is useful when the position of the added node is important:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+newNode=xmlDoc.createElement("book");
+
+x=xmlDoc.documentElement;
+y=xmlDoc.getElementsByTagName("book")[3];
+
+x.insertBefore(newNode,y);
+</pre></code>
+<p>If the second parameter of insertBefore() is null, the new node will be added after the last 
+existing child node.</p>
+<p><b>x.insertBefore(newNode,null)</b> and <b>x.appendChild(newNode)</b> will both append a new 
+child node to x.</p>
+<hr/>
+
+<h2>Add a New Attribute</h2>
+<p>There is no method called addAtribute().</p>
+<p>The setAttribute() method creates a new attribute if the attribute does not exist:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName('book');
+x[0].setAttribute("edition","first");
+</pre></code>
+<p><b>Note:</b>  If the attribute already exists, the setAttribute() method will overwrite the 
+existing value.</p>
+<hr/>
+
+<h2>Add Text to a Text Node - insertData()</h2>
+<p>The insertData() method inserts data into an existing text node.</p>
+<p>The insertData() method has two parameters:</p>
+<ul>
+<li>offset - Where to begin inserting characters (starts at zero)</li>
+<li>string - The string to insert</li>
+</ul>
+<p>The following code fragment will add "Easy" to the text node of the first &lt;title&gt; element
+of the loaded XML:</p>
+<code><pre>
+xmlDoc=loadXMLDoc("books.xml");
+
+x=xmlDoc.getElementsByTagName("title")[0].childNodes[0];
+
+x.insertData(0,"Easy ");
+</pre></code>
+<hr/>
+</body>
+</html>
