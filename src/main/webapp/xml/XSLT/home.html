@@ -13,6 +13,36 @@ transform XML documents into other formats, like XHTML.</p>
 <hr/>
 
 <h2>Online XSLT Editor</h2>
+<p>With our online editor, you can edit the XML and the XSL source code, and click on a button 
+to view the result.</p>
+<code><pre>
+&lt;?xml version="1.0"?&gt;
+
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+    &lt;h2&gt;My CD Collection&lt;/h2&gt;
+    &lt;table border="1"&gt;
+      &lt;tr bgcolor="#9acd32"&gt;
+        &lt;th&gt;Title&lt;/th&gt;
+        &lt;th&gt;Artist&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;xsl:for-each select="catalog/cd"&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;xsl:value-of select="artist"/&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/xsl:for-each&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></code>
 <a href="cdcatalog.xml">Example</a>
 </body>
 </html>
