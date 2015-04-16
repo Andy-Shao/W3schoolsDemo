@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XPath Examples</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XPath Examples</h1>
+<h2>The XML Example Document</h2>
+<p>We will use the following XML document in the examples below.</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;bookstore&gt;
+
+&lt;book category="COOKING"&gt;
+  &lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+  &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;30.00&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;book category="CHILDREN"&gt;
+  &lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;book category="WEB"&gt;
+  &lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+  &lt;author&gt;James McGovern&lt;/author&gt;
+  &lt;author&gt;Per Bothner&lt;/author&gt;
+  &lt;author&gt;Kurt Cagle&lt;/author&gt;
+  &lt;author&gt;James Linn&lt;/author&gt;
+  &lt;author&gt;Vaidyanathan Nagarajan&lt;/author&gt;
+  &lt;year&gt;2003&lt;/year&gt;
+  &lt;price&gt;49.99&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;book category="WEB"&gt;
+  &lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+  &lt;author&gt;Erik T. Ray&lt;/author&gt;
+  &lt;year&gt;2003&lt;/year&gt;
+  &lt;price&gt;39.95&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;/bookstore&gt;
+</pre></code>
+<hr/>
+
+<h2>Loading the XML Document</h2>
+<p>Using XMLHttpRequest to load XML documents is supported in all modern browsers.</p>
+<p>Code for most modern browsers:</p>
+<code><pre>
+var xmlhttp=new XMLHttpRequest()
+</pre></code>
+<p>Code for old Microsoft browsers (IE 5 and 6):</p>
+<code><pre>
+var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
+</pre></code>
+<hr/>
+
+<h2>Selecting Nodes</h2>
+<p>Unfortunately, there are different ways of dealing with XPath in Internet Explorer and 
+other browsers.</p>
+<p>In our examples we have included code that should work with most major browsers.</p>
+<p>Internet Explorer uses the selectNodes() method to select nodes from the XML document:</p>
+<code><pre>
+xmlDoc.selectNodes(xpath);
+</pre></code>
+<p>Firefox, Chrome, Opera and Safari use the evaluate() method to select nodes from the XML document:</p>
+<code><pre>
+xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE,null);
+</pre></code>
+<hr/>
+
+<h2>Select all the titles</h2>
+<p>The following example selects all the title nodes:</p>
+<code><pre>
+/bookstore/book/title
+</pre></code>
+</body>
+</html>

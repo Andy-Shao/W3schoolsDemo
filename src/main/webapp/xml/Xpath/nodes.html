@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XPath Nodes</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XPath Nodes</h1>
+<h2>XPath Terminology</h2>
+<h3>Nodes</h3>
+<p>In XPath, there are seven kinds of nodes: element, attribute, text, namespace, 
+processing-instruction, comment, and document nodes.</p>
+<p>XML documents are treated as trees of nodes. The topmost element of the tree is called the 
+root element.</p>
+<p>Look at the following XML document:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;bookstore&gt;
+  &lt;book&gt;
+    &lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+    &lt;author&gt;J K. Rowling&lt;/author&gt;
+    &lt;year&gt;2005&lt;/year&gt;
+    &lt;price&gt;29.99&lt;/price&gt;
+  &lt;/book&gt;
+&lt;/bookstore&gt;
+</pre></code>
+<p>Example of nodes in the XML document above:</p>
+<code><pre>
+&lt;bookstore&gt; (root element node)
+
+&lt;author&gt;J K. Rowling&lt;/author&gt; (element node)
+
+lang="en" (attribute node)
+</pre></code>
+<h3>Atomic values</h3>
+<p>Atomic values are nodes with no children or parent.</p>
+<p>Example of atomic values:</p>
+<code><pre>
+J K. Rowling
+
+"en"
+</pre></code>
+<h3>Items</h3>
+<p>Items are atomic values or nodes.</p>
+<hr/>
+
+<h2>Relationship of Nodes</h2>
+<h3>Parent</h3>
+<p>Each element and attribute has one parent.</p>
+<p>In the following example; the book element is the parent of the title, author, year, and price:</p>
+<code><pre>
+&lt;book&gt;
+  &lt;title&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+</pre></code>
+<h3>Children</h3>
+<p>Element nodes may have zero, one or more children.</p>
+<p>In the following example; the title, author, year, and price elements are all children of the 
+book element:</p>
+<code><pre>
+&lt;book&gt;
+  &lt;title&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+</pre></code>
+<h3>Siblings</h3>
+<p>Nodes that have the same parent.</p>
+<p>In the following example; the title, author, year, and price elements are all siblings:</p>
+<code><pre>
+&lt;book&gt;
+  &lt;title&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+</pre></code>
+<h3>Ancestors</h3>
+<p>A node's parent, parent's parent, etc.</p>
+<p>In the following example; the ancestors of the title element are the book element and the 
+bookstore element:</p>
+<code><pre>
+&lt;bookstore&gt;
+
+&lt;book&gt;
+  &lt;title&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;/bookstore&gt;
+</pre></code>
+<h3>Descendants</h3>
+<p>A node's children, children's children, etc.</p>
+<p>In the following example; descendants of the bookstore element are the book, title, author, 
+year, and price elements:</p>
+<code><pre>
+&lt;bookstore&gt;
+
+&lt;book&gt;
+  &lt;title&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;/bookstore&gt;
+</pre></code>
+</body>
+</html>
