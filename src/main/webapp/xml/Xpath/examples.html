@@ -81,5 +81,38 @@ xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE,null);
 <code><pre>
 /bookstore/book/title
 </pre></code>
+<a href="try_xpath_select_cdnodes.html">Try it yourself</a>
+<hr/>
+
+<h2>Select the title of the first book</h2>
+<p>The following example selects the title of the first book node under the bookstore element:</p>
+<code><pre>
+/bookstore/book[1]/title
+</pre></code>
+<a href="try_xpath_select_cdnodes_first.html">Try it yourself</a>
+<hr/>
+
+<h2>Select all the prices</h2>
+<p>The following example selects the text from all the price nodes:</p>
+<code><pre>
+/bookstore/book/price[text()]
+</pre></code>
+<a href="try_xpath_select_pricenodes_text.html">Try it yourself</a>
+<hr/>
+
+<h2>Select price nodes with price&gt;35</h2>
+<p>The following example selects all the price nodes with a price higher than 35:</p>
+<code><pre>
+/bookstore/book[price&gt;35]/price
+</pre></code>
+<a href="try_xpath_select_pricenodes_35.html">Try it yourself</a>
+<hr/>
+
+<h2>Select title nodes with price&gt;35</h2>
+<p>The following example selects all the title nodes with a price higher than 35:</p>
+<code><pre>
+/bookstore/book[price&gt;35]/title
+</pre></code>
+<a href="try_xpath_select_pricenodes_high.html">Try it yourself</a>
 </body>
 </html>
