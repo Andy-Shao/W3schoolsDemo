@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XSLT &lt;xsl:apply-templates&gt; Element</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSLT &lt;xsl:apply-templates&gt; Element</h1>
+<p>The &lt;xsl:apply-templates&gt; element applies a template to the current element or to the current 
+element's child nodes.</p>
+<hr/>
+
+<h2>The &lt;xsl:apply-templates&gt; Element</h2>
+<p>The &lt;xsl:apply-templates&gt; element applies a template to the current element or to the current 
+element's child nodes.</p>
+<p>If we add a select attribute to the &lt;xsl:apply-templates&gt; element it will process only the 
+child element that matches the value of the attribute. We can use the select attribute to specify the 
+order in which the child nodes are processed.</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+  &lt;h2&gt;My CD Collection&lt;/h2&gt;
+  &lt;xsl:apply-templates/&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="cd"&gt;
+  &lt;p&gt;
+  &lt;xsl:apply-templates select="title"/&gt;
+  &lt;xsl:apply-templates select="artist"/&gt;
+  &lt;/p&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="title"&gt;
+  Title: &lt;span style="color:#ff0000"&gt;
+  &lt;xsl:value-of select="."/&gt;&lt;/span&gt;
+  &lt;br /&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="artist"&gt;
+  Artist: &lt;span style="color:#00ff00"&gt;
+  &lt;xsl:value-of select="."/&gt;&lt;/span&gt;
+  &lt;br /&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></code>
+<a href="cdcatalog_apply.xml">Try it yourself</a>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XSLT Functions</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSLT Functions</h1>
+<p>XQuery 1.0, XPath 2.0, and XSLT 2.0 share the same functions library.</p>
+<hr/>
+
+<h2>XSLT Functions</h2>
+<p>XSLT includes over 100 built-in functions. There are functions for string values, numeric values,
+date and time comparison, node and QName manipulation, sequence manipulation, Boolean values, and 
+more.</p>
+<p><b>Tip:</b>Functions are often called with the fn: prefix, such as fn:string(). However, since 
+fn: is the default prefix of the namespace, the function names do not need to be prefixed when 
+called.</p>
+<table class="reference notranslate">
+  <tr>
+    <th style="width:28%">Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><a href="func_current.asp">current()</a></td>
+    <td>Returns the current node</td>
+  </tr>
+  <tr>
+    <td><a href="func_document.asp">document()</a></td>
+    <td>Used to access the nodes in an external XML document</td>
+    </tr>
+  <tr>
+    <td><a href="func_elementavailable.asp">element-available()</a></td>
+    <td>Tests whether the element specified is supported by the XSLT processor</td>
+  </tr>
+  <tr>
+    <td><a href="func_formatnumber.asp">format-number()</a></td>
+    <td>Converts a number into a string</td>
+    </tr>
+  <tr>
+    <td><a href="func_functionavailable.asp">function-available()</a></td>
+    <td>Tests whether the function specified is supported by the XSLT processor</td>
+    </tr>
+  <tr>
+    <td><a href="func_generateid.asp">generate-id()</a></td>
+    <td>Returns a string value that uniquely identifies a specified node</td>
+    </tr>
+  <tr>
+    <td><a href="func_key.asp">key()</a></td>
+    <td>Returns a node-set using the index specified by an &lt;xsl:key&gt; element</td>
+  </tr>
+  <tr>
+    <td><a href="func_systemproperty.asp">system-property()</a></td>
+    <td>Returns the value of the system properties</td>
+  </tr>
+  <tr>
+    <td><a href="func_unparsedentityuri.asp">unparsed-entity-uri()</a></td>
+    <td>Returns the URI of an unparsed entity</td>
+  </tr>
+  </table>
+</body>
+</html>

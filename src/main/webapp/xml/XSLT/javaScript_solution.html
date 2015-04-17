@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XSLT - On the Client</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSLT - On the Client</h1>
+<p>XSLT can be used to transform the document to XHTML in your browser.</p>
+<hr/>
+
+<h2>A JavaScript Solution</h2>
+<p>In the previous chapters we have explained how XSLT can be used to transform a document from XML 
+to XHTML. We did this by adding an XSL style sheet to the XML file and let the browser do the 
+transformation.</p>
+<p>Even if this works fine, it is not always desirable to include a style sheet reference in an XML 
+file (e.g. it will not work in a non XSLT aware browser.)</p>
+<p>A more versatile solution would be to use a JavaScript to do the transformation.</p>
+<p>By using a JavaScript, we can:</p>
+<ul>
+<li>do browser-specific testing</li>
+<li>use different style sheets according to browser and user needs</li>
+</ul>
+<p>That is the beauty of XSLT! One of the design goals for XSLT was to make it possible to transform 
+data from one format to another, supporting different browsers and different user needs.</p>
+<hr/>
+
+<h2>Example</h2>
+<code><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;script&gt;
+function loadXMLDoc(filename)
+{
+if (window.ActiveXObject)
+  {
+  xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  }
+else 
+  {
+  xhttp = new XMLHttpRequest();
+  }
+xhttp.open("GET", filename, false);
+try {xhttp.responseType = "msxml-document"} catch(err) {} // Helping IE11
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function displayResult()
+{
+xml = loadXMLDoc("cdcatalog.xml");
+xsl = loadXMLDoc("cdcatalog.xsl");
+// code for IE
+if (window.ActiveXObject || xhttp.responseType == "msxml-document")
+  {
+  ex = xml.transformNode(xsl);
+  document.getElementById("example").innerHTML = ex;
+  }
+// code for Chrome, Firefox, Opera, etc.
+else if (document.implementation &amp;&amp; document.implementation.createDocument)
+  {
+  xsltProcessor = new XSLTProcessor();
+  xsltProcessor.importStylesheet(xsl);
+  resultDocument = xsltProcessor.transformToFragment(xml, document);
+  document.getElementById("example").appendChild(resultDocument);
+  }
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="displayResult()"&gt;
+&lt;div id="example" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<a href="by_javaScript.html">Try it yourself</a>
+</body>
+</html>

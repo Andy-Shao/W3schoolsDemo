@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XSLT - Transformation</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSLT - Transformation</h1>
+<p>Example study: How to transform XML into XHTML using XSLT?</p>
+<p>The details of this example will be explained in the next chapter.</p>
+<hr/>
+
+<h2>Correct Style Sheet Declaration</h2>
+<p>The root element that declares the document to be an XSL style sheet is &lt;xsl:stylesheet&gt; 
+or &lt;xsl:transform&gt;.</p>
+<p><b>Note:</b> &lt;xsl:stylesheet&gt; and &lt;xsl:transform&gt; are completely synonymous and 
+either can be used!</p>
+<p>The correct way to declare an XSL style sheet according to the W3C XSLT Recommendation is:</p>
+<code><pre>
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+</pre></code>
+<p>or:</p>
+<code><pre>
+&lt;xsl:transform version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+</pre></code>
+<p>To get access to the XSLT elements, attributes and features we must declare the XSLT namespace 
+at the top of the document.</p>
+<p>The xmlns:xsl="http://www.w3.org/1999/XSL/Transform" points to the official W3C XSLT namespace. 
+If you use this namespace, you must also include the attribute version="1.0".</p>
+<hr/>
+
+<h2>Start with a Raw XML Document</h2>
+<p>We want to <b>transform</b> the following XML document ("cdcatalog.xml") into XHTML:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;catalog&gt;
+  &lt;cd&gt;
+    &lt;title&gt;Empire Burlesque&lt;/title&gt;
+    &lt;artist&gt;Bob Dylan&lt;/artist&gt;
+    &lt;country&gt;USA&lt;/country&gt;
+    &lt;company&gt;Columbia&lt;/company&gt;
+    &lt;price&gt;10.90&lt;/price&gt;
+    &lt;year&gt;1985&lt;/year&gt;
+  &lt;/cd&gt;
+.
+.
+&lt;/catalog&gt;
+</pre></code>
+<p><b>Viewing XML Files in IE, Chrome, Firefox, Safari, and Opera:</b> Open the XML file (click on 
+the link below) - The XML document will be displayed with color-coded root and child elements 
+(except in Safari). Often, there is a plus (+) or minus sign (-) to the left of the elements that 
+can be clicked to expand or collapse the element structure. <b>Tip: To view the raw XML source, 
+right-click in XML file and select "View Source"!</b></p>
+<hr/>
+
+<h2>Create an XSL Style Sheet</h2>
+<p>Then you create an XSL Style Sheet ("cdcatalog.xsl") with a transformation template:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+  &lt;h2&gt;My CD Collection&lt;/h2&gt;
+  &lt;table border="1"&gt;
+    &lt;tr bgcolor="#9acd32"&gt;
+      &lt;th&gt;Title&lt;/th&gt;
+      &lt;th&gt;Artist&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;xsl:for-each select="catalog/cd"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;xsl:value-of select="artist"/&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/xsl:for-each&gt;
+  &lt;/table&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></code>
+<hr/>
+
+<h2>Link the XSL Style Sheet to the XML Document</h2>
+<p>Add the XSL style sheet reference to your XML document ("cdcatalog.xml"):</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-stylesheet type="text/xsl" href="cdcatalog.xsl"?&gt;
+&lt;catalog&gt;
+  &lt;cd&gt;
+    &lt;title&gt;Empire Burlesque&lt;/title&gt;
+    &lt;artist&gt;Bob Dylan&lt;/artist&gt;
+    &lt;country&gt;USA&lt;/country&gt;
+    &lt;company&gt;Columbia&lt;/company&gt;
+    &lt;price&gt;10.90&lt;/price&gt;
+    &lt;year&gt;1985&lt;/year&gt;
+  &lt;/cd&gt;
+.
+.
+&lt;/catalog&gt;
+</pre></code>
+<p>If you have an XSLT compliant browser it will nicely <b>transform</b> your XML into XHTML.</p>
+<p>The details of the example above will be explained in the next chapters.</p>
+</body>
+</html>

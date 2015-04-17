@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XSLT &lt;xsl:value-of&gt; Element</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSLT &lt;xsl:value-of&gt; Element</h1>
+<p>The &lt;xsl:value-of&gt; element is used to extract the value of a selected node.</p>
+<hr/>
+
+<h2>The &lt;xsl:value-of&gt; Element</h2>
+<p>The &lt;xsl:value-of&gt; element can be used to extract the value of an XML element and add it 
+to the output stream of the transformation:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+  &lt;h2&gt;My CD Collection&lt;/h2&gt;
+  &lt;table border="1"&gt;
+    &lt;tr bgcolor="#9acd32"&gt;
+      &lt;th&gt;Title&lt;/th&gt;
+      &lt;th&gt;Artist&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;xsl:value-of select="catalog/cd/title"/&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;xsl:value-of select="catalog/cd/artist"/&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></code>
+<a href="cdcatalog_ex2.xml">Try it yourself</a>
+</body>
+</html>

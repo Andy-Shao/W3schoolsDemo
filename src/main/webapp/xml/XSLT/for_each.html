@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XSLT &lt;xsl:for-each&gt; Element</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XSLT &lt;xsl:for-each&gt; Element</h1>
+<p>The &lt;xsl:for-each&gt; element allows you to do looping in XSLT.</p>
+<hr/>
+
+<h2>The &lt;xsl:for-each&gt; Element</h2>
+<p>The XSL &lt;xsl:for-each&gt; element can be used to select every XML element of a specified 
+node-set:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+  &lt;h2&gt;My CD Collection&lt;/h2&gt;
+  &lt;table border="1"&gt;
+    &lt;tr bgcolor="#9acd32"&gt;
+      &lt;th&gt;Title&lt;/th&gt;
+      &lt;th&gt;Artist&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;xsl:for-each select="catalog/cd"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;xsl:value-of select="artist"/&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/xsl:for-each&gt;
+  &lt;/table&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></code>
+<a href="cdcatalog_ex3.xml">Try it yourself</a>
+<p><b>Note:</b> The value of the <b>select</b> attribute is an XPath expression. An XPath expression 
+works like navigating a file system; where a forward slash (/) selects subdirectories.</p>
+<hr/>
+
+<h2>Filtering the Output</h2>
+<p>We can also filter the output from the XML file by adding a criterion to the select attribute
+in the &lt;xsl:for-each&gt; element.</p>
+<p><b>&lt;xsl:for-each select="catalog/cd[artist='Bob Dylan']"&gt;</b></p>
+<p>Legal filter operators are:</p>
+<ul>
+<li>= (equal)</li>
+<li>!= (not equal)</li>
+<li>&lt; less than</li>
+<li>&gt; greater than</li>
+</ul>
+<p>Take a look at the adjusted XSL style sheet:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+  &lt;h2&gt;My CD Collection&lt;/h2&gt;
+  &lt;table border="1"&gt;
+    &lt;tr bgcolor="#9acd32"&gt;
+      &lt;th&gt;Title&lt;/th&gt;
+      &lt;th&gt;Artist&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;xsl:for-each select="catalog/cd[artist='Bob Dylan']"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;xsl:value-of select="artist"/&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/xsl:for-each&gt;
+  &lt;/table&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></code>
+<a href="cdcatalog_filter.xml">Try it yourself</a>
+</body>
+</html>
