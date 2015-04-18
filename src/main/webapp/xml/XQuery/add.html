@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery Adding Elements and Attributes</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery Adding Elements and Attributes</h1>
+<h2>Adding Elements and Attributes to the Result</h2>
+<p>As we have seen in a previous chapter, we may include elements and attributes from the input document 
+("books.xml) in the result:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book/title
+order by $x
+return $x
+</pre></code>
+<p>The XQuery expression above will include both the title element and the lang attribute in the result, 
+like this:</p>
+<code><pre>
+&lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+&lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+&lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+&lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+</pre></code>
+<p>The XQuery expression above returns the title elements the exact same way as they are described in the 
+input document.</p>
+<p>We now want to add our own elements and attributes to the result!</p>
+<h2>Add HTML Elements and Text</h2>
+<p>Now, we want to add some HTML elements to the result. We will put the result in an HTML list - together 
+with some text:</p>
+<code><pre>
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Bookstore&lt;/h1&gt;
+
+&lt;ul&gt;
+{
+for $x in doc("books.xml")/bookstore/book
+order by $x/title
+return &lt;li&gt;{data($x/title)}. Category: {data($x/@category)}&lt;/li&gt;
+}
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<p>The XQuery expression above will generate the following result:</p>
+<code><pre>
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Bookstore&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Everyday Italian. Category: COOKING&lt;/li&gt;
+&lt;li&gt;Harry Potter. Category: CHILDREN&lt;/li&gt;
+&lt;li&gt;Learning XML. Category: WEB&lt;/li&gt;
+&lt;li&gt;XQuery Kick Start. Category: WEB&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<h2>Add Attributes to HTML Elements</h2>
+<p>Next, we want to use the category attribute as a class attribute in the HTML list:</p>
+<code><pre>
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Bookstore&lt;/h1&gt;
+
+&lt;ul&gt;
+{
+for $x in doc("books.xml")/bookstore/book
+order by $x/title
+return &lt;li class="{data($x/@category)}"&gt;{data($x/title)}&lt;/li&gt;
+}
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<p>The XQuery expression above will generate the following result:</p>
+<code><pre>
+&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Bookstore&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li class="COOKING"&gt;Everyday Italian&lt;/li&gt;
+&lt;li class="CHILDREN"&gt;Harry Potter&lt;/li&gt;
+&lt;li class="WEB"&gt;Learning XML&lt;/li&gt;
+&lt;li class="WEB"&gt;XQuery Kick Start&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+</body>
+</html>

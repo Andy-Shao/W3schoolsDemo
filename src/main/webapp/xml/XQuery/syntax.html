@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery Syntax</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery Syntax</h1>
+<p>XQuery is case-sensitive and XQuery elements, attributes, and variables must be valid XML names.</p>
+<hr/>
+
+<h2>XQuery Basic Syntax Rules</h2>
+<p>Some basic syntax rules:</p>
+<ul>
+<li>XQuery is case-sensitive</li>
+<li>XQuery elements, attributes, and variables must be valid XML names</li>
+<li>An XQuery string value can be in single or double quotes</li>
+<li>An XQuery variable is defined with a $ followed by a name, e.g. $bookstore</li>
+<li>XQuery comments are delimited by (: and :), e.g. (: XQuery Comment :)</li>
+</ul>
+<hr/>
+
+<h2>The XML Example Document</h2>
+<p>We will use the "books.xml" document in the examples below (same XML file as in the previous chapters).</p>
+<hr/>
+
+<h2>XQuery Conditional Expressions</h2>
+<p>"If-Then-Else" expressions are allowed in XQuery.</p>
+<p>Look at the following example:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+return	if ($x/@category="CHILDREN")
+then &lt;child&gt;{data($x/title)}&lt;/child&gt;
+else &lt;adult&gt;{data($x/title)}&lt;/adult&gt;
+</pre></code>
+<p><b>Notes on the "if-then-else" syntax:</b> parentheses around the if expression are required. else is required,
+but it can be just else ().</p>
+<p>The result of the example above will be:</p>
+<code><pre>
+&lt;adult&gt;Everyday Italian&lt;/adult&gt;
+&lt;child&gt;Harry Potter&lt;/child&gt;
+&lt;adult&gt;XQuery Kick Start&lt;/adult&gt;
+&lt;adult&gt;Learning XML&lt;/adult&gt;
+</pre></code>
+<hr/>
+
+<h2>XQuery Comparisons</h2>
+<p>In XQuery there are two ways of comparing values.</p>
+<ol style="1">
+<li>General comparisons: =, !=, &lt;, &lt;=, &gt;, &gt;=</li>
+<li>Value comparisons: eq, ne, lt, le, gt, ge</li>
+</ol>
+<p>The difference between the two comparison methods are shown below.</p>
+<p>The following expression returns true if any q attributes have a value greater than 10:</p>
+<code><pre>
+$bookstore//book/@q &gt; 10
+</pre></code>
+<p>The following expression returns true if there is only one q attribute returned by the expression, and its value 
+is greater than 10. If more than one q is returned, an error occurs:</p>
+<code><pre>
+$bookstore//book/@q gt 10
+</pre></code>
+</body>
+</html>

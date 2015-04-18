@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery Terms</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery Terms</h1>
+<p>In XQuery, there are seven kinds of nodes: element, attribute, text, namespace, processing-instruction,
+comment, and document (root) nodes.</p>
+<hr/>
+
+<h2>XQuery Terminology</h2>
+<h3>Nodes</h3>
+<p>In XQuery, there are seven kinds of nodes: element, attribute, text, namespace, processing-instruction, 
+comment, and document (root) nodes. XML documents are treated as trees of nodes. The root of the tree is 
+called the document node (or root node).</p>
+<p>Look at the following XML document:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;bookstore&gt;
+
+&lt;book&gt;
+  &lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+  &lt;author&gt;J K. Rowling&lt;/author&gt;
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;/bookstore&gt;
+</pre></code>
+<p>Example of nodes in the XML document above:</p>
+<code><pre>
+&lt;bookstore&gt; (document node)
+
+&lt;author&gt;J K. Rowling&lt;/author&gt; (element node)
+
+lang="en" (attribute node)
+</pre></code>
+<h3>Atomic values</h3>
+<p>Atomic values are nodes with no children or parent.</p>
+<p>Example of atomic values:</p>
+<code><pre>
+J K. Rowling
+
+"en"
+</pre></code>
+<h3>Items</h3>
+<p>Items are atomic values or nodes.</p>
+</body>
+</html>

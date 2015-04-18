@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery Functions</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery Functions</h1>
+<p>XQuery 1.0, XPath 2.0, and XSLT 2.0 share the same functions library.</p>
+<hr/>
+
+<h2>XQuery Functions</h2>
+<p>XQuery includes over 100 built-in functions. There are functions for string values, numeric values, 
+date and time comparison, node and QName manipulation, sequence manipulation, Boolean values, and 
+more. You can also define your own functions in XQuery.</p>
+<hr/>
+
+<h2>XQuery Built-in Functions</h2>
+<p>The URI of the XQuery function namespace is:</p>
+<p>http://www.w3.org/2005/02/xpath-functions</p>
+<p>The default prefix for the function namespace is fn:.</p>
+<p><b>Tip:</b> Functions are often called with the fn: prefix, such as fn:string(). However, since fn: 
+is the default prefix of the namespace, the function names do not need to be prefixed when called.</p>
+<hr/>
+
+<h2>Examples of Function Calls</h2>
+<p>A call to a function can appear where an expression may appear. Look at the examples below:</p>
+<p>Example 1: In an element</p>
+<code><pre>
+&lt;name&gt;{upper-case($booktitle)}&lt;/name&gt;
+</pre></code>
+<h2>Example 2: In the predicate of a path expression</h2>
+<code><pre>
+doc("books.xml")/bookstore/book[substring(title,1,5)='Harry']
+</pre></code>
+<p>Example 3: In a let clause</p>
+<code><pre>
+let $name := (substring($booktitle,1,4))
+</pre></code>
+<hr/>
+
+<h2>XQuery User-Defined Functions</h2>
+<p>If you cannot find the XQuery function you need, you can write your own.</p>
+<p>User-defined functions can be defined in the query or in a separate library.</p>
+<h3>Syntax</h3>
+<code><pre>
+declare function prefix:function_name($parameter as datatype)
+as returnDatatype
+{
+ ...function code here...
+};
+</pre></code>
+<p>Notes on user-defined functions:</p>
+<ul>
+<li>Use the declare function keyword</li>
+<li>The name of the function must be prefixed</li>
+<li>The data type of the parameters are mostly the same as the data types defined in XML Schema</li>
+<li>The body of the function must be surrounded by curly braces</li>
+</ul>
+<h3>Example of a User-defined Function Declared in the Query</h3>
+<code><pre>
+declare function local:minPrice($p as xs:decimal?,$d as xs:decimal?)
+as xs:decimal?
+{
+let $disc := ($p * $d) div 100
+return ($p - $disc)
+};
+
+Below is an example of how to call the function above:
+
+&lt;minPrice&gt;{local:minPrice($book/price,$book/discount)}&lt;/minPrice&gt;
+</pre></code>
+</body>
+</html>

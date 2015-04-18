@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery Selecting and Filtering</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery Selecting and Filtering</h1>
+<h2>Selecting and Filtering Elements</h2>
+<p>As we have seen in the previous chapters, we are selecting and filtering elements with either a 
+Path expression or with a FLWOR expression.</p>
+<p>Look at the following FLWOR expression:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+where $x/price&gt;30
+order by $x/title
+return $x/title
+</pre></code>
+<ul>
+<li>for - (optional) binds a variable to each item returned by the in expression</li>
+<li>let - (optional)</li>
+<li>where - (optional) specifies a criteria</li>
+<li>order by - (optional) specifies the sort-order of the result</li>
+<li>return - specifies what to return in the result</li>
+</ul>
+<h2>The for Clause</h2>
+<p>The for clause binds a variable to each item returned by the in expression. The for clause results 
+in iteration. There can be multiple for clauses in the same FLWOR expression.</p>
+<p>To loop a specific number of times in a for clause, you may use the <b>to</b> keyword:</p>
+<code><pre>
+for $x in (1 to 5)
+return &lt;test&gt;{$x}&lt;/test&gt;
+</pre></code>
+<p>Result:</p>
+<code><pre>
+&lt;test&gt;1&lt;/test&gt;
+&lt;test&gt;2&lt;/test&gt;
+&lt;test&gt;3&lt;/test&gt;
+&lt;test&gt;4&lt;/test&gt;
+&lt;test&gt;5&lt;/test&gt;
+</pre></code>
+<p>The <b>at</b> keyword can be used to count the iteration:</p>
+<code><pre>
+for $x at $i in doc("books.xml")/bookstore/book/title
+return &lt;book&gt;{$i}. {data($x)}&lt;/book&gt;
+</pre></code>
+<p>Result:</p>
+<code><pre>
+&lt;book&gt;1. Everyday Italian&lt;/book&gt;
+&lt;book&gt;2. Harry Potter&lt;/book&gt;
+&lt;book&gt;3. XQuery Kick Start&lt;/book&gt;
+&lt;book&gt;4. Learning XML&lt;/book&gt;
+</pre></code>
+<p>It is also allowed with more than one in expression in the for clause. Use comma to separate each
+in expression:</p>
+<code><pre>
+for $x in (10,20), $y in (100,200)
+return &lt;test&gt;x={$x} and y={$y}&lt;/test&gt;
+</pre></code>
+<p>Result:</p>
+<code><pre>
+&lt;test&gt;x=10 and y=100&lt;/test&gt;
+&lt;test&gt;x=10 and y=200&lt;/test&gt;
+&lt;test&gt;x=20 and y=100&lt;/test&gt;
+&lt;test&gt;x=20 and y=200&lt;/test&gt;
+</pre></code>
+<h2>The let Clause</h2>
+<p>The let clause allows variable assignments and it avoids repeating the same expression many times. 
+The let clause does not result in iteration.</p>
+<code><pre>
+let $x := (1 to 5)
+return &lt;test&gt;{$x}&lt;/test&gt;
+</pre></code>
+<p>Result:</p>
+<code><pre>
+&lt;test&gt;1 2 3 4 5&lt;/test&gt;
+</pre></code>
+<h2>The where Clause</h2>
+<p>The where clause is used to specify one or more criteria for the result:</p>
+<code><pre>
+where $x/price&gt;30 and $x/price&lt;100
+</pre></code>
+<h2>The order by Clause</h2>	
+<p>The order by clause is used to specify the sort order of the result. Here we want to order the result by 
+category and title:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+order by $x/@category, $x/title
+return $x/title
+</pre></code>
+<p>Result:</p>
+<code><pre>
+&lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+&lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+&lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+&lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+</pre></code>
+<h2>The return Clause</h2>
+<p>The return clause specifies what is to be returned.</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+return $x/title
+</pre></code>
+<p>Result:</p>
+<code><pre>
+&lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;
+&lt;title lang="en"&gt;Harry Potter&lt;/title&gt;
+&lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+&lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+</pre></code>
+</body>
+</html>

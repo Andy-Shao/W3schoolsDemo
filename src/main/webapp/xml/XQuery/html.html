@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery FLWOR + HTML</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery FLWOR + HTML</h1>
+<h2>The XML Example Document</h2>
+<p>We will use the "books.xml" document in the examples below (same XML file as in the previous chapters).</p>
+<hr/>
+
+<h2>Present the Result In an HTML List</h2>
+<p>Look at the following XQuery FLWOR expression:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book/title
+order by $x
+return $x
+</pre></code>
+<p>The expression above will select all the title elements under the book elements that are under the bookstore
+element, and return the title elements in alphabetical order.</p>
+<p>Now we want to list all the book-titles in our bookstore in an HTML list. We add &lt;ul&gt; and &lt;li&gt; 
+tags to the FLWOR expression:</p>
+<code><pre>
+&lt;ul&gt;
+{
+for $x in doc("books.xml")/bookstore/book/title
+order by $x
+return &lt;li&gt;{$x}&lt;/li&gt;
+}
+&lt;/ul&gt;
+</pre></code>
+<p>The result of the above will be:</p>
+<code><pre>
+&lt;ul&gt;
+&lt;li&gt;&lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;&lt;/li&gt;
+&lt;li&gt;&lt;title lang="en"&gt;Harry Potter&lt;/title&gt;&lt;/li&gt;
+&lt;li&gt;&lt;title lang="en"&gt;Learning XML&lt;/title&gt;&lt;/li&gt;
+&lt;li&gt;&lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre></code>
+<p>Now we want to eliminate the title element, and show only the data inside the title element:</p>
+<code><pre>
+&lt;ul&gt;
+{
+for $x in doc("books.xml")/bookstore/book/title
+order by $x
+return &lt;li&gt;{data($x)}&lt;/li&gt;
+}
+&lt;/ul&gt;
+</pre></code>
+<p>The result will be (an HTML list):</p>
+<code><pre>
+&lt;ul&gt;
+&lt;li&gt;Everyday Italian&lt;/li&gt;
+&lt;li&gt;Harry Potter&lt;/li&gt;
+&lt;li&gt;Learning XML&lt;/li&gt;
+&lt;li&gt;XQuery Kick Start&lt;/li&gt;
+&lt;/ul&gt;
+</pre></code>
+</body>
+</html>

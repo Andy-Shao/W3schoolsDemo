@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery FLWOR Expressions</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery FLWOR Expressions</h1>
+<h2>The XML Example Document</h2>
+<p>We will use the "books.xml" document in the examples below (same XML file as in the previous chapter).</p>
+<hr/>
+
+<h2>How to Select Nodes From "books.xml" With FLWOR</h2>
+<p>Look at the following path expression:</p>
+<code><pre>
+doc("books.xml")/bookstore/book[price&gt;30]/title
+</pre></code>
+<p>The expression above will select all the title elements under the book elements that are under the 
+bookstore element that have a price element with a value that is higher than 30.</p>
+<p>The following FLWOR expression will select exactly the same as the path expression above:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+where $x/price&gt;30
+return $x/title
+</pre></code>
+<p>The result will be:</p>
+<code><pre>
+&lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+&lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+</pre></code>
+<p>With FLWOR you can sort the result:</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+where $x/price&gt;30
+order by $x/title
+return $x/title
+</pre></code>
+<p>FLWOR is an acronym for "For, Let, Where, Order by, Return".</p>
+<p>The <b>for</b> clause selects all book elements under the bookstore element into a variable called $x.</p>
+<p>The <b>where</b> clause selects only book elements with a price element with a value greater than 30.</p>
+<p>The <b>order by</b> clause defines the sort-order. Will be sort by the title element.</p>
+<p>The <b>return</b> clause specifies what should be returned. Here it returns the title elements.</p>
+<p>The result of the XQuery expression above will be:</p>
+<code><pre>
+&lt;title lang="en"&gt;Learning XML&lt;/title&gt;
+&lt;title lang="en"&gt;XQuery Kick Start&lt;/title&gt;
+</pre></code>
+</body>
+</html>

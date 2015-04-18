@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XQuery Tutorial</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>XQuery Tutorial</h1>
+<p>XQuery is to XML what SQL is to database tables.</p>
+<p>XQuery is designed to query XML data - not just XML files, but anything that can appear as 
+XML, including databases.</p>
+<code><pre>
+for $x in doc("books.xml")/bookstore/book
+where $x/price&gt;30
+order by $x/title
+return $x/title
+</pre></code>
+<hr/>
+
+<h2>What is XQuery?</h2>
+<img src="../../resources/images/xml/xpath1.gif"/>
+<ul>
+<li>XQuery is <b>the</b> language for querying XML data</li>
+<li>XQuery for XML is like SQL for databases</li>
+<li>XQuery is built on XPath expressions</li>
+<li>XQuery is supported by all major databases</li>
+<li>XQuery is a W3C Recommendation</li>
+</ul>
+<hr/>
+
+<h2>XQuery is About Querying XML</h2>
+<p>XQuery is a language for finding and extracting elements and attributes from XML 
+documents.</p>
+<p>Here is an example of a question that XQuery could solve:</p>
+<p>"Select all CD records with a price less than $10 from the CD collection stored in the XML 
+document called cd_catalog.xml"</p>
+<hr/>
+
+<h2>XQuery and XPath</h2>
+<p>XQuery 1.0 and XPath 2.0 share the same data model and support the same functions and 
+operators. If you have already studied XPath you will have no problems with understanding 
+XQuery.</p>
+<hr/>
+
+<h2>XQuery - Examples of Use</h2>
+<p>XQuery can be used to:</p>
+<ul>
+<li>Extract information to use in a Web Service</li>
+<li>Generate summary reports</li>
+<li>Transform XML data to XHTML</li>
+<li>Search Web documents for relevant information</li>
+</ul>
+<hr/>
+
+<h2>XQuery is a W3C Recommendation</h2>
+<p>XQuery is compatible with several W3C standards, such as XML, Namespaces, XSLT, XPath, 
+and XML Schema.</p>
+<p>XQuery 1.0 became a W3C Recommendation January 23, 2007.</p>
+</body>
+</html>
