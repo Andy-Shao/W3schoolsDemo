@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RSS Syntax</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>RSS Syntax</h1>
+<p>The syntax rules of RSS 2.0 are very simple and very strict.</p>
+<hr/>
+
+<h2>How RSS Works</h2>
+<p>RSS is used to share content between websites.</p>
+<p>With RSS, you register your content with companies called aggregators.</p>
+<p>So, to be a part of it: First, create an RSS document and save it with an .xml extension. Then, upload the 
+file to your website. Next, register with an RSS aggregator. Each day the aggregator searches the registered 
+websites for RSS documents, verifies the link, and displays information about the feed so clients can link to 
+documents that interests them.</p>
+<p><b>Tip:</b> Read our RSS Publishing chapter to view free RSS aggregation services.</p>
+<hr/>
+
+<h2>RSS Example</h2>
+<p>RSS documents use a self-describing and simple syntax.</p>
+<p>Here is a simple RSS document:</p>
+<code><pre>
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;rss version="2.0"&gt;
+
+&lt;channel&gt;
+  &lt;title&gt;W3Schools Home Page&lt;/title&gt;
+  &lt;link&gt;http://www.w3schools.com&lt;/link&gt;
+  &lt;description&gt;Free web building tutorials&lt;/description&gt;
+  &lt;item&gt;
+    &lt;title&gt;RSS Tutorial&lt;/title&gt;
+    &lt;link&gt;http://www.w3schools.com/rss&lt;/link&gt;
+    &lt;description&gt;New RSS tutorial on W3Schools&lt;/description&gt;
+  &lt;/item&gt;
+  &lt;item&gt;
+    &lt;title&gt;XML Tutorial&lt;/title&gt;
+    &lt;link&gt;http://www.w3schools.com/xml&lt;/link&gt;
+    &lt;description&gt;New XML tutorial on W3Schools&lt;/description&gt;
+  &lt;/item&gt;
+&lt;/channel&gt;
+
+&lt;/rss&gt;
+</pre></code>
+<p>The first line in the document - the XML declaration - defines the XML version and the character encoding 
+used in the document. In this case the document conforms to the 1.0 specification of XML and uses the UTF-8 
+character set.</p>
+<p>The next line is the RSS declaration which identifies that this is an RSS document (in this case, RSS 
+version 2.0).</p>
+<p>The next line contains the &lt;channel&gt; element. This element is used to describe the RSS feed.</p>
+<p>The &lt;channel&gt; element has three required child elements:</p>
+<ul>
+<li>&lt;title&gt; - Defines the title of the channel (e.g. W3Schools Home Page)</li>
+<li>&lt;link&gt; - Defines the hyperlink to the channel (e.g. http://www.w3schools.com)</li>
+<li>&lt;description&gt; - Describes the channel (e.g. Free web building tutorials)</li>
+</ul>
+<p>Each &lt;channel&gt; element can have one or more &lt;item&gt; elements.</p>
+<p>Each &lt;item&gt; element defines an article or "story" in the RSS feed.</p>
+<p>The &lt;item&gt; element has three required child elements:</p>
+<ul>
+<li>&lt;title&gt; - Defines the title of the item (e.g. RSS Tutorial)</li>
+<li>&lt;link&gt; - Defines the hyperlink to the item (e.g. http://www.w3schools.com/rss)</li>
+<li>&lt;description&gt; - Describes the item (e.g. New RSS tutorial on W3Schools)</li>
+</ul>
+<p>Finally, the two last lines close the &lt;channel&gt; and &lt;rss&gt; elements.</p>
+<hr/>
+
+<h2>Comments in RSS</h2>
+<p>The syntax for writing comments in RSS is similar to that of HTML:</p>
+<code><pre>
+&lt;!-- This is an RSS comment --&gt;
+</pre></code>
+<hr/>
+
+<h2>RSS is Written in XMLM</h2>
+<p>Because RSS is XML, keep in mind that:</p>
+<ul>
+<li>All elements must have a closing tag</li>
+<li>Elements are case sensitive</li>
+<li>Elements must be properly nested</li>
+<li>Attribute values must always be quoted</li>
+</ul>
+</body>
+</html>
