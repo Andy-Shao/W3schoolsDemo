@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WSDL Documents</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>WSDL Documents</h1>
+<p>A WSDL document is just a simple XML document.</p>
+<p>It contains set of definitions to describe a web service.</p>
+<hr/>
+
+<h2>The WSDL Document Structure</h2>
+<p>A WSDL document describes a web service using these major elements:</p>
+<table class="reference notranslate">
+  <tr>
+    <th style="width:20%">Element</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>&lt;types&gt;</td>
+    <td>A container for data type definitions used by the web service</td>
+  </tr>
+	<tr>
+    <td>&lt;message&gt;</td>
+    <td>A typed definition of the data being communicated</td>
+  </tr>
+  <tr>
+    <td>&lt;portType&gt;</td>
+    <td>A set of operations supported by one or more endpoints</td>
+  </tr>
+  <tr>
+    <td>&lt;binding&gt;</td>
+    <td>A protocol and data format specification for a particular 
+	port type</td>
+  </tr>
+</table>
+<p>The main structure of a WSDL document looks like this:</p>
+<code><pre>
+&lt;definitions&gt;
+
+&lt;types&gt;
+  data type definitions........
+&lt;/types&gt;
+
+&lt;message&gt;
+  definition of the data being communicated....
+&lt;/message&gt;
+
+&lt;portType&gt;
+  set of operations......
+&lt;/portType&gt;
+
+&lt;binding&gt;
+  protocol and data format specification....
+&lt;/binding&gt;
+
+&lt;/definitions&gt;
+</pre></code>
+<p>A WSDL document can also contain other elements, like extension elements, and a service element that makes
+it possible to group together the definitions of several web services in one single WSDL document.</p>
+<hr/>
+
+<h2>WSDL Ports</h2>
+<p>The <b>&lt;portType&gt;</b> element is the most important WSDL element.</p>
+<p>It describes a web service, the operations that can be performed, and the messages that are involved.</p>
+<p>The &lt;portType&gt; element can be compared to a function library (or a module, or a class) in a 
+traditional programming language.</p>
+<hr/>
+
+<h2>WSDL Messages</h2>
+<p>The <b>&lt;message&gt;</b> element defines the data elements of an operation.</p>
+<p>Each message can consist of one or more parts. The parts can be compared to the parameters of a function 
+call in a traditional programming language.</p>
+<hr/>
+
+<h2>WSDL Types</h2>
+<p>The <b>&lt;types&gt;</b> element defines the data types that are used by the web service.</p>
+<p>For maximum platform neutrality, WSDL uses XML Schema syntax to define data types.</p>
+<hr/>
+
+<h2>WSDL Bindings</h2>
+<p>The <b>&lt;binding&gt;</b> element defines the data format and protocol for each port type.</p>
+<hr/>
+
+<h2>WSDL Example</h2>
+<p>This is a simplified fraction of a WSDL document:</p>
+<code><pre>
+&lt;message name="getTermRequest"&gt;
+  &lt;part name="term" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;message name="getTermResponse"&gt;
+  &lt;part name="value" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;portType name="glossaryTerms"&gt;
+  &lt;operation name="getTerm"&gt;
+    &lt;input message="getTermRequest"/&gt;
+    &lt;output message="getTermResponse"/&gt;
+  &lt;/operation&gt;
+&lt;/portType&gt;
+</pre></code>
+<p>In this example the <b>&lt;portType&gt;</b> element defines "glossaryTerms" as the name of a <b>port</b>, 
+and "getTerm" as the name of an <b>operation.</b></p>
+<p>The "getTerm" operation has an <b>input message</b> called "getTermRequest" and an <b>output message</b> 
+called "getTermResponse".</p>
+<p>The <b>&lt;message&gt;</b> elements define the <b>parts</b> of each message and the associated data types.</p>
+<p>Compared to traditional programming, glossaryTerms is a function library, "getTerm" is a function with 
+"getTermRequest" as the input parameter, and getTermResponse as the return parameter.</p>
+</body>
+</html>
