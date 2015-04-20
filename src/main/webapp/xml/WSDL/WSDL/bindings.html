@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WSDL Bindings</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<p>WSDL bindings defines the message format and protocol details for a web service.</p>
+<hr/>
+
+<h2> Binding to SOAP</h2>
+<p>A request-response operation example:</p>
+<code><pre>
+&lt;message name="getTermRequest"&gt;
+  &lt;part name="term" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;message name="getTermResponse"&gt;
+  &lt;part name="value" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;portType name="glossaryTerms"&gt;
+  &lt;operation name="getTerm"&gt;
+    &lt;input message="getTermRequest"/&gt;
+    &lt;output message="getTermResponse"/&gt;
+  &lt;/operation&gt;
+&lt;/portType&gt;
+
+&lt;binding type="glossaryTerms" name="b1"&gt;
+   &lt;soap:binding style="document"
+   transport="http://schemas.xmlsoap.org/soap/http" /&gt;
+   &lt;operation&gt;
+     &lt;soap:operation soapAction="http://example.com/getTerm"/&gt;
+     &lt;input&gt;&lt;soap:body use="literal"/&gt;&lt;/input&gt;
+     &lt;output&gt;&lt;soap:body use="literal"/&gt;&lt;/output&gt;
+  &lt;/operation&gt;
+&lt;/binding&gt;
+</pre></code>
+<p>The <b>binding</b> element has two attributes - name and type.</p>
+<p>The name attribute (you can use any name you want) defines the name of the binding, and the type attribute
+points to the port for the binding, in this case the "glossaryTerms" port.</p>
+<p>The <b>soap:binding</b> element has two attributes - style and transport.</p>
+<p>The style attribute can be "rpc" or "document". In this case we use document. The transport attribute 
+defines the SOAP protocol to use. In this case we use HTTP.</p>
+<p>The <b>operation</b> element defines each operation that the portType exposes.</p>
+<p>For each operation the corresponding SOAP action has to be defined. You must also specify how the input 
+and output are encoded. In this case we use "literal".</p>
+</body>
+</html>

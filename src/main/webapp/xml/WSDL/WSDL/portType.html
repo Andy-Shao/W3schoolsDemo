@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WSDL PortType</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>WSDL PortType</h1>
+<p>The &lt;portType&gt; element is the most important WSDL element.</p>
+<hr/>
+
+<h2>WSDL - The &lt;portType&gt; Element</h2>
+<p>The &lt;portType&gt; element defines <b>a web service</b>, the <b>operations</b> that can be performed, 
+and the <b>messages</b> that are involved.</p>
+<p>&lt;portType&gt; defines the connection point to a web service. It can be compared to a function 
+library (or a module, or a class) in a traditional programming language. Each operation can be compared to 
+a function in a traditional programming language.</p>
+<hr/>
+
+<h2>Operation Types</h2>
+<p>The request-response type is the most common operation type, but WSDL defines four types:</p>
+<table class="reference notranslate">
+  <tr>
+    <th style="width:30%">Type</th>
+    <th>Definition</th>
+  </tr>
+  <tr>
+    <td>One-way</td>
+    <td>The operation can receive a message but will not return a 
+    response</td>
+  </tr>
+  <tr>
+    <td>Request-response</td>
+    <td>The operation can receive a request and will return a 
+    response</td>
+  </tr>
+  <tr>
+    <td>Solicit-response</td>
+    <td>The operation can send a request and will wait for a 
+    response</td>
+  </tr>
+  <tr>
+    <td>Notification</td>
+    <td>The operation can send a message but will not wait for a 
+    response</td>
+  </tr>
+</table>
+<hr/>
+
+<h2>One-Way Operation</h2>
+<p>A one-way operation example:</p>
+<code><pre>
+&lt;message name="newTermValues"&gt;
+  &lt;part name="term" type="xs:string"/&gt;
+  &lt;part name="value" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;portType name="glossaryTerms"&gt;
+  &lt;operation name="setTerm"&gt;
+    &lt;input name="newTerm" message="newTermValues"/&gt;
+  &lt;/operation&gt;
+&lt;/portType &gt;
+</pre></code>
+<p>In the example above, the portType "glossaryTerms" defines a one-way operation called "setTerm".</p>
+<p>The "setTerm" operation allows input of new glossary terms messages using a "newTermValues" message with 
+the input parameters "term" and "value". However, no output is defined for the operation.</p>
+<hr/>
+
+<h2>Request-Response Operation</h2>
+<p>A request-response operation example:</p>
+<code><pre>
+&lt;message name="getTermRequest"&gt;
+  &lt;part name="term" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;message name="getTermResponse"&gt;
+  &lt;part name="value" type="xs:string"/&gt;
+&lt;/message&gt;
+
+&lt;portType name="glossaryTerms"&gt;
+  &lt;operation name="getTerm"&gt;
+    &lt;input message="getTermRequest"/&gt;
+    &lt;output message="getTermResponse"/&gt;
+  &lt;/operation&gt;
+&lt;/portType&gt;
+</pre></code>
+<p>In the example above, the portType "glossaryTerms" defines a request-response operation called "getTerm".</p>
+<p>The "getTerm" operation requires an input message called "getTermRequest" with a parameter called "term", 
+and will return an output message called "getTermResponse" with a parameter called "value".</p>
+</body>
+</html>
