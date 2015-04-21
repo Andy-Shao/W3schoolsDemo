@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SOAP Envelope Element</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>SOAP Envelope Element</h1>
+<p>The SOAP Envelope element is the root element of a SOAP message.</p>
+<hr/>
+
+<h2>The SOAP Envelope Element</h2>
+<p>The required SOAP Envelope element is the root element of a SOAP message. This element defines the XML 
+document as a SOAP message.</p>
+<h3>Example</h3>
+<code><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;soap:Envelope
+xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding"&gt;
+  ...
+  Message information goes here
+  ...
+&lt;/soap:Envelope&gt;
+</pre></code>
+<hr/>
+
+<h2>The xmlns:soap Namespace</h2>
+<p>Notice the xmlns:soap namespace in the example above. It should always have the value of: 
+"http://www.w3.org/2001/12/soap-envelope".</p>
+<p>The namespace defines the Envelope as a SOAP Envelope.</p>
+<p>If a different namespace is used, the application generates an error and discards the message.</p>
+<hr/>
+
+<h2>The encodingStyle Attribute</h2>
+<p>The encodingStyle attribute is used to define the data types used in the document. This attribute may 
+appear on any SOAP element, and applies to the element's contents and all child elements.</p>
+<p>A SOAP message has no default encoding.</p>
+<h3>Syntax</h3>
+<code><pre>
+soap:encodingStyle="URI"
+</pre></code>
+<h3>Example</h3>
+<code><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;soap:Envelope
+xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding"&gt;
+  ...
+  Message information goes here
+  ...
+&lt;/soap:Envelope&gt;
+</pre></code>
+</body>
+</html>

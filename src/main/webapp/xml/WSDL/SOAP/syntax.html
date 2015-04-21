@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SOAP Syntax</title>
+<link rel="stylesheet" href="../../../resources/css/note.css"/>
+</head>
+<body>
+<h1>SOAP Syntax</h1>
+<h2>SOAP Building Blocks</h2>
+<p>A SOAP message is an ordinary XML document containing the following elements:</p>
+<ul>
+<li>An Envelope element that identifies the XML document as a SOAP message</li>
+<li>A Header element that contains header information</li>
+<li>A Body element that contains call and response information</li>
+<li>A Fault element containing errors and status information</li>
+</ul>
+<p>All the elements above are declared in the default namespace for the SOAP envelope:</p>
+<p>http://www.w3.org/2001/12/soap-envelope</p>
+<p>and the default namespace for SOAP encoding and data types is:</p>
+<p>http://www.w3.org/2001/12/soap-encoding</p>
+<hr/>
+
+<h2>Syntax Rules</h2>
+<p>Here are some important syntax rules:</p>
+<ul>
+<li>A SOAP message MUST be encoded using XML</li>
+<li>A SOAP message MUST use the SOAP Envelope namespace</li>
+<li>A SOAP message MUST use the SOAP Encoding namespace</li>
+<li>A SOAP message must NOT contain a DTD reference</li>
+<li>A SOAP message must NOT contain XML Processing Instructions</li>
+</ul>
+<hr/>
+
+<h2>Skeleton SOAP Message</h2>
+<code><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;soap:Envelope
+xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding"&gt;
+
+&lt;soap:Header&gt;
+...
+&lt;/soap:Header&gt;
+
+&lt;soap:Body&gt;
+...
+  &lt;soap:Fault&gt;
+  ...
+  &lt;/soap:Fault&gt;
+&lt;/soap:Body&gt;
+
+&lt;/soap:Envelope&gt;
+</pre></code>
+</body>
+</html>
