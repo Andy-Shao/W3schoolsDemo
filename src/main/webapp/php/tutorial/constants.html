@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP 5 Constants</h1>
+<p>Constants are like variables except that once they are defined they cannot be changed or undefined</p>
+<h2>PHP Constants</h2>
+<p>A constant is an identifier (name) for a simple value. The value cannot be changed during the script.</p>
+<p>A valid constant name starts with a letter or underscore (no $ sign before the constant name).</p>
+<p>Note: Unlike variables, constants are automatically global across the entire script.</p>
+<hr/>
+
+<h2>Create a PHP Constant</h2>
+<p>To create a constant, use the define() function.</p>
+<h3>Syntax</h3>
+<code><pre>
+define(name, value, case-insensitive)
+</pre></code>
+<p>Parameters:</p>
+<ul>
+<li><i>name:</i> Specifies the name of the constant</li>
+<li><i>value:</i> Specifies the value of the contant</li>
+<li><i>case-insensitive:</i> Specifies whether the constant name should be case-insensitive. Default is false</li>
+</ul>
+<p>The example below creates a constant with a <b>case-sensitive</b> name:</p>
+<code><pre>
+&lt;?php
+define("GREETING", "Welcome to W3Schools.com!");
+echo GREETING;
+?&gt;
+</pre></code>
+<code><pre>
+&lt;?php
+define("GREETING", "Welcome to W3Schools.com!");
+echo greeting;
+?&gt;
+</pre></code>
+<hr/>
+
+<h2>Constants are Global</h2>
+<p>Constants are automatically global and can be used across the entire script.</p>
+<code><pre>
+&lt;?php
+define("GREETING", "Welcome to W3Schools.com!");
+
+function myTest() {
+    echo GREETING;
+}
+
+myTest();
+?&gt;
+</pre></code>
+<a href="demo_constant3.html">Example</a>
+</body>
+</html>
