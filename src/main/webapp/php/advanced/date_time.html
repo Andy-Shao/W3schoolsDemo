@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP 5 Date and Time</h1>
+<p>The PHP date() function is used to format a date and/or a time.</p>
+<hr/>
+
+<h2>The PHP Date() Function</h2>
+<p>The PHP date() function formats a timestamp to a more readable date and time.</p>
+<h3>Syntax</h3>
+<code><pre>
+date(format,timestamp)
+</pre></code>
+<table>
+<thead>
+<tr><th>Parameter</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>format</td>
+<td>Required. Specifies the format of the timestamp</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Optional. Specifies a timestamp. Default is the current date and time</td>
+</tr>
+</tbody>
+</table>
+<div class="form">
+A timestamp is a sequence of characters, denoting the date and/or time at which a certain event occurred.
+</div>
+<hr/>
+
+<h2>Get a Simple Date</h2>
+<p>The required format parameter of the date() function specifies how to format the date (or time).</p>
+<p>Here are some characters that are commonly used for dates:</p>
+<ul>
+<li>d - Represents the day of the month (01 to 31)</li>
+<li>m - Represents a month (01 to 12)</li>
+<li>Y - Represents a year (in four digits)</li>
+<li>l (lowercase 'L') - Represents the day of the week</li>
+</ul>
+<p>Other characters, like"/", ".", or "-" can also be inserted between the characters to add additional formatting.</p>
+<p>The example below formats today's date in three different ways:</p>
+<code><pre>
+&lt;?php
+echo "Today is " . date("Y/m/d") . "&lt;br&gt;";
+echo "Today is " . date("Y.m.d") . "&lt;br&gt;";
+echo "Today is " . date("Y-m-d") . "&lt;br&gt;";
+echo "Today is " . date("l");
+?&gt;
+</pre></code>
+<a href="demo_date1.php">Example</a>
+<hr/>
+
+<h2>PHP Tip - Automatic Copyright Year</h2>
+<p>Use the date() function to automatically update the copyright year on your website:</p>
+<code><pre>
+&amp;copy; 2010-&lt;?php echo date("Y");?&gt;
+</pre></code>
+<a href="demo_date_copyright.php">Example</a>
+<hr/>
+
+<h2>Get a Simple Time</h2>
+<p>Here are some characters that are commonly used for times:</p>
+<ul>
+<li>h - 12-hour format of an hour with leading zeros (01 to 12)</li>
+<li>i - Minutes with leading zeros (00 to 59)</li>
+<li>s - Seconds with leading zeros (00 to 59)</li>
+<li>a - Lowercase Ante meridiem and Post meridiem (am or pm)</li>
+</ul>
+<p>The example below outputs the current time in the specified format:</p>
+<code><pre>
+&lt;?php
+echo "The time is " . date("h:i:sa");
+?&gt;
+</pre></code>
+<a href="demo_date2.php">Example</a>
+<div class="form">
+Note that the PHP date() function will return the current date/time of the server!
+</div>
+<hr/>
+
+<h2>Get Your Time Zone</h2>
+<p>If the time you got back from the code is not the right time, it's probably because your server is in another country or set up for a different timezone.</p>
+<p>So, if you need the time to be correct according to a specific location, you can set a timezone to use.</p>
+<p>The example below sets the timezone to "America/New_York", then outputs the current time in the specified format:</p>
+<code><pre>
+&lt;?php
+date_default_timezone_set("America/New_York");
+echo "The time is " . date("h:i:sa");
+?&gt;
+</pre></code>
+<a href="demo_date3.php">Example</a>
+<hr/>
+
+<h2>Create a Date With PHP mktime()</h2>
+<p>The optional timestamp parameter in the date() function specifies a timestamp. If you do not specify a timestamp, the current date and time will be used (as shown in the examples above).</p>
+<p>The mktime() function returns the Unix timestamp for a date. The Unix timestamp contains the number of seconds between the Unix Epoch (January 1 1970 00:00:00 GMT) and the time specified.</p>
+<h3>Syntax</h3>
+<code><pre>
+mktime(hour,minute,second,month,day,year)
+</pre></code>
+<p>The example below creates a date and time from a number of parameters in the mktime() function:</p>
+<code><pre>
+&lt;?php
+$d=mktime(11, 14, 54, 8, 12, 2014);
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?&gt;
+</pre></code>
+<a href="demo_date4.php">Example</a>
+<hr/>
+
+<h2>Create a Date From a String With PHP strtotime()</h2>
+<p>The PHP strtotime() function is used to convert a human readable string to a Unix time.</p>
+<h3>Syntax</h3>
+<code><pre>
+strtotime(time,now)
+</pre></code>
+<p>The example below creates a date and time from the strtotime() function:</p>
+<code><pre>
+&lt;?php
+$d=strtotime("10:30pm April 15 2014");
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?&gt;
+</pre></code>
+<a href="demo_date5.php">Example</a>
+<p>PHP is quite clever about converting a string to a date, so you can put in various values:</p>
+<code><pre>
+&lt;?php
+$d=strtotime("tomorrow");
+echo date("Y-m-d h:i:sa", $d) . "&lt;br&gt;";
+
+$d=strtotime("next Saturday");
+echo date("Y-m-d h:i:sa", $d) . "&lt;br&gt;";
+
+$d=strtotime("+3 Months");
+echo date("Y-m-d h:i:sa", $d) . "&lt;br&gt;";
+?&gt;
+</pre></code>
+<a href="demo_date6.php">Example</a>
+<p>However, strtotime() is not perfect, so remember to check the strings you put in there.</p>
+<hr/>
+
+<h2>More Date Examples</h2>
+<p>The example below outputs the dates for the next six Saturdays:</p>
+<code><pre>
+&lt;?php
+$startdate = strtotime("Saturday");
+$enddate = strtotime("+6 weeks",$startdate);
+
+while ($startdate &lt; $enddate) {
+  echo date("M d", $startdate),"&lt;br&gt;";
+  $startdate = strtotime("+1 week", $startdate);
+}
+?&gt;
+</pre></code>
+<a href="demo_date7.php">Example</a>
+<p>The example below outputs the number of days until 4th of July:</p>
+<code><pre>
+&lt;?php
+$d1=strtotime("July 04");
+$d2=ceil(($d1-time())/60/60/24);
+echo "There are " . $d2 ." days until 4th of July.";
+?&gt;
+</pre></code>
+</body>
+</html>
