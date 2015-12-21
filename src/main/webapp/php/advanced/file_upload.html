@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP 5 File Upload</h1>
+<p>With PHP, it is easy to upload files to the server.</p>
+<p>However, with ease comes danger, so always be careful when allowing file uploads!</p>
+<hr/>
+
+<h2>Configure The "php.ini" File</h2>
+<p>First, ensure that PHP is configured to allow file uploads.</p>
+<p>In your "php.ini" file, search for the file_uploads directive, and set it to On:</p>
+<code><pre>
+file_uploads = On
+</pre></code>
+<hr/>
+
+<h2>Create The HTML Form</h2>
+<p>Next, create an HTML form that allow users to choose the image file they want to upload:</p>
+<code><pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;form action="upload.php" method="post" enctype="multipart/form-data"&gt;
+    Select image to upload:
+    &lt;input type="file" name="fileToUpload" id="fileToUpload"&gt;
+    &lt;input type="submit" value="Upload Image" name="submit"&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<p>Some rules to follow for the HTML form above:</p>
+<ul>
+<li>Make sure that the form uses method="post"</li>
+<li>The form also needs the following attribute: enctype="multipart/form-data". It specifies which content-type to use when submitting the form</li>
+</ul>
+<p>Without the requirements above, the file upload will not work.</p>
+<p>Other things to notice:</p>
+<ul>
+<li>The type="file" attribute of the &lt;input&gt; tag shows the input field as a file-select control, with a "Browse" button next to the input control</li>
+</ul>
+<p>The form above sends data to a file called "upload.php", which we will create next.</p>
+<hr/>
+
+<h2>Create The Upload File PHP Script</h2>
+<p>The "upload.php" file contains the code for uploading a file:</p>
+<code><pre>
+&lt;?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+}
+?&gt;
+</pre></code>
+<p>PHP script explained:</p>
+<ul>
+<li>$target_dir = "uploads/" - specifies the directory where the file is going to be placed</li>
+<li>$target_file specifies the path of the file to be uploaded</li>
+<li>$uploadOk=1 is not used yet (will be used later)</li>
+<li>$imageFileType holds the file extension of the file</li>
+<li>Next, check if the image file is an actual image or a fake image</li>
+</ul>
+<div class="form">
+<b>Note:</b> You will need to create a new directory called "uploads" in the directory where "upload.php" file resides. The uploaded files will be saved there.
+</div>
+<hr/>
+
+<h2>Check if File Already Exists</h2>
+<p>Now we can add some restrictions.</p>
+<p>First, we will check if the file already exists in the "uploads" folder. If it does, an error message is displayed, and $uploadOk is set to 0:</p>
+<code><pre>
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+</pre></code>
+<hr/>
+
+<h2>Limit File Size</h2>
+<p>The file input field in our HTML form above is named "fileToUpload".</p>
+<p>Now, we want to check the size of the file. If the file is larger than 500kb, an error message is displayed, and $uploadOk is set to 0:</p>
+<code><pre>
+ // Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+</pre></code>
+<hr/>
+
+<h2>Limit File Type</h2>
+<p>The code below only allows users to upload JPG, JPEG, PNG, and GIF files. All other file types gives an error message before setting $uploadOk to 0:</p>
+<code><pre>
+// Allow certain file formats
+if($imageFileType != "jpg" &amp;&amp; $imageFileType != "png" &amp;&amp; $imageFileType != "jpeg"
+&amp;&amp; $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG &amp; GIF files are allowed.";
+    $uploadOk = 0;
+}
+</pre></code>
+<hr/>
+
+<h2>Complete Upload File PHP Script</h2>
+<p>The complete "upload.php" file now looks like this:</p>
+<code><pre>
+&lt;?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+}
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+// Check file size
+if ($_FILES["fileToUpload"]["size"] &gt; 500000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" &amp;&amp; $imageFileType != "png" &amp;&amp; $imageFileType != "jpeg"
+&amp;&amp; $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG &amp; GIF files are allowed.";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+}
+?&gt;
+</pre></code>
+</body>
+</html>
