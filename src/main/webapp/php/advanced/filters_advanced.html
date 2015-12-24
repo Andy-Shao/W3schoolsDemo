@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP Filters Advanced</h1>
+<h2>Validate an Integer Within a Range</h2>
+<p>The following example uses the filter_var() function to check if a variable is both of type INT, and between 1 and 200:</p>
+<code><pre>
+&lt;?php
+$int = 122;
+$min = 1;
+$max = 200;
+
+if (filter_var($int, FILTER_VALIDATE_INT, array("options" =&gt; array("min_range"=&gt;$min, "max_range"=&gt;$max))) === false) {
+    echo("Variable value is not within the legal range");
+} else {
+    echo("Variable value is within the legal range");
+}
+?&gt;
+</pre></code>
+<hr/>
+
+<h2>Validate IPv6 Address</h2>
+<p>The following example uses the filter_var() function to check if the variable $ip is a valid IPv6 address:</p>
+<code><pre>
+&lt;?php
+$ip = "2001:0db8:85a3:08d3:1319:8a2e:0370:7334";
+
+if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === false) {
+    echo("$ip is a valid IPv6 address");
+} else {
+    echo("$ip is not a valid IPv6 address");
+}
+?&gt;
+</pre></code>
+<hr/>
+
+<h2>Validate URL - Must Contain QueryString</h2>
+<p>The following example uses the filter_var() function to check if the variable $url is a URL with a querystring:</p>
+<code><pre>
+&lt;?php
+$url = "http://www.w3schools.com";
+
+if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED) === false) {
+    echo("$url is a valid URL");
+} else {
+    echo("$url is not a valid URL");
+}
+?&gt;
+</pre></code>
+<hr/>
+
+<h2>Remove Characters With ASCII Value > 127</h2>
+<p>The following example uses the filter_var() function to sanitize a string. It will both remove all HTML tags, and all characters with ASCII value &gt; 127, from the string:</p>
+<code><pre>
+&lt;?php
+$str = "&lt;h1&gt;Hello WorldÆØÅ!&lt;/h1&gt;";
+
+$newstr = filter_var($str, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+echo $newstr;
+?&gt;
+</pre></code>
+</body>
+</html>

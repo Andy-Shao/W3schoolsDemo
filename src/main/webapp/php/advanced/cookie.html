@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP 5 Cookies</h1>
+<p>A cookie is often used to identify a user.</p>
+<h2>What is a Cookie?</h2>
+<p>A cookie is often used to identify a user. A cookie is a small file that the server embeds on the user's computer. Each time the same computer requests a page with a browser, it will send the cookie too. With PHP, you can both create and retrieve cookie values.</p>
+<hr/>
+
+<h2>Create Cookies With PHP</h2>
+<p>A cookie is created with the setcookie() function.</p>
+<h3>Syntax</h3>
+<code><pre>
+setcookie(name, value, expire, path, domain, secure, httponly);
+</pre></code>
+<p>Only the name parameter is required. All other parameters are optional.</p>
+<hr/>
+
+<h2>PHP Create/Retrieve a Cookie</h2>
+<p>The following example creates a cookie named "user" with the value "John Doe". The cookie will expire after 30 days (86400 * 30). The "/" means that the cookie is available in entire website (otherwise, select the directory you prefer).</p>
+<p>We then retrieve the value of the cookie "user" (using the global variable $_COOKIE). We also use the isset() function to find out if the cookie is set:</p>
+<code><pre>
+&lt;?php
+$cookie_name = "user";
+$cookie_value = "John Doe";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+?&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+    echo "Cookie '" . $cookie_name . "' is set!&lt;br&gt;";
+    echo "Value is: " . $_COOKIE[$cookie_name];
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<a href="demo_cookie1.php">Example</a>
+<div class="form">
+<b>Note:</b> The setcookie() function must appear BEFORE the &lt;html&gt; tag.
+</div>
+<p><b>Note:</b> The value of the cookie is automatically URLencoded when sending the cookie, and automatically decoded when received (to prevent URLencoding, use setrawcookie() instead).</p>
+<hr/>
+
+<h2>Modify a Cookie Value</h2>
+<p>To modify a cookie, just set (again) the cookie using the setcookie() function:</p>
+<code><pre>
+&lt;?php
+$cookie_name = "user";
+$cookie_value = "Alex Porter";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+?&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+    echo "Cookie '" . $cookie_name . "' is set!&lt;br&gt;";
+    echo "Value is: " . $_COOKIE[$cookie_name];
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<hr/>
+
+<h2>Delete a Cookie</h2>
+<p>To delete a cookie, use the setcookie() function with an expiration date in the past:</p>
+<code><pre>
+&lt;?php
+// set the expiration date to one hour ago
+setcookie("user", "", time() - 3600);
+?&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+echo "Cookie 'user' is deleted.";
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+<hr/>
+
+<h2>Check if Cookies are Enabled</h2>
+<p>The following example creates a small script that checks whether cookies are enabled. First, try to create a test cookie with the setcookie() function, then count the $_COOKIE array variable:</p>
+<code><pre>
+&lt;?php
+setcookie("test_cookie", "test", time() + 3600, '/');
+?&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+if(count($_COOKIE) &gt; 0) {
+    echo "Cookies are enabled.";
+} else {
+    echo "Cookies are disabled.";
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></code>
+</body>
+</html>

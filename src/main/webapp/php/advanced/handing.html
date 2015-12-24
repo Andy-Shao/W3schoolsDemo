@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP Error Handling</h1>
+<p>The default error handling in PHP is very simple. An error message with filename, line number and a message describing the error is sent to the browser.</p>
+<hr/>
+
+<h2>PHP Error Handling</h2>
+<p>When creating scripts and web applications, error handling is an important part. If your code lacks error checking code, your program may look very unprofessional and you may be open to security risks.</p>
+<p>This tutorial contains some of the most common error checking methods in PHP.</p>
+<p>We will show different error handling methods:</p>
+<ul>
+<li>Simple "die()" statements</li>
+<li>Custom errors and error triggers</li>
+<li>Error reporting</li>
+</ul>
+<hr/>
+
+<h2>Basic Error Handling: Using the die() function</h2>
+<p>The first example shows a simple script that opens a text file:</p>
+<code><pre>
+&lt;?php
+$file=fopen("welcome.txt","r");
+?&gt;
+</pre></code>
+<p>If the file does not exist you might get an error like this:</p>
+<code><pre>
+<b>Warning:</b> fopen(welcome.txt) [function.fopen]: failed to open stream:
+No such file or directory in <b>C:\webfolder\test.php</b> on line <b>2</b>
+</pre></code>
+<p>To prevent the user from getting an error message like the one above, we test whether the file exist before we try to access it:</p>
+<code><pre>
+&lt;?php
+if(!file_exists("welcome.txt")) {
+  die("File not found");
+} else {
+  $file=fopen("welcome.txt","r");
+}
+?&gt;
+</pre></code>
+<p>Now if the file does not exist you get an error like this:</p>
+<code><pre>
+Fill not found
+</pre></code>
+<p>The code above is more efficient than the earlier code, because it uses a simple error handling mechanism to stop the script after the error.</p>
+<p>However, simply stopping the script is not always the right way to go. Let's take a look at alternative PHP functions for handling errors.</p>
+<hr/>
+
+<h2>Creating a Custom Error Handler</h2>
+<p>Creating a custom error handler is quite simple. We simply create a special function that can be called when an error occurs in PHP.</p>
+<p>This function must be able to handle a minimum of two parameters (error level and error message) but can accept up to five parameters (optionally: file, line-number, and the error context):</p>
+<h3>Syntax</h3>
+<code><pre>
+error_function(error_level,error_message,
+error_file,error_line,error_context)
+</pre></code>
+<table>
+<thead>
+<tr><th>Parameter</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<th>error_level</th>
+<th>Required. Specifies the error report level for the user-defined error. Must be a value number. See table below for possible error report levels</th>
+</tr>
+<tr>
+<th>error_message</th>
+<th>Required. Specifies the error message for the user-defined error</th>
+</tr>
+<tr>
+<th>error_file</th>
+<th>Optional. Specifies the filename in which the error occurred</th>
+</tr>
+<tr>
+<th>error_line</th>
+<th>Optional. Specifies the line number in which the error occurred</th>
+</tr>
+<tr>
+<th>error_context</th>
+<th>Optional. Specifies an array containing every variable, and their values, in use when the error occurred</th>
+</tr>
+</tbody>
+</table>
+<hr/>
+
+<h1>Error Report levels</h1>
+<p>These error report levels are the different types of error the user-defined error handler can be used for:</p>
+<table>
+<thead>
+<tr><th>Value Constant</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<th>2</th>
+<th>E_WARNING</th>
+<th>Non-fatal run-time errors. Execution of the script is not halted</th>
+</tr>
+<tr>
+<th>8</th>
+<th>E_NOTICE</th>
+<th>Run-time notices. The script found something that might be an error, but could also happen when running a script normally</th>
+</tr>
+<tr>
+<th>256</th>
+<th>E_USER_ERROR</th>
+<th>Fatal user-generated error. This is like an E_ERROR set by the programmer using the PHP function trigger_error()</th>
+</tr>
+<tr>
+<th>512</th>
+<th>E_USER_WARNING</th>
+<th>Non-fatal user-generated warning. This is like an E_WARNING set by the programmer using the PHP function trigger_error()</th>
+</tr>
+<tr>
+<th>1024</th>
+<th>E_USER_NOTICE</th>
+<th>User-generated notice. This is like an E_NOTICE set by the programmer using the PHP function trigger_error()</th>
+</tr>
+<tr>
+<th>4096</th>
+<th>E_RECOVERABLE_ERROR</th>
+<th>Catchable fatal error. This is like an E_ERROR but can be caught by a user defined handle (see also set_error_handler())</th>
+</tr>
+<tr>
+<th>8191</th>
+<th>E_ALL</th>
+<th>All errors and warnings (E_STRICT became a part of E_ALL in PHP 5.4)</th>
+</tr>
+</tbody>
+</table>
+<p>Now lets create a function to handle errors:</p>
+<code><pre>
+function customError($errno, $errstr) {
+  echo "&lt;b&gt;Error:&lt;/b&gt; [$errno] $errstr&lt;br&gt;";
+  echo "Ending Script";
+  die();
+}
+</pre></code>
+<p>The code above is a simple error handling function. When it is triggered, it gets the error level and an error message. It then outputs the error level and message and terminates the script.</p>
+<p>Now that we have created an error handling function we need to decide when it should be triggered.</p>
+<hr/>
+
+<h2>Set Error Handler</h2>
+<p>The default error handler for PHP is the built in error handler. We are going to make the function above the default error handler for the duration of the script.</p>
+<p>It is possible to change the error handler to apply for only some errors, that way the script can handle different errors in different ways. However, in this example we are going to use our custom error handler for all errors:</p>
+<code><pre>
+set_error_handler("customError");
+</pre></code>
+<p>Since we want our custom function to handle all errors, the set_error_handler() only needed one parameter, a second parameter could be added to specify an error level.</p>
+<hr/>
+
+<h2>Example</h2>
+<p>Testing the error handler by trying to output variable that does not exist:</p>
+<code><pre>
+&lt;?php
+//error handler function
+function customError($errno, $errstr) {
+  echo "&lt;b&gt;Error:&lt;/b&gt; [$errno] $errstr";
+}
+
+//set error handler
+set_error_handler("customError");
+
+//trigger error
+echo($test);
+?&gt;
+</pre></code>
+<p>The output of the code above should be something like this:</p>
+<code><pre>
+<b>Error:</b> [8] Undefined variable: test
+</pre></code>
+<hr/>
+
+<h2>Trigger an Error</h2>
+<p>In a script where users can input data it is useful to trigger errors when an illegal input occurs. In PHP, this is done by the trigger_error() function.</p>
+<h3>Example</h3>
+<p>In this example an error occurs if the "test" variable is bigger than "1":</p>
+<code><pre>
+&lt;?php
+$test=2;
+if ($test&gt;1) {
+  trigger_error("Value must be 1 or below");
+}
+?&gt;
+</pre></code>
+<p>The output of the code above should be something like this:</p>
+<code><pre>
+<b>Notice:</b> Value must be 1 or below<br/>
+in <b>C:\webfolder\test.php</b> on line <b>6</b>
+</pre></code>
+<p>An error can be triggered anywhere you wish in a script, and by adding a second parameter, you can specify what error level is triggered.</p>
+<p>Possible error types:</p>
+<ul>
+<li>E_USER_ERROR - Fatal user-generated run-time error. Errors that can not be recovered from. Execution of the script is halted</li>
+<li>E_USER_WARNING - Non-fatal user-generated run-time warning. Execution of the script is not halted</li>
+<li>E_USER_NOTICE - Default. User-generated run-time notice. The script found something that might be an error, but could also happen when running a script normally</li>
+</ul>
+<h3>Example</h3>
+<p>In this example an E_USER_WARNING occurs if the "test" variable is bigger than "1". If an E_USER_WARNING occurs we will use our custom error handler and end the script:</p>
+<code><pre>
+&lt;?php
+//error handler function
+function customError($errno, $errstr) {
+  echo "&lt;b&gt;Error:&lt;/b&gt; [$errno] $errstr&lt;br&gt;";
+  echo "Ending Script";
+  die();
+}
+
+//set error handler
+set_error_handler("customError",E_USER_WARNING);
+
+//trigger error
+$test=2;
+if ($test&gt;1) {
+  trigger_error("Value must be 1 or below",E_USER_WARNING);
+}
+?&gt;
+</pre></code>
+<p>The output of the code above should be something like this:</p>
+<code><pre>
+<b>Error:</b> [512] Value must be 1 or below<br/>
+Ending Script
+</pre></code>
+<hr/>
+
+<h2>Error Logging</h2>
+<p>By default, PHP sends an error log to the server's logging system or a file, depending on how the error_log configuration is set in the php.ini file. By using the error_log() function you can send error logs to a specified file or a remote destination.</p>
+<p>Sending error messages to yourself by e-mail can be a good way of getting notified of specific errors.</p>
+<h3>Send an Error Message by E-Mail</h3>
+<p>In the example below we will send an e-mail with an error message and end the script, if a specific error occurs:</p>
+<code><pre>
+&lt;?php
+//error handler function
+function customError($errno, $errstr) {
+  echo "&lt;b&gt;Error:&lt;/b&gt; [$errno] $errstr&lt;br&gt;";
+  echo "Webmaster has been notified";
+  error_log("Error: [$errno] $errstr",1,
+  "someone@example.com","From: webmaster@example.com");
+}
+
+//set error handler
+set_error_handler("customError",E_USER_WARNING);
+
+//trigger error
+$test=2;
+if ($test&gt;1) {
+  trigger_error("Value must be 1 or below",E_USER_WARNING);
+}
+?&gt;
+</pre></code>
+<p>The output of the code above should be something like this:</p>
+<code><pre>
+<b>Error:</b> [512] Value must be 1 or below<br/>
+Webmaster has been notified
+</pre></code>
+<p>And the mail received from the code above looks like this:</p>
+<code><pre>
+Error: [512] Value must be 1 or below
+</pre></code>
+</body>
+</html>
