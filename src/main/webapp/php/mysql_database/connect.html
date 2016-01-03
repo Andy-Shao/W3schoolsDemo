@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP Connect to MySQL</h1>
+<p>PHP 5 and later can work with a MySQL database using:</p>
+<ul>
+<li><b>MySQLi extension</b> (the "i" stands for improved)</li>
+<li><b>PDO(PHP Data Objects)</b></li>
+</ul>
+<p>Earlier versions of PHP used the MySQL extension. However, this extension was deprecated in 2012.</p>
+<hr/>
+
+<p>PDO will work on 12 different database systems, where as MySQLi will only work with MySQL databases.</p>
+<p>So, if you have to switch your project to use another database, PDO makes the process easy. You only have to change the connection string and a few queries. With MySQLi, you will need to rewrite the entire code - queries included.</p>
+<p>Both are object-oriented, but MySQLi also offers a procedural API.</p>
+<p>Both support Prepared Statements. Prepared Statements protect from SQL injection, and are very important for web application security.</p>
+<hr/>
+
+<h2>Open a Connection to MySQL</h2>
+<p>Example (MySQLi Object-Oriented)</p>
+<code><pre>
+&lt;?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn-&gt;connect_error) {
+    die("Connection failed: " . $conn-&gt;connect_error);
+}
+echo "Connected successfully";
+?&gt;
+</pre></code>
+<p>Example (MySQLi Procedural)</p>
+<code><pre>
+&lt;?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+?&gt;
+</pre></code>
+<p>Example (PDO)</p>
+<code><pre>
+&lt;?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
+    // set the PDO error mode to exception
+    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e-&gt;getMessage();
+    }
+?&gt;
+</pre></code>
+<hr/>
+
+<h2>Close the connection</h2>
+<p>The connection will be closed automatically when the script ends. To close the connection before, use the following:</p>
+<p>Example (MySQLi Object-Oriented)</p>
+<code><pre>
+$conn-&gt;close();
+</pre></code>
+<p>Example (MySQLi Procedural)</p>
+<code><pre>
+mysqli_close($conn);
+</pre></code>
+<p>Example (PDO)</p>
+<code><pre>
+$conn = null;
+</pre></code>
+</body>
+</html>

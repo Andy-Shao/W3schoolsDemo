@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../resources/css/note.css"/>
+</head>
+<body>
+<h1>PHP Prepared Statements</h1>
+<h2>Prepared Statements and Bound Parameters</h2>
+<p>A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly with high efficiency.</p>
+<p>Prepared statements basically work like this:</p>
+<ol>
+<li>Prepare: An SQL statement template is created and sent to the database. Certain values are left unspecified, called parameters (labeled "?"). Example: INSERT INTO MyGuests VALUES(?, ?, ?)</li>
+<li>The database parses, compiles, and performs query optimization on the SQL statement template, and stores the result without executing it</li>
+<li>Execute: At a later time, the application binds the values to the parameters, and the database executes the statement. The application may execute the statement as many times as it wants with different values</li>
+</ol>
+<p>Compared to executing SQL statements directly, prepared statements have two main advantages:</p>
+<ul>
+<li>Prepared statements reduces parsing time as the preparation on the query is done only once (although the statement is executed multiple times)</li>
+<li>Bound parameters minimize bandwidth to the server as you need send only the parameters each time, and not the whole query</li>
+<li>Prepared statements are very useful against SQL injections, because parameter values, which are transmitted later using a different protocol, need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.</li>
+</ul>
+<p>Example (MySQLi with Prepared Statements)</p>
+<code><pre>
+&lt;?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn-&gt;connect_error) {
+    die("Connection failed: " . $conn-&gt;connect_error);
+}
+
+// prepare and bind
+$stmt = $conn-&gt;prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+$stmt-&gt;bind_param("sss", $firstname, $lastname, $email);
+
+// set parameters and execute
+$firstname = "John";
+$lastname = "Doe";
+$email = "john@example.com";
+$stmt-&gt;execute();
+
+$firstname = "Mary";
+$lastname = "Moe";
+$email = "mary@example.com";
+$stmt-&gt;execute();
+
+$firstname = "Julie";
+$lastname = "Dooley";
+$email = "julie@example.com";
+$stmt-&gt;execute();
+
+echo "New records created successfully";
+
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;
+</pre></code>
+<p>Prepared Statements in PDO</p>
+<code><pre>
+&lt;?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDBPDO";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // prepare sql and bind parameters
+    $stmt = $conn-&gt;prepare("INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES (:firstname, :lastname, :email)");
+    $stmt-&gt;bindParam(':firstname', $firstname);
+    $stmt-&gt;bindParam(':lastname', $lastname);
+    $stmt-&gt;bindParam(':email', $email);
+
+    // insert a row
+    $firstname = "John";
+    $lastname = "Doe";
+    $email = "john@example.com";
+    $stmt-&gt;execute();
+
+    // insert another row
+    $firstname = "Mary";
+    $lastname = "Moe";
+    $email = "mary@example.com";
+    $stmt-&gt;execute();
+
+    // insert another row
+    $firstname = "Julie";
+    $lastname = "Dooley";
+    $email = "julie@example.com";
+    $stmt-&gt;execute();
+
+    echo "New records created successfully";
+    }
+catch(PDOException $e)
+    {
+    echo "Error: " . $e-&gt;getMessage();
+    }
+$conn = null;
+?&gt;
+</pre></code>
+</body>
+</html>
