@@ -1,7 +1,6 @@
-/.classpath
-/.project
-/.settings/
-/target/
-*.class
-RemoveEmptyLine
-BuildXml
+.svn
+target
+.classpath
+.project
+.settings/
+.DS_Store
